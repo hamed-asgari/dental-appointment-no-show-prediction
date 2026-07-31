@@ -1,0 +1,72 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Test, type-checking, and lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.hypothesis/
+
+# Coverage
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# IDE and editor metadata
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Locally serialized model artifacts
+models/*.pkl
+models/*.pickle
+models/*.joblib
+models/*.onnx
+models/**/*.pkl
+models/**/*.pickle
+models/**/*.joblib
+models/**/*.onnx
+
+# Keep synthetic source data eligible for version control.
+# Do not add blanket exclusions for data/raw, CSV, or Parquet files.
