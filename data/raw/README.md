@@ -25,4 +25,41 @@ Transformation before raw ingestion, if any:
 Notes:
 ```
 
-No raw datasets or provenance entries are included in v0.1.
+## Ingested datasets
+
+The following fully synthetic datasets were copied from the separate **Dental Clinic Operations Analytics** project, frozen at **Version 1.0.0**. No transformations were applied before ingestion. These Project 2 copies are immutable raw inputs; Project 1 remains separate and must not be modified.
+
+Inclusion in `data/raw/` does not mean that every field is approved as a model predictor. Temporal availability and potential leakage will be reviewed separately in later phases.
+
+### `appointments.csv`
+
+- **Originating project:** Dental Clinic Operations Analytics
+- **Originating project version:** Version 1.0.0
+- **Original relative path:** `data/raw/appointments.csv`
+- **Project 2 destination path:** `data/raw/appointments.csv`
+- **Ingestion method:** Exact raw-file copy
+- **Transformations before ingestion:** None
+- **Synthetic-data status:** Fully synthetic
+- **Notes:** Immutable raw input copied from Project 1; predictor eligibility is not implied by inclusion.
+
+### `patients.csv`
+
+- **Originating project:** Dental Clinic Operations Analytics
+- **Originating project version:** Version 1.0.0
+- **Original relative path:** `data/raw/patients.csv`
+- **Project 2 destination path:** `data/raw/patients.csv`
+- **Ingestion method:** Exact raw-file copy
+- **Transformations before ingestion:** None
+- **Synthetic-data status:** Fully synthetic
+- **Notes:** Immutable raw input copied from Project 1; predictor eligibility is not implied by inclusion.
+
+### `dentists.csv`
+
+- **Originating project:** Dental Clinic Operations Analytics
+- **Originating project version:** Version 1.0.0
+- **Original relative path:** `data/raw/dentists.csv`
+- **Project 2 destination path:** `data/raw/dentists.csv`
+- **Ingestion method:** Exact raw-file copy
+- **Transformations before ingestion:** None
+- **Synthetic-data status:** Fully synthetic
+- **Notes:** Immutable raw input copied from Project 1; predictor eligibility is not implied by inclusion.
