@@ -70,3 +70,7 @@ models/**/*.onnx
 
 # Keep synthetic source data eligible for version control.
 # Do not add blanket exclusions for data/raw, CSV, or Parquet files.
+
+# Generated processed-data artifacts
+data/processed/*.parquet
+data/processed/*.json
