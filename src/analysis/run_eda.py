@@ -7,6 +7,21 @@ from collections.abc import Collection, Sequence
 import numpy as np
 import pandas as pd
 
+from src.analysis.drift import (
+    summarize_categorical_drift_features,
+    summarize_categorical_drift_levels,
+    summarize_numeric_drift,
+)
+from src.analysis.relationships import summarize_numeric_relationships
+from src.analysis.summaries import (
+    summarize_categorical_features,
+    summarize_cohort_target,
+    summarize_missingness,
+    summarize_numeric_by_target,
+    summarize_numeric_features,
+    summarize_temporal_coverage,
+    summarize_temporal_monthly,
+)
 from src.data import build_dataset as bd
 
 
@@ -336,3 +351,43 @@ def select_eda_populations(
         ),
     }
     return populations
+
+
+def build_eda_tables(
+    canonical: pd.DataFrame,
+) -> dict[str, pd.DataFrame]:
+    """Build the deterministic in-memory bundle of approved EDA tables."""
+
+    populations = select_eda_populations(canonical)
+    supervised_train = populations["supervised_train"]
+    train_drift = populations["train_drift"]
+    validation_drift = populations["validation_drift"]
+    maturity_audit = populations["maturity_audit"]
+    return {
+        "cohort_target": summarize_cohort_target(supervised_train),
+        "missingness": summarize_missingness(supervised_train),
+        "numeric_features": summarize_numeric_features(supervised_train),
+        "numeric_by_target": summarize_numeric_by_target(supervised_train),
+        "categorical_features": summarize_categorical_features(supervised_train),
+        "temporal_coverage": summarize_temporal_coverage(
+            supervised_train,
+            maturity_audit,
+        ),
+        "temporal_monthly": summarize_temporal_monthly(
+            supervised_train,
+            maturity_audit,
+        ),
+        "numeric_drift": summarize_numeric_drift(
+            train_drift,
+            validation_drift,
+        ),
+        "categorical_drift_levels": summarize_categorical_drift_levels(
+            train_drift,
+            validation_drift,
+        ),
+        "categorical_drift_features": summarize_categorical_drift_features(
+            train_drift,
+            validation_drift,
+        ),
+        "numeric_relationships": summarize_numeric_relationships(train_drift),
+    }
