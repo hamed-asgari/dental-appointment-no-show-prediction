@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from numbers import Real
 
 import numpy as np
 import pandas as pd
@@ -17,6 +18,22 @@ NUMERIC_FEATURE_COLUMNS = (
     "patient_registration_tenure_days",
     "dentist_tenure_days",
 )
+CATEGORICAL_FEATURE_COLUMNS = (
+    "visit_type",
+    "booking_channel",
+    "scheduled_weekday",
+    "scheduled_hour",
+    "scheduled_month",
+)
+_STRING_CATEGORICAL_COLUMNS = ("visit_type", "booking_channel")
+_CALENDAR_CATEGORICAL_COLUMNS = (
+    "scheduled_weekday",
+    "scheduled_hour",
+    "scheduled_month",
+)
+_WEEKDAY_LEVELS = tuple(range(7))
+_HOUR_LEVELS = tuple(range(24))
+_MONTH_LEVELS = tuple(range(1, 13))
 _SUPERVISED_COLUMNS = (
     "appointment_id",
     "prediction_time",
@@ -76,6 +93,20 @@ _NUMERIC_BY_TARGET_COLUMNS = (
     "median",
     "q3",
     "max",
+)
+_CATEGORICAL_COLUMNS = (
+    "feature",
+    "level",
+    "is_missing",
+    "count",
+    "share",
+    "positives",
+    "negatives",
+    "no_show_rate",
+    "wilson_lower",
+    "wilson_upper",
+    "is_rare",
+    "has_high_uncertainty",
 )
 _WILSON_Z_95 = 1.959963984540054
 
@@ -141,6 +172,53 @@ def _wilson_interval(positives: int, rows: int) -> tuple[float, float]:
         / denominator
     )
     return float(center - radius), float(center + radius)
+
+
+def _validate_categorical_roles(supervised_train: pd.DataFrame) -> None:
+    for feature in _STRING_CATEGORICAL_COLUMNS:
+        values = supervised_train[feature].dropna()
+        if not values.map(lambda value: isinstance(value, str)).all():
+            raise ValueError(
+                f"supervised_train.{feature} non-null values must be Python strings"
+            )
+
+    for feature in _CALENDAR_CATEGORICAL_COLUMNS:
+        domain = _calendar_domain(feature)
+        for value in supervised_train[feature].dropna():
+            is_boolean = isinstance(value, (bool, np.bool_))
+            is_numeric = isinstance(value, Real)
+            is_finite = is_numeric and bool(np.isfinite(value))
+            is_integer = is_finite and value == int(value)
+            if is_boolean or not is_integer or int(value) not in domain:
+                raise ValueError(
+                    f"supervised_train.{feature} non-null values must be "
+                    f"numeric non-Boolean integers in {domain[0]} through "
+                    f"{domain[-1]}"
+                )
+
+
+def _calendar_domain(feature: str) -> tuple[int, ...]:
+    if feature == "scheduled_weekday":
+        return _WEEKDAY_LEVELS
+    if feature == "scheduled_hour":
+        return _HOUR_LEVELS
+    if feature == "scheduled_month":
+        return _MONTH_LEVELS
+    raise ValueError(f"unsupported calendar feature: {feature}")
+
+
+def _categorical_levels(
+    feature: str,
+    series: pd.Series,
+) -> list[tuple[str, object, bool]]:
+    if feature in _STRING_CATEGORICAL_COLUMNS:
+        observed = sorted(series.dropna().unique().tolist())
+    else:
+        observed = list(_calendar_domain(feature))
+    levels = [(str(value), value, False) for value in observed]
+    if series.isna().any():
+        levels.append(("<MISSING>", None, True))
+    return levels
 
 
 def _sorted_non_null(series: pd.Series) -> pd.Series:
@@ -314,3 +392,45 @@ def summarize_numeric_by_target(
                 }
             )
     return pd.DataFrame(summaries, columns=_NUMERIC_BY_TARGET_COLUMNS)
+
+
+def summarize_categorical_features(
+    supervised_train: pd.DataFrame,
+) -> pd.DataFrame:
+    """Summarize category frequencies and mature-training no-show rates."""
+
+    _validate_supervised_train(supervised_train)
+    _validate_categorical_roles(supervised_train)
+    rows = len(supervised_train)
+    target = supervised_train["target"]
+    summaries: list[dict[str, object]] = []
+    for feature in CATEGORICAL_FEATURE_COLUMNS:
+        series = supervised_train[feature]
+        for level, value, is_missing in _categorical_levels(feature, series):
+            if is_missing:
+                mask = series.isna()
+            else:
+                mask = series.notna() & series.eq(value)
+            count = int(mask.sum())
+            positives = int(target.loc[mask].eq(1).sum())
+            negatives = int(target.loc[mask].eq(0).sum())
+            share = count / rows if rows else np.nan
+            no_show_rate = positives / count if count else np.nan
+            wilson_lower, wilson_upper = _wilson_interval(positives, count)
+            summaries.append(
+                {
+                    "feature": feature,
+                    "level": level,
+                    "is_missing": is_missing,
+                    "count": count,
+                    "share": share,
+                    "positives": positives,
+                    "negatives": negatives,
+                    "no_show_rate": no_show_rate,
+                    "wilson_lower": wilson_lower,
+                    "wilson_upper": wilson_upper,
+                    "is_rare": count < 30 or share < 0.01,
+                    "has_high_uncertainty": count < 30 or positives < 5,
+                }
+            )
+    return pd.DataFrame(summaries, columns=_CATEGORICAL_COLUMNS)
