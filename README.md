@@ -2,87 +2,103 @@
 
 > **Synthetic-data and use disclaimer**
 >
-> All data used in this project are fully synthetic and do not represent real patients, real clinical records, or real healthcare operations.
->
-> This project is a portfolio and learning exercise and is not validated for clinical or operational use.
+> All records in this repository are fully synthetic. They do not represent real
+> patients, clinical records, or healthcare operations. This educational and
+> portfolio-oriented project is not validated for clinical or operational use.
 
 ## Overview
 
-This repository is the foundation for an end-to-end Clinical Data Science and Dental AI portfolio project. The eventual project will examine how to estimate dental appointment no-show risk before an appointment using only information that would realistically be available at the selected prediction time.
+This repository implements a reproducible, leakage-controlled foundation for
+studying dental appointment no-show prediction. It includes immutable synthetic
+raw inputs, approved prediction-time and target contracts, leakage-aware feature
+eligibility, a chronological temporal split, canonical analytical-dataset
+construction, automated contract tests, and deterministic Parquet and manifest
+generation.
 
-The emphasis will be on reproducible work, careful leakage prevention, probability-focused evaluation, calibration, and transparent operational reasoning. Any future results will be presented as evidence from synthetic data only, not as real-world clinical validation.
+The repository does not yet contain a trained model or performance result.
 
-## Current status
+## Current project status
 
-**Version v0.1: repository foundation.**
+Reproducible dataset construction is complete. The implemented pipeline verifies
+raw-file integrity, reconstructs the eligible cohort, derives the approved
+features, assigns chronological partitions and label-maturity flags, validates
+the exact canonical schema, and writes generated outputs safely.
 
-This version establishes the repository structure, documentation, data-provenance conventions, and a minimal Python environment. Modeling and analytical work have **not** started. In particular, no prediction target, cancellation policy, prediction time, features, data split, model, performance result, threshold, or application has been defined or implemented.
-
-## Future objectives
-
-Later project phases are intended to:
-
-- establish a defensible target and prediction-time definition after inspecting the synthetic appointment data;
-- build a reproducible data-preparation workflow with explicit leakage review;
-- compare interpretable and tree-based predictive approaches;
-- evaluate both discrimination and probability calibration conservatively;
-- explore operationally meaningful decision thresholds and model interpretation; and
-- present the completed workflow in a portfolio demonstration application.
-
-These are planned objectives, not current capabilities.
+Exploratory data analysis and modeling have not started. Preprocessing,
+calibration, threshold selection, and final test evaluation also remain outside
+the current implementation.
 
 ## Repository structure
 
 ```text
 .
-├── app/                   # Reserved for a future portfolio demonstration
-├── data/
-│   ├── raw/               # Immutable synthetic source copies and provenance
-│   ├── interim/           # Future intermediate data products
-│   └── processed/         # Future analysis-ready data products
-├── docs/                  # Project charter and supporting documentation
-├── models/                # Future local serialized model artifacts
-├── notebooks/             # Future analytical notebooks
-├── reports/
-│   ├── figures/           # Future generated figures
-│   └── screenshots/       # Future portfolio screenshots
-├── src/
-│   ├── data/              # Future data-processing code
-│   ├── evaluation/        # Future evaluation code
-│   ├── features/          # Future feature code
-│   └── models/            # Future modeling code
-├── tests/                 # Future automated tests
-├── .gitignore
-├── README.md
-└── requirements.txt
+|-- data/
+|   |-- raw/                         # Immutable synthetic source files
+|   |-- interim/                     # Reserved for later intermediate products
+|   `-- processed/                   # Generated Parquet and JSON outputs
+|-- docs/
+|   |-- README.md                    # Methodology index
+|   `-- dataset_construction.md      # Reproducible build contract
+|-- src/
+|   `-- data/
+|       `-- build_dataset.py         # Canonical dataset pipeline and CLI
+|-- tests/
+|   `-- test_dataset_construction.py # Automated contract and safety tests
+|-- requirements.txt
+|-- requirements-dev.txt
+`-- requirements.lock.txt
 ```
 
-Directories reserved for later phases are intentionally empty in v0.1; they do not imply completed implementation.
+Generated files under `data/processed/` are ignored by Git and should be rebuilt
+from the immutable raw inputs.
 
-## Environment foundation
+## Quick start
 
-Create an isolated Python environment and install the small v0.1 dependency set:
+Use Python 3.12 and run these commands from PowerShell:
 
-```bash
-python -m venv .venv
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m src.data.build_dataset
 ```
 
-Activate the environment using the command appropriate for your shell, then run:
+The Windows `py -3.12` launcher command is not available everywhere. Another
+Python 3.12 interpreter may be used to create `.venv` when necessary; subsequent
+commands can still use the repository-local interpreter directly.
 
-```bash
-python -m pip install -r requirements.txt
-```
+## Outputs
 
-The initial requirements are intentionally unpinned and limited to general data and notebook tooling. Exact environment locking and additional dependencies should be introduced only when later analytical phases require them.
+The default construction command generates:
 
-## Reproducibility and data provenance
+- `data/processed/analytical_dataset.parquet`
+- `data/processed/analytical_dataset.manifest.json`
 
-Future work should treat files in `data/raw/` as immutable inputs, record provenance when a dataset is added, and write transformations only to `data/interim/` or `data/processed/`. Analytical decisions, configuration, dependencies, and execution instructions will be documented as the workflow develops.
+Both files are generated artifacts and ignored by Git. The manifest records the
+validated source hashes, schema, dtypes, counts, boundaries, package versions,
+and generated Parquet hash.
 
-No source dataset is included in v0.1. All datasets later added to this repository must be fully synthetic; real patient or clinical records do not belong here.
+## Methodology
 
-## Relationship to Project 1
+The [documentation index](docs/README.md) links the approved contracts in order:
+data intake, prediction time, target definition, feature eligibility, temporal
+split, and reproducible dataset construction.
 
-Project 1, **Dental Clinic Operations Analytics**, is a separate repository and remains frozen at Version 1.0.0. This project will not modify Project 1. Appropriate fully synthetic source data may later be copied from or reconstructed from Project 1, but any copy used here must be stored and documented independently in this repository.
+The construction pipeline uses only the ten approved prediction-time features.
+Identifiers, target and split fields, maturity flags, final outcomes, and
+post-event fields are excluded from predictors.
 
-See the [project charter](docs/project_charter.md) for the approved scope and planned deliverables.
+## Scope boundary
+
+The repository currently constructs and validates the analytical dataset. It
+does not yet implement exploratory analysis, preprocessing, model training,
+probability calibration, operational threshold selection, or final test-set
+evaluation.
+
+## Disclaimer
+
+All source records and derived outputs are synthetic. No real patient
+information is included, and repository results cannot establish clinical
+effectiveness. This project must not be used to support clinical or operational
+decisions.
