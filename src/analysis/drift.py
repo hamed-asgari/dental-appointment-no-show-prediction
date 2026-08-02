@@ -1,13 +1,17 @@
-"""Deterministic feature-only numerical drift summaries."""
+"""Deterministic feature-only numerical and categorical drift summaries."""
 
 from __future__ import annotations
 
 import math
+from numbers import Real as _Real
 
 import numpy as np
 import pandas as pd
 
-from src.analysis.summaries import NUMERIC_FEATURE_COLUMNS
+from src.analysis.summaries import (
+    CATEGORICAL_FEATURE_COLUMNS,
+    NUMERIC_FEATURE_COLUMNS,
+)
 from src.data import build_dataset as bd
 
 
@@ -43,6 +47,55 @@ _NUMERIC_DRIFT_COLUMNS = (
     "q90_shift",
 )
 _FLOAT_OUTPUT_COLUMNS = _NUMERIC_DRIFT_COLUMNS[7:]
+_STRING_CATEGORICAL_COLUMNS = ("visit_type", "booking_channel")
+_WEEKDAY_LEVELS = tuple(range(7))
+_HOUR_LEVELS = tuple(range(24))
+_MONTH_LEVELS = tuple(range(1, 13))
+_MISSING_LEVEL = "<MISSING>"
+_CATEGORICAL_DRIFT_LEVEL_COLUMNS = (
+    "feature",
+    "level",
+    "is_missing",
+    "train_count",
+    "validation_count",
+    "train_share",
+    "validation_share",
+    "share_difference",
+    "absolute_share_difference",
+    "contribution_to_total_variation",
+    "is_unseen_in_train",
+    "is_absent_in_validation",
+)
+_CATEGORICAL_DRIFT_FEATURE_COLUMNS = (
+    "feature",
+    "train_rows",
+    "validation_rows",
+    "train_missing_count",
+    "validation_missing_count",
+    "train_missing_rate",
+    "validation_missing_rate",
+    "missing_rate_difference",
+    "train_distinct_nonmissing_levels",
+    "validation_distinct_nonmissing_levels",
+    "unseen_in_train_level_count",
+    "unseen_in_train_validation_count",
+    "unseen_in_train_validation_share",
+    "absent_in_validation_level_count",
+    "absent_in_validation_train_count",
+    "absent_in_validation_train_share",
+    "total_variation_distance",
+    "max_absolute_share_difference",
+)
+_CATEGORICAL_LEVEL_FLOAT_COLUMNS = _CATEGORICAL_DRIFT_LEVEL_COLUMNS[5:10]
+_CATEGORICAL_FEATURE_FLOAT_COLUMNS = (
+    "train_missing_rate",
+    "validation_missing_rate",
+    "missing_rate_difference",
+    "unseen_in_train_validation_share",
+    "absent_in_validation_train_share",
+    "total_variation_distance",
+    "max_absolute_share_difference",
+)
 _FLOAT64_MAX = float(np.finfo("float64").max)
 
 
@@ -121,6 +174,152 @@ def _validate_drift_inputs(
             "train_drift and validation_drift appointment IDs must be disjoint; "
             f"overlap={overlapping_ids}"
         )
+
+
+def _categorical_domain(feature: str) -> tuple[int, ...]:
+    if feature == "scheduled_weekday":
+        return _WEEKDAY_LEVELS
+    if feature == "scheduled_hour":
+        return _HOUR_LEVELS
+    if feature == "scheduled_month":
+        return _MONTH_LEVELS
+    raise ValueError(f"unsupported fixed-domain categorical feature: {feature}")
+
+
+def _validate_categorical_roles(frame: pd.DataFrame, *, frame_name: str) -> None:
+    for feature in _STRING_CATEGORICAL_COLUMNS:
+        values = frame[feature].dropna()
+        if not values.map(lambda value: isinstance(value, str)).all():
+            raise ValueError(
+                f"{frame_name}.{feature} non-null values must be Python strings"
+            )
+
+    for feature in CATEGORICAL_FEATURE_COLUMNS:
+        if feature in _STRING_CATEGORICAL_COLUMNS:
+            continue
+        domain = _categorical_domain(feature)
+        for value in frame[feature].dropna():
+            is_boolean = isinstance(value, (bool, np.bool_))
+            is_numeric = isinstance(value, _Real)
+            is_finite = is_numeric and bool(np.isfinite(value))
+            is_integer = is_finite and value == int(value)
+            if is_boolean or not is_integer or int(value) not in domain:
+                raise ValueError(
+                    f"{frame_name}.{feature} non-null values must be numeric "
+                    f"non-Boolean integers in {domain[0]} through {domain[-1]}"
+                )
+
+
+def _categorical_level_universe(
+    feature: str,
+    train: pd.Series,
+    validation: pd.Series,
+) -> list[tuple[str, object, bool]]:
+    if feature in _STRING_CATEGORICAL_COLUMNS:
+        observed = sorted(
+            set(train.dropna().tolist()) | set(validation.dropna().tolist())
+        )
+    else:
+        observed = list(_categorical_domain(feature))
+    levels = [(str(value), value, False) for value in observed]
+    levels.append((_MISSING_LEVEL, None, True))
+    return levels
+
+
+def _require_no_infinite_output(
+    result: pd.DataFrame,
+    columns: tuple[str, ...],
+    *,
+    context: str,
+) -> None:
+    floating_values = result.loc[:, columns].to_numpy(
+        dtype="float64",
+        copy=True,
+    )
+    if np.isinf(floating_values).any():
+        raise ValueError(f"{context} output must not contain infinity")
+
+
+def _build_categorical_drift_levels(
+    train_drift: pd.DataFrame,
+    validation_drift: pd.DataFrame,
+) -> pd.DataFrame:
+    _validate_drift_inputs(train_drift, validation_drift)
+    _validate_categorical_roles(train_drift, frame_name="train_drift")
+    _validate_categorical_roles(
+        validation_drift,
+        frame_name="validation_drift",
+    )
+    train_rows = len(train_drift)
+    validation_rows = len(validation_drift)
+    summaries: list[dict[str, object]] = []
+    for feature in CATEGORICAL_FEATURE_COLUMNS:
+        train = train_drift[feature]
+        validation = validation_drift[feature]
+        universe = _categorical_level_universe(feature, train, validation)
+        for level, value, is_missing in universe:
+            if is_missing:
+                train_mask = train.isna()
+                validation_mask = validation.isna()
+            else:
+                train_mask = train.notna() & train.eq(value)
+                validation_mask = validation.notna() & validation.eq(value)
+            train_count = int(train_mask.sum())
+            validation_count = int(validation_mask.sum())
+            train_share = train_count / train_rows if train_rows else np.nan
+            validation_share = (
+                validation_count / validation_rows
+                if validation_rows
+                else np.nan
+            )
+            share_difference = _safe_difference(
+                validation_share,
+                train_share,
+            )
+            absolute_share_difference = (
+                abs(share_difference)
+                if math.isfinite(share_difference)
+                else np.nan
+            )
+            contribution = (
+                0.5 * absolute_share_difference
+                if math.isfinite(absolute_share_difference)
+                else np.nan
+            )
+            summaries.append(
+                {
+                    "feature": feature,
+                    "level": level,
+                    "is_missing": is_missing,
+                    "train_count": train_count,
+                    "validation_count": validation_count,
+                    "train_share": train_share,
+                    "validation_share": validation_share,
+                    "share_difference": share_difference,
+                    "absolute_share_difference": absolute_share_difference,
+                    "contribution_to_total_variation": contribution,
+                    "is_unseen_in_train": (
+                        not is_missing
+                        and train_count == 0
+                        and validation_count > 0
+                    ),
+                    "is_absent_in_validation": (
+                        not is_missing
+                        and train_count > 0
+                        and validation_count == 0
+                    ),
+                }
+            )
+    result = pd.DataFrame(
+        summaries,
+        columns=_CATEGORICAL_DRIFT_LEVEL_COLUMNS,
+    )
+    _require_no_infinite_output(
+        result,
+        _CATEGORICAL_LEVEL_FLOAT_COLUMNS,
+        context="categorical drift level",
+    )
+    return result
 
 
 def _sorted_real_values(series: pd.Series) -> np.ndarray:
@@ -338,4 +537,100 @@ def summarize_numeric_drift(
     )
     if np.isinf(floating_values).any():
         raise ValueError("numeric drift output must not contain infinity")
+    return result
+
+
+def summarize_categorical_drift_levels(
+    train_drift: pd.DataFrame,
+    validation_drift: pd.DataFrame,
+) -> pd.DataFrame:
+    """Compare train and validation categorical predictor levels."""
+
+    return _build_categorical_drift_levels(train_drift, validation_drift)
+
+
+def summarize_categorical_drift_features(
+    train_drift: pd.DataFrame,
+    validation_drift: pd.DataFrame,
+) -> pd.DataFrame:
+    """Aggregate categorical drift by feature using total variation."""
+
+    levels = _build_categorical_drift_levels(train_drift, validation_drift)
+    train_rows = len(train_drift)
+    validation_rows = len(validation_drift)
+    summaries: list[dict[str, object]] = []
+    for feature in CATEGORICAL_FEATURE_COLUMNS:
+        feature_levels = levels.loc[levels["feature"].eq(feature)]
+        nonmissing = feature_levels.loc[~feature_levels["is_missing"]]
+        missing = feature_levels.loc[feature_levels["is_missing"]].iloc[0]
+        unseen = nonmissing.loc[nonmissing["is_unseen_in_train"]]
+        absent = nonmissing.loc[nonmissing["is_absent_in_validation"]]
+        train_missing_count = int(missing["train_count"])
+        validation_missing_count = int(missing["validation_count"])
+        train_missing_rate = (
+            train_missing_count / train_rows if train_rows else np.nan
+        )
+        validation_missing_rate = (
+            validation_missing_count / validation_rows
+            if validation_rows
+            else np.nan
+        )
+        unseen_validation_count = int(unseen["validation_count"].sum())
+        absent_train_count = int(absent["train_count"].sum())
+        if train_rows and validation_rows:
+            total_variation_distance = math.fsum(
+                feature_levels["contribution_to_total_variation"]
+            )
+            max_absolute_share_difference = float(
+                feature_levels["absolute_share_difference"].max()
+            )
+        else:
+            total_variation_distance = np.nan
+            max_absolute_share_difference = np.nan
+        summaries.append(
+            {
+                "feature": feature,
+                "train_rows": train_rows,
+                "validation_rows": validation_rows,
+                "train_missing_count": train_missing_count,
+                "validation_missing_count": validation_missing_count,
+                "train_missing_rate": train_missing_rate,
+                "validation_missing_rate": validation_missing_rate,
+                "missing_rate_difference": _safe_difference(
+                    validation_missing_rate,
+                    train_missing_rate,
+                ),
+                "train_distinct_nonmissing_levels": int(
+                    nonmissing["train_count"].gt(0).sum()
+                ),
+                "validation_distinct_nonmissing_levels": int(
+                    nonmissing["validation_count"].gt(0).sum()
+                ),
+                "unseen_in_train_level_count": len(unseen),
+                "unseen_in_train_validation_count": unseen_validation_count,
+                "unseen_in_train_validation_share": (
+                    unseen_validation_count / validation_rows
+                    if validation_rows
+                    else np.nan
+                ),
+                "absent_in_validation_level_count": len(absent),
+                "absent_in_validation_train_count": absent_train_count,
+                "absent_in_validation_train_share": (
+                    absent_train_count / train_rows if train_rows else np.nan
+                ),
+                "total_variation_distance": total_variation_distance,
+                "max_absolute_share_difference": (
+                    max_absolute_share_difference
+                ),
+            }
+        )
+    result = pd.DataFrame(
+        summaries,
+        columns=_CATEGORICAL_DRIFT_FEATURE_COLUMNS,
+    )
+    _require_no_infinite_output(
+        result,
+        _CATEGORICAL_FEATURE_FLOAT_COLUMNS,
+        context="categorical drift feature",
+    )
     return result
