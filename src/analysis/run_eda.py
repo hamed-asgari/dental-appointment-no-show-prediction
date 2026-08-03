@@ -1,17 +1,22 @@
-"""Select leakage-safe populations for exploratory data analysis."""
+"""Build and write the approved exploratory-data-analysis artifacts."""
 
 from __future__ import annotations
 
+import argparse
 from collections.abc import Collection, Sequence
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+from src.analysis.artifacts import write_eda_tables
 from src.analysis.drift import (
     summarize_categorical_drift_features,
     summarize_categorical_drift_levels,
     summarize_numeric_drift,
 )
+from src.analysis.figure_artifacts import write_eda_figures
+from src.analysis.figures import build_eda_figures
 from src.analysis.relationships import summarize_numeric_relationships
 from src.analysis.summaries import (
     summarize_categorical_features,
@@ -25,6 +30,14 @@ from src.analysis.summaries import (
 from src.data import build_dataset as bd
 
 
+__all__ = (
+    "build_eda_tables",
+    "generate_eda_artifacts",
+)
+
+
+_REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+_RAW_DIR = _REPOSITORY_ROOT / "data" / "raw"
 _DRIFT_COLUMNS = (
     "appointment_id",
     "prediction_time",
@@ -391,3 +404,52 @@ def build_eda_tables(
         ),
         "numeric_relationships": summarize_numeric_relationships(train_drift),
     }
+
+
+def _build_canonical_dataset() -> pd.DataFrame:
+    """Build the canonical dataset in memory from verified approved inputs."""
+
+    bd.validate_raw_hashes(_RAW_DIR)
+    raw_tables = bd.load_raw_data(_RAW_DIR)
+    return bd.build_analytical_dataset(raw_tables)
+
+
+def generate_eda_artifacts(
+    output_dir: str | Path,
+) -> dict[str, dict[str, Path]]:
+    """Build and write the complete deterministic EDA artifact bundle."""
+
+    output_path = Path(output_dir)
+    canonical = _build_canonical_dataset()
+    tables = build_eda_tables(canonical)
+    figures = build_eda_figures(tables)
+    table_paths = write_eda_tables(tables, output_path)
+    figure_paths = write_eda_figures(figures, output_path)
+    return {"tables": table_paths, "figures": figure_paths}
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Build the approved deterministic EDA artifacts."
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path("reports/eda"),
+        help="Directory for the eleven CSV and five PNG artifacts.",
+    )
+    return parser
+
+
+def _main(argv: Sequence[str] | None = None) -> int:
+    args = _build_parser().parse_args(argv)
+    paths = generate_eda_artifacts(args.output_dir)
+    for path in paths["tables"].values():
+        print(f"Wrote table: {path}")
+    for path in paths["figures"].values():
+        print(f"Wrote figure: {path}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main())
