@@ -74,3 +74,6 @@ models/**/*.onnx
 # Generated processed-data artifacts
 data/processed/*.parquet
 data/processed/*.json
+
+# Generated EDA artifacts
+reports/eda/
