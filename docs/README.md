@@ -1,6 +1,6 @@
 # Documentation
 The documentation is organized in methodological order from source intake
-through implemented tree-based model comparison:
+through implemented probability calibration:
 1. [Data intake](data_intake.md) - Records the selected immutable synthetic
    source tables, provenance, and intake boundaries.
 2. [Prediction time](prediction_time.md) - Defines the 24-hour prediction
@@ -19,11 +19,22 @@ through implemented tree-based model comparison:
 8. [Phase 07 baseline modeling](phase_07_baseline_modeling.md) - Documents
    modeling populations, preprocessing, estimators, temporal validation,
    metrics, model selection, and limitations.
-9. [Phase 08 tree-based model comparison](phase_08_tree_based_comparison.md) -
-   Documents the fixed Random Forest comparator, four-model temporal
-   validation, model selection, interpretation, and limitations.
+9. [Phase 08 tree-based model comparison](
+   phase_08_tree_based_comparison.md) - Documents the fixed Random Forest
+   comparator, four-model temporal validation, model selection,
+   interpretation, and limitations.
+10. [Phase 09 probability calibration](
+    phase_09_probability_calibration.md) - Documents the chronological
+    base-fit and calibration populations, frozen-estimator calibration,
+    recent-prior reference, probability-quality selection, reliability
+    diagnostics, interpretation, and limitations.
 The repository currently implements canonical dataset construction,
 exploratory analysis, deterministic baseline preprocessing and fitting, a
-fixed Random Forest comparator, and temporal-validation model comparison.
-Probability calibration, operational threshold or cost analysis, final
-pre-test fitting, and untouched test-set evaluation remain future phases.
+fixed Random Forest comparator, chronological probability calibration, and
+temporal-validation calibration-candidate selection.
+The selected Phase 09 candidate is `calibration_prior`. It provides the best
+declared validation Brier score and log loss, but assigns the same probability
+to every appointment and therefore provides no appointment-level ranking.
+Operational threshold and cost analysis, final pre-test fitting, model
+persistence, deployment, and untouched test-set evaluation remain future
+phases.
