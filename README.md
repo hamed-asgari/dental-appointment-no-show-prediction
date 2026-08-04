@@ -1,103 +1,104 @@
 # Dental Appointment No-show Prediction
-
 > **Synthetic-data and use disclaimer**
 >
-> All records in this repository are fully synthetic. They do not represent real
-> patients, clinical records, or healthcare operations. This educational and
-> portfolio-oriented project is not validated for clinical or operational use.
-
+> All records in this repository are fully synthetic. They do not represent
+> real patients, clinical records, or healthcare operations. This educational
+> project is not validated for clinical or operational use.
 ## Overview
-
-This repository implements a reproducible, leakage-controlled foundation for
+This repository implements a reproducible, leakage-controlled workflow for
 studying dental appointment no-show prediction. It includes immutable synthetic
-raw inputs, approved prediction-time and target contracts, leakage-aware feature
-eligibility, a chronological temporal split, canonical analytical-dataset
-construction, automated contract tests, and deterministic Parquet and manifest
-generation.
-
-The repository does not yet contain a trained model or performance result.
-
+raw inputs, prediction-time and target contracts, leakage-aware feature
+eligibility, a chronological temporal split, canonical dataset construction,
+exploratory data analysis, deterministic preprocessing, baseline estimators,
+and temporal-validation evaluation.
+The repository contains reproducible baseline validation results. It does not
+persist a trained production model or report final test-set performance.
 ## Current project status
-
-Reproducible dataset construction is complete. The implemented pipeline verifies
-raw-file integrity, reconstructs the eligible cohort, derives the approved
-features, assigns chronological partitions and label-maturity flags, validates
-the exact canonical schema, and writes generated outputs safely.
-
-Exploratory data analysis and modeling have not started. Preprocessing,
-calibration, threshold selection, and final test evaluation also remain outside
-the current implementation.
-
+Phases 01 through 07 are complete.
+The implemented workflow now:
+- verifies immutable raw-file integrity;
+- constructs and validates the canonical analytical dataset;
+- enforces prediction-time, temporal-split, and label-maturity safeguards;
+- performs leakage-safe exploratory analysis;
+- exposes ten approved modeling features;
+- fits preprocessing only on the mature development population;
+- evaluates three deterministic baselines on temporal validation;
+- reports probability metrics and a fixed `0.5` classification audit.
+The development population contains 3,670 appointments and 432 no-shows. The
+validation population contains 1,541 appointments and 192 no-shows.
+The primary validation metric is average precision:
+| Baseline | Average precision | ROC-AUC | Brier score | Log loss |
+|---|---:|---:|---:|---:|
+| `dummy_prior` | 0.124594 | 0.500000 | 0.109118 | 0.376205 |
+| `logistic_unweighted` | 0.120959 | 0.476028 | 0.112111 | 0.396686 |
+| `logistic_balanced` | 0.120720 | 0.475866 | 0.183289 | 0.555112 |
+Under the declared average-precision rule, `dummy_prior` is the selected
+baseline. This does not establish model usefulness or operational readiness.
+The logistic baselines did not outperform the prevalence-only reference on the
+observed future validation period.
+Calibration, operational threshold and cost analysis, final pre-test fitting,
+and untouched test-set evaluation remain outside the current implementation.
 ## Repository structure
-
 ```text
 .
 |-- data/
 |   |-- raw/                         # Immutable synthetic source files
-|   |-- interim/                     # Reserved for later intermediate products
-|   `-- processed/                   # Generated Parquet and JSON outputs
+|   |-- interim/                     # Reserved intermediate products
+|   `-- processed/                   # Generated dataset outputs
 |-- docs/
 |   |-- README.md                    # Methodology index
-|   `-- dataset_construction.md      # Reproducible build contract
+|   |-- phase_06_exploratory_data_analysis.md
+|   `-- phase_07_baseline_modeling.md
+|-- reports/
+|   `-- eda/                         # Generated and ignored EDA artifacts
 |-- src/
-|   `-- data/
-|       `-- build_dataset.py         # Canonical dataset pipeline and CLI
-|-- tests/
-|   `-- test_dataset_construction.py # Automated contract and safety tests
+|   |-- analysis/                    # Leakage-safe EDA implementation
+|   |-- data/                        # Canonical dataset construction
+|   `-- modeling/                    # Baseline modeling implementation
+|-- tests/                           # Automated contracts and safeguards
 |-- requirements.txt
 |-- requirements-dev.txt
 `-- requirements.lock.txt
 ```
-
-Generated files under `data/processed/` are ignored by Git and should be rebuilt
-from the immutable raw inputs.
-
+Generated files under `data/processed/` and `reports/eda/` are ignored by Git
+and should be rebuilt from immutable raw inputs.
 ## Quick start
-
 Use Python 3.12 and run these commands from PowerShell:
-
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -m pytest
 .\.venv\Scripts\python.exe -m src.data.build_dataset
+.\.venv\Scripts\python.exe -m src.analysis.run_eda
 ```
-
-The Windows `py -3.12` launcher command is not available everywhere. Another
-Python 3.12 interpreter may be used to create `.venv` when necessary; subsequent
-commands can still use the repository-local interpreter directly.
-
-## Outputs
-
-The default construction command generates:
-
+Another Python 3.12 interpreter may be used when the Windows `py` launcher is
+not available.
+## Generated outputs
+Dataset construction generates:
 - `data/processed/analytical_dataset.parquet`
 - `data/processed/analytical_dataset.manifest.json`
-
-Both files are generated artifacts and ignored by Git. The manifest records the
-validated source hashes, schema, dtypes, counts, boundaries, package versions,
-and generated Parquet hash.
-
+Exploratory analysis generates deterministic CSV and PNG artifacts under:
+- `reports/eda/`
+Baseline modeling evaluates in memory and intentionally does not serialize
+estimators, probabilities, metric tables, or test-set results.
 ## Methodology
-
-The [documentation index](docs/README.md) links the approved contracts in order:
-data intake, prediction time, target definition, feature eligibility, temporal
-split, and reproducible dataset construction.
-
-The construction pipeline uses only the ten approved prediction-time features.
-Identifiers, target and split fields, maturity flags, final outcomes, and
-post-event fields are excluded from predictors.
-
+The [documentation index](docs/README.md) links the approved contracts and
+implemented phases in methodological order.
+The modeling pipeline uses only the ten approved prediction-time features.
+Identifiers, target and split fields, maturity flags, final outcomes,
+post-event fields, evaluation-only fields, and test rows are excluded from
+model fitting.
+Preprocessing and estimators are fitted only on mature development rows.
+Validation labels are used only for evaluation after fitting. Test features and
+targets remain untouched.
 ## Scope boundary
-
-The repository currently constructs and validates the analytical dataset. It
-does not yet implement exploratory analysis, preprocessing, model training,
-probability calibration, operational threshold selection, or final test-set
-evaluation.
-
+The repository currently implements dataset construction, exploratory analysis,
+baseline preprocessing, baseline fitting, and temporal-validation evaluation.
+It does not yet implement probability calibration, calibration-method
+selection, operational threshold optimization, cost analysis, final pre-test
+fitting, model serialization, deployment, or final test-set evaluation.
 ## Disclaimer
-
 All source records and derived outputs are synthetic. No real patient
 information is included, and repository results cannot establish clinical
 effectiveness. This project must not be used to support clinical or operational
