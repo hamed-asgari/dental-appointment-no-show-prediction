@@ -1,6 +1,6 @@
 # Documentation
 The documentation is organized in methodological order from source intake
-through implemented baseline modeling:
+through implemented tree-based model comparison:
 1. [Data intake](data_intake.md) - Records the selected immutable synthetic
    source tables, provenance, and intake boundaries.
 2. [Prediction time](prediction_time.md) - Defines the 24-hour prediction
@@ -19,8 +19,11 @@ through implemented baseline modeling:
 8. [Phase 07 baseline modeling](phase_07_baseline_modeling.md) - Documents
    modeling populations, preprocessing, estimators, temporal validation,
    metrics, model selection, and limitations.
+9. [Phase 08 tree-based model comparison](phase_08_tree_based_comparison.md) -
+   Documents the fixed Random Forest comparator, four-model temporal
+   validation, model selection, interpretation, and limitations.
 The repository currently implements canonical dataset construction,
-exploratory analysis, deterministic baseline preprocessing and fitting, and
-temporal-validation evaluation.
+exploratory analysis, deterministic baseline preprocessing and fitting, a
+fixed Random Forest comparator, and temporal-validation model comparison.
 Probability calibration, operational threshold or cost analysis, final
 pre-test fitting, and untouched test-set evaluation remain future phases.
