@@ -10,11 +10,13 @@ studying dental appointment no-show prediction. It includes immutable synthetic
 raw inputs, prediction-time and target contracts, leakage-aware feature
 eligibility, a chronological temporal split, canonical dataset construction,
 exploratory data analysis, deterministic preprocessing, baseline estimators,
-and temporal-validation evaluation.
-The repository contains reproducible baseline validation results. It does not
-persist a trained production model or report final test-set performance.
+a deterministic Random Forest comparator, and temporal-validation model
+comparison.
+The repository contains reproducible baseline and tree-comparison validation
+results. It does not persist a trained production model or report final
+test-set performance.
 ## Current project status
-Phases 01 through 07 are complete.
+Phases 01 through 08 are complete.
 The implemented workflow now:
 - verifies immutable raw-file integrity;
 - constructs and validates the canonical analytical dataset;
@@ -22,7 +24,10 @@ The implemented workflow now:
 - performs leakage-safe exploratory analysis;
 - exposes ten approved modeling features;
 - fits preprocessing only on the mature development population;
-- evaluates three deterministic baselines on temporal validation;
+- fits the approved baseline estimators and a fixed Random Forest comparator;
+- selects models by temporal-validation average precision;
+- evaluates three deterministic baselines and one Random Forest comparator on
+  temporal validation;
 - reports probability metrics and a fixed `0.5` classification audit.
 The development population contains 3,670 appointments and 432 no-shows. The
 validation population contains 1,541 appointments and 192 no-shows.
@@ -48,13 +53,14 @@ and untouched test-set evaluation remain outside the current implementation.
 |-- docs/
 |   |-- README.md                    # Methodology index
 |   |-- phase_06_exploratory_data_analysis.md
-|   `-- phase_07_baseline_modeling.md
+|   |-- phase_07_baseline_modeling.md
+|   `-- phase_08_tree_based_comparison.md
 |-- reports/
 |   `-- eda/                         # Generated and ignored EDA artifacts
 |-- src/
 |   |-- analysis/                    # Leakage-safe EDA implementation
 |   |-- data/                        # Canonical dataset construction
-|   `-- modeling/                    # Baseline modeling implementation
+|   `-- modeling/                    # Baseline and tree-comparison modeling
 |-- tests/                           # Automated contracts and safeguards
 |-- requirements.txt
 |-- requirements-dev.txt
@@ -80,7 +86,7 @@ Dataset construction generates:
 - `data/processed/analytical_dataset.manifest.json`
 Exploratory analysis generates deterministic CSV and PNG artifacts under:
 - `reports/eda/`
-Baseline modeling evaluates in memory and intentionally does not serialize
+Model comparison evaluates in memory and intentionally does not serialize
 estimators, probabilities, metric tables, or test-set results.
 ## Methodology
 The [documentation index](docs/README.md) links the approved contracts and
@@ -94,7 +100,8 @@ Validation labels are used only for evaluation after fitting. Test features and
 targets remain untouched.
 ## Scope boundary
 The repository currently implements dataset construction, exploratory analysis,
-baseline preprocessing, baseline fitting, and temporal-validation evaluation.
+baseline preprocessing and fitting, a fixed Random Forest comparator, and
+temporal-validation model comparison.
 It does not yet implement probability calibration, calibration-method
 selection, operational threshold optimization, cost analysis, final pre-test
 fitting, model serialization, deployment, or final test-set evaluation.
