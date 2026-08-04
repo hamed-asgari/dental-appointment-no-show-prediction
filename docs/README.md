@@ -1,6 +1,6 @@
 # Documentation
 The documentation is organized in methodological order from source intake
-through implemented probability calibration:
+through implemented operational threshold analysis:
 1. [Data intake](data_intake.md) - Records the selected immutable synthetic
    source tables, provenance, and intake boundaries.
 2. [Prediction time](prediction_time.md) - Defines the 24-hour prediction
@@ -28,13 +28,19 @@ through implemented probability calibration:
     base-fit and calibration populations, frozen-estimator calibration,
     recent-prior reference, probability-quality selection, reliability
     diagnostics, interpretation, and limitations.
+11. [Phase 10 operational threshold analysis](
+    phase_10_operational_threshold_analysis.md) - Documents the two distinct
+    threshold states induced by the selected recent-prior reference, ex-ante
+    break-even sensitivity, validation replay, decision boundaries, and
+    limitations.
 The repository currently implements canonical dataset construction,
 exploratory analysis, deterministic baseline preprocessing and fitting, a
-fixed Random Forest comparator, chronological probability calibration, and
-temporal-validation calibration-candidate selection.
+fixed Random Forest comparator, chronological probability calibration,
+temporal-validation calibration-candidate selection, deterministic
+threshold-state enumeration, and break-even sensitivity analysis.
 The selected Phase 09 candidate is `calibration_prior`. It provides the best
 declared validation Brier score and log loss, but assigns the same probability
 to every appointment and therefore provides no appointment-level ranking.
-Operational threshold and cost analysis, final pre-test fitting, model
-persistence, deployment, and untouched test-set evaluation remain future
-phases.
+Phase 10 selects no cost values, effectiveness, threshold, or operational
+policy. Final pre-test fitting, model persistence, deployment, and untouched
+test-set evaluation remain future phases.
