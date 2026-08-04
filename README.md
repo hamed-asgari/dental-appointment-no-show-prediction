@@ -10,39 +10,45 @@ studying dental appointment no-show prediction. It includes immutable synthetic
 raw inputs, prediction-time and target contracts, leakage-aware feature
 eligibility, a chronological temporal split, canonical dataset construction,
 exploratory data analysis, deterministic preprocessing, baseline estimators,
-a deterministic Random Forest comparator, and temporal-validation model
-comparison.
-The repository contains reproducible baseline and tree-comparison validation
-results. It does not persist a trained production model or report final
-test-set performance.
+a deterministic Random Forest comparator, chronological probability
+calibration, and temporal-validation candidate selection.
+The repository contains reproducible baseline, tree-comparison, and
+calibration-validation results. It does not persist a trained production model
+or report final test-set performance.
 ## Current project status
-Phases 01 through 08 are complete.
+Phases 01 through 09 are complete.
 The implemented workflow now:
 - verifies immutable raw-file integrity;
 - constructs and validates the canonical analytical dataset;
 - enforces prediction-time, temporal-split, and label-maturity safeguards;
 - performs leakage-safe exploratory analysis;
 - exposes ten approved modeling features;
-- fits preprocessing only on the mature development population;
-- fits the approved baseline estimators and a fixed Random Forest comparator;
-- selects models by temporal-validation average precision;
-- evaluates three deterministic baselines and one Random Forest comparator on
-  temporal validation;
-- reports probability metrics and a fixed `0.5` classification audit.
-The development population contains 3,670 appointments and 432 no-shows. The
-validation population contains 1,541 appointments and 192 no-shows.
-The primary validation metric is average precision:
-| Baseline | Average precision | ROC-AUC | Brier score | Log loss |
+- fits deterministic baselines and a fixed Random Forest comparator;
+- selects the Phase 08 comparison model by validation average precision;
+- divides mature development data into chronological base-fit and calibration
+  populations;
+- fits sigmoid and isotonic calibrators around a frozen Random Forest;
+- compares calibrated probabilities with a leakage-safe recent-prior reference;
+- selects Phase 09 candidates by Brier score, then log loss;
+- keeps validation labels outside all fitting operations;
+- leaves the test population untouched.
+The Phase 09 populations contain 2,520 base-fit appointments, 1,150 calibration
+appointments, and 1,541 temporal-validation appointments.
+The declared Phase 09 validation results are:
+| Candidate | AP | ROC-AUC | Brier | Log loss |
 |---|---:|---:|---:|---:|
-| `dummy_prior` | 0.124594 | 0.500000 | 0.109118 | 0.376205 |
-| `logistic_unweighted` | 0.120959 | 0.476028 | 0.112111 | 0.396686 |
-| `logistic_balanced` | 0.120720 | 0.475866 | 0.183289 | 0.555112 |
-Under the declared average-precision rule, `dummy_prior` is the selected
-baseline. This does not establish model usefulness or operational readiness.
-The logistic baselines did not outperform the prevalence-only reference on the
-observed future validation period.
-Calibration, operational threshold and cost analysis, final pre-test fitting,
-and untouched test-set evaluation remain outside the current implementation.
+| `calibration_prior` | 0.124594 | 0.500000 | 0.109071 | 0.375982 |
+| `random_forest_uncalibrated` | 0.123084 | 0.507137 | 0.118920 | 0.404801 |
+| `random_forest_sigmoid` | 0.118851 | 0.492863 | 0.109574 | 0.378405 |
+| `random_forest_isotonic` | 0.123552 | 0.495622 | 0.109101 | 0.376116 |
+Under the declared Brier-score and log-loss rule, `calibration_prior` is the
+selected Phase 09 candidate. It assigns the same recent-prevalence probability
+to every appointment and therefore provides no appointment-level ranking.
+The evaluated Random Forest calibration methods do not demonstrate validated
+probability value beyond that recent-prior reference.
+Operational threshold and cost analysis, final pre-test fitting, persistence,
+deployment, and untouched test-set evaluation remain outside the current
+implementation.
 ## Repository structure
 ```text
 .
@@ -54,13 +60,14 @@ and untouched test-set evaluation remain outside the current implementation.
 |   |-- README.md                    # Methodology index
 |   |-- phase_06_exploratory_data_analysis.md
 |   |-- phase_07_baseline_modeling.md
-|   `-- phase_08_tree_based_comparison.md
+|   |-- phase_08_tree_based_comparison.md
+|   `-- phase_09_probability_calibration.md
 |-- reports/
 |   `-- eda/                         # Generated and ignored EDA artifacts
 |-- src/
 |   |-- analysis/                    # Leakage-safe EDA implementation
 |   |-- data/                        # Canonical dataset construction
-|   `-- modeling/                    # Baseline and tree-comparison modeling
+|   `-- modeling/                    # Baseline, comparison, and calibration
 |-- tests/                           # Automated contracts and safeguards
 |-- requirements.txt
 |-- requirements-dev.txt
@@ -86,8 +93,9 @@ Dataset construction generates:
 - `data/processed/analytical_dataset.manifest.json`
 Exploratory analysis generates deterministic CSV and PNG artifacts under:
 - `reports/eda/`
-Model comparison evaluates in memory and intentionally does not serialize
-estimators, probabilities, metric tables, or test-set results.
+Model comparison and probability calibration evaluate in memory and
+intentionally do not serialize estimators, probabilities, metric tables, or
+test-set results.
 ## Methodology
 The [documentation index](docs/README.md) links the approved contracts and
 implemented phases in methodological order.
@@ -95,16 +103,19 @@ The modeling pipeline uses only the ten approved prediction-time features.
 Identifiers, target and split fields, maturity flags, final outcomes,
 post-event fields, evaluation-only fields, and test rows are excluded from
 model fitting.
-Preprocessing and estimators are fitted only on mature development rows.
-Validation labels are used only for evaluation after fitting. Test features and
-targets remain untouched.
+Phase 07 and Phase 08 preprocessing and estimators are fitted only on
+mature development rows. In Phase 09, the base estimator is fitted only on the
+earlier base-fit population. Calibration labels fit only the frozen calibrators
+and recent-prior reference. Validation labels are used only for evaluation.
+Test features and targets remain untouched.
 ## Scope boundary
 The repository currently implements dataset construction, exploratory analysis,
-baseline preprocessing and fitting, a fixed Random Forest comparator, and
-temporal-validation model comparison.
-It does not yet implement probability calibration, calibration-method
-selection, operational threshold optimization, cost analysis, final pre-test
-fitting, model serialization, deployment, or final test-set evaluation.
+baseline preprocessing and fitting, a fixed Random Forest comparator,
+chronological probability calibration, and temporal-validation calibration
+candidate selection.
+It does not yet implement operational threshold optimization, cost analysis,
+final pre-test fitting, model serialization, deployment, or final test-set
+evaluation.
 ## Disclaimer
 All source records and derived outputs are synthetic. No real patient
 information is included, and repository results cannot establish clinical
