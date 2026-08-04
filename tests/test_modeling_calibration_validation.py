@@ -15,6 +15,7 @@ from src.modeling.calibration_validation import (
     evaluate_probability_calibration_validation,
 )
 _EXPECTED_MODELS = (
+    "calibration_prior",
     "random_forest_uncalibrated",
     "random_forest_sigmoid",
     "random_forest_isotonic",
@@ -43,6 +44,23 @@ _EXPECTED_PARAMETERS = (
     "validation_target",
 )
 _EXPECTED_METRICS = {
+    "calibration_prior": {
+        "average_precision": (
+            0.124594419208306
+        ),
+        "roc_auc": (
+            0.500000000000000
+        ),
+        "brier_score": (
+            0.109071038004684
+        ),
+        "log_loss": (
+            0.375981958827441
+        ),
+        "mean_predicted_probability": (
+            0.125217391304348
+        ),
+    },
     "random_forest_uncalibrated": {
         "average_precision": (
             0.123083748814041
@@ -279,7 +297,7 @@ def test_public_signature_and_result_contract(
     ] == "log_loss"
     assert authentic_result[
         "selected_model"
-    ] == "random_forest_isotonic"
+    ] == "calibration_prior"
     assert authentic_result[
         "validation_prevalence"
     ] == pytest.approx(
@@ -357,11 +375,40 @@ def test_authentic_result_values_are_finite(
                     "brier_score": 0.11,
                     "log_loss": 0.05,
                 },
+                {
+                    "brier_score": 0.12,
+                    "log_loss": 0.01,
+                },
+            ),
+            "calibration_prior",
+        ),
+        (
+            (
+                {
+                    "brier_score": 0.12,
+                    "log_loss": 0.10,
+                },
+                {
+                    "brier_score": 0.09,
+                    "log_loss": 0.90,
+                },
+                {
+                    "brier_score": 0.10,
+                    "log_loss": 0.20,
+                },
+                {
+                    "brier_score": 0.11,
+                    "log_loss": 0.05,
+                },
             ),
             "random_forest_uncalibrated",
         ),
         (
             (
+                {
+                    "brier_score": 0.10,
+                    "log_loss": 0.40,
+                },
                 {
                     "brier_score": 0.10,
                     "log_loss": 0.30,
@@ -391,14 +438,19 @@ def test_authentic_result_values_are_finite(
                     "brier_score": 0.10,
                     "log_loss": 0.20,
                 },
+                {
+                    "brier_score": 0.10,
+                    "log_loss": 0.20,
+                },
             ),
-            "random_forest_uncalibrated",
+            "calibration_prior",
         ),
     ),
 )
 def test_selection_rule_is_fixed(
     monkeypatch: pytest.MonkeyPatch,
     rows: tuple[
+        dict[str, float],
         dict[str, float],
         dict[str, float],
         dict[str, float],
@@ -441,6 +493,8 @@ def test_selection_rule_is_fixed(
     assert result[
         "selected_model"
     ] == expected_model
+
+
 def test_validation_target_is_not_passed_to_fit(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

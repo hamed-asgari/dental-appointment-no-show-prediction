@@ -15,7 +15,13 @@ from src.modeling.evaluation import (
 __all__ = (
     "evaluate_probability_calibration_validation",
 )
-_EXPECTED_MODELS = (
+_EXPECTED_RF_MODELS = (
+    "random_forest_uncalibrated",
+    "random_forest_sigmoid",
+    "random_forest_isotonic",
+)
+_EXPECTED_RESULT_MODELS = (
+    "calibration_prior",
     "random_forest_uncalibrated",
     "random_forest_sigmoid",
     "random_forest_isotonic",
@@ -246,13 +252,55 @@ def evaluate_probability_calibration_validation(
             calibration_target,
         )
     )
-    if tuple(candidates) != _EXPECTED_MODELS:
+    if tuple(candidates) != _EXPECTED_RF_MODELS:
         raise ValueError(
             "calibration candidate order is invalid"
         )
+    calibration_prior_probability = np.full(
+        len(validation_target_copy),
+        float(
+            calibration_target.mean()
+        ),
+        dtype=np.float64,
+    )
+    calibration_prior_metrics = (
+        evaluate_binary_probabilities(
+            validation_target_copy,
+            calibration_prior_probability,
+        )
+    )
     rows: list[
         dict[str, float | str]
-    ] = []
+    ] = [
+        {
+            "model": "calibration_prior",
+            "average_precision": (
+                calibration_prior_metrics[
+                    "average_precision"
+                ]
+            ),
+            "roc_auc": (
+                calibration_prior_metrics[
+                    "roc_auc"
+                ]
+            ),
+            "brier_score": (
+                calibration_prior_metrics[
+                    "brier_score"
+                ]
+            ),
+            "log_loss": (
+                calibration_prior_metrics[
+                    "log_loss"
+                ]
+            ),
+            "mean_predicted_probability": (
+                float(
+                    calibration_prior_probability.mean()
+                )
+            ),
+        }
+    ]
     for model_name, estimator in (
         candidates.items()
     ):
@@ -305,6 +353,12 @@ def evaluate_probability_calibration_validation(
         rows,
         columns=_RESULT_COLUMNS,
     )
+    if tuple(
+        metrics["model"]
+    ) != _EXPECTED_RESULT_MODELS:
+        raise RuntimeError(
+            "calibration result order is invalid"
+        )
     ordered = metrics.assign(
         _declared_order=np.arange(
             len(metrics),
