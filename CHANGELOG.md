@@ -13,6 +13,8 @@ This file records notable repository changes by release version.
 
 - Added the MIT License and synchronized package and citation metadata.
 
+- Frozen the Version 2 synthetic longitudinal data-generation and protected chronological evaluation policy before model development.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.
