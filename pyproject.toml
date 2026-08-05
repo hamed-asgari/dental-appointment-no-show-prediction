@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "dental-appointment-no-show-prediction"
+version = "1.0.0"
+description = """\
+Reproducible leakage-controlled no-show prediction study using fully\u0020\
+synthetic dental appointment data.\
+"""
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+authors = [
+    { name = "Hamed Asgari" },
+]
+dynamic = ["dependencies"]
+keywords = [
+    "machine-learning",
+    "healthcare-analytics",
+    "no-show-prediction",
+    "synthetic-data",
+    "temporal-validation",
+]
+classifiers = [
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+[project.urls]
+Repository = """\
+https://github.com/hamed-asgari/\
+dental-appointment-no-show-prediction\
+"""
+Documentation = """\
+https://github.com/hamed-asgari/\
+dental-appointment-no-show-prediction/tree/main/docs\
+"""
+Issues = """\
+https://github.com/hamed-asgari/\
+dental-appointment-no-show-prediction/issues\
+"""
+[tool.setuptools]
+include-package-data = false
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+namespaces = true
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }

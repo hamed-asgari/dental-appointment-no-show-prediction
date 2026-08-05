@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it using the metadata below.
+title: "Dental Appointment No-show Prediction"
+type: software
+authors:
+  - family-names: "Asgari"
+    given-names: "Hamed"
+version: "1.0.0"
+repository-code: >-
+  https://github.com/hamed-asgari/dental-appointment-no-show-prediction
+url: >-
+  https://github.com/hamed-asgari/dental-appointment-no-show-prediction
+abstract: >-
+  A reproducible, leakage-controlled machine-learning study of dental
+  appointment no-show prediction using fully synthetic data, chronological
+  validation, probability calibration, operational sensitivity analysis, and
+  a pre-registered one-time test probability audit.
+keywords:
+  - machine learning
+  - no-show prediction
+  - synthetic data
+  - temporal validation
+  - probability calibration

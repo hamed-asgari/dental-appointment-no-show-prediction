@@ -12,11 +12,12 @@ eligibility, a chronological temporal split, canonical dataset construction,
 exploratory data analysis, deterministic preprocessing, baseline estimators,
 a deterministic Random Forest comparator, chronological probability
 calibration, and temporal-validation candidate selection.
-The repository contains reproducible baseline, tree-comparison, and
-calibration-validation and operational-sensitivity results. It does not
-persist a trained production model or report final test-set performance.
+The repository contains reproducible baseline, tree-comparison,
+calibration-validation, operational-sensitivity, and final chronological test
+results. It does not persist a trained production model or define an
+operational decision policy.
 ## Current project status
-Phases 01 through 10 are complete.
+Phases 01 through 11 are complete.
 The implemented workflow now:
 - verifies immutable raw-file integrity;
 - constructs and validates the canonical analytical dataset;
@@ -72,14 +73,22 @@ vector provides no appointment-level ranking.
 |   |-- phase_06_exploratory_data_analysis.md
 |   |-- phase_07_baseline_modeling.md
 |   |-- phase_08_tree_based_comparison.md
-|   `-- phase_09_probability_calibration.md
+|   |-- phase_09_probability_calibration.md
+|   |-- phase_10_operational_threshold_analysis.md
+|   `-- phase_11_final_pretest_evaluation.md
 |-- reports/
 |   `-- eda/                         # Generated and ignored EDA artifacts
 |-- src/
 |   |-- analysis/                    # Leakage-safe EDA implementation
 |   |-- data/                        # Canonical dataset construction
 |   `-- modeling/                    # Baseline, comparison, and calibration
+|-- .github/
+|   `-- workflows/
+|       `-- ci.yml                     # Windows/Python 3.12 verification
 |-- tests/                           # Automated contracts and safeguards
+|-- CHANGELOG.md                     # Version 1.0.0 release record
+|-- CITATION.cff                     # Software citation metadata
+|-- pyproject.toml                   # Release and packaging metadata
 |-- requirements.txt
 |-- requirements-dev.txt
 `-- requirements.lock.txt
@@ -98,6 +107,13 @@ py -3.12 -m venv .venv
 ```
 Another Python 3.12 interpreter may be used when the Windows `py` launcher is
 not available.
+## Release and citation
+Version `1.0.0` is declared in `pyproject.toml`.
+- [CHANGELOG.md](CHANGELOG.md) records the implemented workflow, final declared
+  result, and scope boundaries.
+- [CITATION.cff](CITATION.cff) provides machine-readable software citation
+  metadata.
+No software license, DOI, or release archive identifier is currently declared.
 ## Generated outputs
 Dataset construction generates:
 - `data/processed/analytical_dataset.parquet`
