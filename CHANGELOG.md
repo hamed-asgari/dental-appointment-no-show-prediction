@@ -21,6 +21,8 @@ This file records notable repository changes by release version.
 
 - Exported and froze the Version 2 longitudinal raw benchmark, integrity manifest, source hashes, file hashes, and dataset fingerprint.
 
+- Frozen the Version 2 historical-feature contract, strict as-of availability rule, smoothing constants, cold-start defaults, and protected feature-target boundary.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.
