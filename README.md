@@ -33,7 +33,9 @@ The implemented workflow now:
 - enumerates the two threshold policies induced by the selected prior;
 - derives ex-ante and validation-replay break-even sensitivity boundaries;
 - keeps validation labels outside fitting and ex-ante policy construction;
-- leaves the test population untouched.
+- fits the selected `calibration_prior` on all eligible pre-test targets;
+- seals one constant probability for every chronological test appointment;
+- performs the pre-registered one-time test probability audit.
 The Phase 09 populations contain 2,520 base-fit appointments, 1,150 calibration
 appointments, and 1,541 temporal-validation appointments.
 The declared Phase 09 validation results are:
@@ -51,8 +53,13 @@ probability value beyond that recent-prior reference.
 Phase 10 confirms that the constant-probability reference yields only
 `intervene_all` and `intervene_none`, and records the break-even boundary
 without choosing costs, effectiveness, a threshold, or an operational policy.
-Final pre-test fitting, persistence, deployment, and untouched test-set
-evaluation remain outside the current implementation.
+Phase 11 fits the selected prior on 5,223 eligible train and validation
+rows. The fitted probability is `0.11985448975684472`, and the sealed vector
+assigns that value to all 1,563 test appointments before test outcomes are
+accessed. The one-time test audit reports prevalence and average precision
+`0.12412028150991683`, ROC AUC `0.5`, Brier score
+`0.1087326342070964`, and log loss `0.375140145229552`. The one-value
+vector provides no appointment-level ranking.
 ## Repository structure
 ```text
 .
@@ -112,16 +119,21 @@ mature development rows. In Phase 09, the base estimator is fitted only on the
 earlier base-fit population. Calibration labels fit only the frozen calibrators
 and recent-prior reference. Phase 10 uses calibration prevalence for the
 ex-ante boundary and validation prevalence only for replay audit.
-Test features and targets remain untouched.
+Phase 11 final fitting uses only eligible train and validation targets.
+Test metadata is target-free during probability generation. Test targets were
+accessed once only after the probability vector was sealed, so the existing
+test period is no longer untouched for future development.
 ## Scope boundary
 The repository currently implements dataset construction, exploratory analysis,
 baseline preprocessing and fitting, a fixed Random Forest comparator,
 chronological probability calibration, temporal-validation calibration
-candidate selection, deterministic threshold-state enumeration, and
-break-even sensitivity analysis.
+candidate selection, deterministic threshold-state enumeration, break-even
+sensitivity analysis, leakage-safe final pre-test prior fitting, and a
+pre-registered one-time chronological test probability audit.
 It does not select operational cost values, intervention effectiveness, a final
-threshold, or an operational policy. It also does not yet implement final
-pre-test fitting, model serialization, deployment, or final test-set evaluation.
+threshold, or an operational policy. It does not implement model
+serialization, deployment, or a production decision system. The evaluated
+test period cannot be reused as an untouched development benchmark.
 ## Disclaimer
 All source records and derived outputs are synthetic. No real patient
 information is included, and repository results cannot establish clinical

@@ -33,14 +33,22 @@ through implemented operational threshold analysis:
     threshold states induced by the selected recent-prior reference, ex-ante
     break-even sensitivity, validation replay, decision boundaries, and
     limitations.
+12. [Phase 11 final pre-test fit and test evaluation](
+    phase_11_final_pretest_evaluation.md) - Documents the leakage-safe final
+    prior fit, sealed test probability vector, one-time chronological test
+    audit, ranking interpretation, test-set status, and deployment boundary.
 The repository currently implements canonical dataset construction,
 exploratory analysis, deterministic baseline preprocessing and fitting, a
 fixed Random Forest comparator, chronological probability calibration,
 temporal-validation calibration-candidate selection, deterministic
-threshold-state enumeration, and break-even sensitivity analysis.
+threshold-state enumeration, break-even sensitivity analysis, final pre-test
+prior fitting, and one-time chronological test probability evaluation.
 The selected Phase 09 candidate is `calibration_prior`. It provides the best
 declared validation Brier score and log loss, but assigns the same probability
 to every appointment and therefore provides no appointment-level ranking.
 Phase 10 selects no cost values, effectiveness, threshold, or operational
-policy. Final pre-test fitting, model persistence, deployment, and untouched
-test-set evaluation remain future phases.
+policy. Phase 11 fits the selected prior on the eligible pre-test population
+and performs the declared one-time chronological test probability audit. The
+final probability remains constant and provides no ranking. The evaluated test
+period is no longer untouched. Model persistence, deployment, and operational
+policy selection remain outside the repository scope.
