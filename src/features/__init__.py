@@ -1,12 +1,19 @@
 """Leakage-controlled Version 2 feature engineering utilities."""
 
+from src.features.aggregate_history import (
+    build_aggregate_history_features,
+    normalize_aggregate_history_appointments,
+)
 from src.features.asof_history import (
     build_eligible_scoring_rows,
     build_patient_history_features,
     normalize_history_appointments,
 )
 from src.features.schema import (
+    AGGREGATE_HISTORY_DTYPES,
     AGGREGATE_HISTORY_FEATURE_COLUMNS,
+    AGGREGATE_HISTORY_OUTPUT_COLUMNS,
+    AGGREGATE_HISTORY_REQUIRED_APPOINTMENT_COLUMNS,
     AGGREGATE_MIN_ATTENDANCE_SUPPORT,
     ATTENDANCE_STATUSES,
     AUDIT_KEY_COLUMNS,
@@ -26,7 +33,10 @@ from src.features.schema import (
 )
 
 __all__ = (
+    "AGGREGATE_HISTORY_DTYPES",
     "AGGREGATE_HISTORY_FEATURE_COLUMNS",
+    "AGGREGATE_HISTORY_OUTPUT_COLUMNS",
+    "AGGREGATE_HISTORY_REQUIRED_APPOINTMENT_COLUMNS",
     "AGGREGATE_MIN_ATTENDANCE_SUPPORT",
     "ATTENDANCE_STATUSES",
     "AUDIT_KEY_COLUMNS",
@@ -43,7 +53,9 @@ __all__ = (
     "PREDICTION_HORIZON_HOURS",
     "V2_MODEL_FEATURE_COLUMNS",
     "V2_PROHIBITED_MODEL_COLUMNS",
+    "build_aggregate_history_features",
     "build_eligible_scoring_rows",
     "build_patient_history_features",
+    "normalize_aggregate_history_appointments",
     "normalize_history_appointments",
 )

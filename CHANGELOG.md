@@ -25,6 +25,8 @@ This file records notable repository changes by release version.
 
 - Added immutable Version 2 feature schemas and a deterministic strict-as-of patient-history engine with cold-start, smoothing, recency, mutation, and frozen-benchmark tests.
 
+- Added deterministic strict-as-of dentist, visit-type, and weekday-hour attendance histories with frozen Beta smoothing, minimum-support gating, mutation tests, and benchmark summaries.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.

@@ -32,6 +32,12 @@ HISTORY_REQUIRED_APPOINTMENT_COLUMNS = (
     "status_updated_at",
 )
 
+AGGREGATE_HISTORY_REQUIRED_APPOINTMENT_COLUMNS = (
+    *HISTORY_REQUIRED_APPOINTMENT_COLUMNS,
+    "dentist_id",
+    "visit_type",
+)
+
 AUDIT_KEY_COLUMNS = (
     "appointment_id",
     "patient_id",
@@ -110,6 +116,28 @@ PATIENT_HISTORY_DTYPES = MappingProxyType(
     }
 )
 
+AGGREGATE_HISTORY_OUTPUT_COLUMNS = (
+    *AUDIT_KEY_COLUMNS,
+    *AGGREGATE_HISTORY_FEATURE_COLUMNS,
+)
+
+AGGREGATE_HISTORY_DTYPES = MappingProxyType(
+    {
+        "appointment_id": "int64",
+        "patient_id": "int64",
+        "prediction_time": "datetime64[ns]",
+        "dentist_prior_attendance_count": "int32",
+        "dentist_no_show_rate_supported": "bool",
+        "dentist_prior_no_show_rate_smoothed": "float64",
+        "visit_type_prior_attendance_count": "int32",
+        "visit_type_no_show_rate_supported": "bool",
+        "visit_type_prior_no_show_rate_smoothed": "float64",
+        "weekday_hour_prior_attendance_count": "int32",
+        "weekday_hour_no_show_rate_supported": "bool",
+        "weekday_hour_prior_no_show_rate_smoothed": "float64",
+    }
+)
+
 V2_PROHIBITED_MODEL_COLUMNS = frozenset(
     {
         "appointment_id",
@@ -134,7 +162,10 @@ V2_PROHIBITED_MODEL_COLUMNS = frozenset(
 
 
 __all__ = (
+    "AGGREGATE_HISTORY_DTYPES",
     "AGGREGATE_HISTORY_FEATURE_COLUMNS",
+    "AGGREGATE_HISTORY_OUTPUT_COLUMNS",
+    "AGGREGATE_HISTORY_REQUIRED_APPOINTMENT_COLUMNS",
     "AGGREGATE_MIN_ATTENDANCE_SUPPORT",
     "ATTENDANCE_STATUSES",
     "AUDIT_KEY_COLUMNS",
