@@ -114,13 +114,26 @@ def test_line_ending_contract() -> None:
     required = (
         "*.py text eol=lf",
         "*.md text eol=lf",
+        "data/raw/README.md text eol=crlf",
         "*.toml text eol=lf",
         "*.yml text eol=lf",
         "*.txt text eol=lf",
+        "*.csv text eol=lf",
+        "data/raw/*.csv text eol=crlf",
         "*.parquet binary",
     )
     for value in required:
         assert value in attributes
+    assert attributes.index(
+        "*.md text eol=lf"
+    ) < attributes.index(
+        "data/raw/README.md text eol=crlf"
+    )
+    assert attributes.index(
+        "*.csv text eol=lf"
+    ) < attributes.index(
+        "data/raw/*.csv text eol=crlf"
+    )
 def test_readme_reports_current_project_status() -> None:
     readme = (
         _ROOT
