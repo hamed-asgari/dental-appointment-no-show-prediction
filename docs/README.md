@@ -43,9 +43,8 @@ through implemented operational threshold analysis:
     historical-feature boundary, rolling-origin development schedule, and
     protected 2027 final test.
 14. [Version 2 synthetic generator contract](
-    v2_synthetic_generator_contract.md) - Documents the deterministic
-    in-memory longitudinal generator, public schemas, reminder timing,
-    hidden-effect boundary, and current pre-export checkpoint.
+    v2_synthetic_generator_contract.md) - Documents the deterministic longitudinal generator, public schemas, reminder timing,
+    hidden-effect boundary, frozen raw export, integrity manifest, and hashes.
 15. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The repository currently implements canonical dataset construction,

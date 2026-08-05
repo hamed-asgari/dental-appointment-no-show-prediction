@@ -128,10 +128,16 @@ This checkpoint includes:
 - valid protected-period coverage;
 - generator unit tests.
 
+This checkpoint now also includes:
+
+- deterministic raw CSV export;
+- atomic file replacement;
+- a machine-readable provenance and integrity manifest;
+- frozen raw-file and manifest SHA-256 hashes;
+- a dataset fingerprint tied to configuration and generator-source hashes;
+- verification-only CLI support.
+
 It does not yet include:
 
-- raw-file export;
-- generated-data manifest;
-- final raw-file hashes;
 - Version 2 analytical-dataset construction;
 - historical feature engineering.

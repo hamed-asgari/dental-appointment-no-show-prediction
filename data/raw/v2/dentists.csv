@@ -1,0 +1,8 @@
+dentist_id,dentist_role,engagement_type,start_date,end_date,scheduled_hours_weekly,active
+1,general_dentist,employee,2022-07-01,,30,true
+2,general_dentist,contractor,2022-10-15,,24,true
+3,endodontist,visiting_specialist,2023-01-01,,8,true
+4,oral_surgeon,visiting_specialist,2023-01-01,,6,true
+5,orthodontist,visiting_specialist,2023-03-01,,8,true
+6,prosthodontist,contractor,2022-11-01,,12,true
+7,periodontist,visiting_specialist,2023-02-01,2025-08-31,6,false

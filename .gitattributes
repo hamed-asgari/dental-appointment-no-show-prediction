@@ -18,3 +18,7 @@ data/raw/*.csv text eol=crlf
 *.pdf binary
 
 LICENSE text eol=lf
+
+data/raw/v2/*.csv binary
+data/raw/v2/*.json text eol=lf
+data/raw/v2/README.md text eol=lf

@@ -19,6 +19,8 @@ This file records notable repository changes by release version.
 
 - Added the deterministic Version 2 longitudinal synthetic-generator core, frozen public schemas, reminder timestamps, strict validation, and structural tests.
 
+- Exported and froze the Version 2 longitudinal raw benchmark, integrity manifest, source hashes, file hashes, and dataset fingerprint.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.
