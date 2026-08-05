@@ -42,7 +42,11 @@ through implemented operational threshold analysis:
     synthetic benchmark, named random streams, prediction-time contract,
     historical-feature boundary, rolling-origin development schedule, and
     protected 2027 final test.
-14. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+14. [Version 2 synthetic generator contract](
+    v2_synthetic_generator_contract.md) - Documents the deterministic
+    in-memory longitudinal generator, public schemas, reminder timing,
+    hidden-effect boundary, and current pre-export checkpoint.
+15. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The repository currently implements canonical dataset construction,
 exploratory analysis, deterministic baseline preprocessing and fitting, a

@@ -17,6 +17,8 @@ This file records notable repository changes by release version.
 
 - Added the frozen machine-readable Version 2 benchmark configuration and validated named-stream configuration loader.
 
+- Added the deterministic Version 2 longitudinal synthetic-generator core, frozen public schemas, reminder timestamps, strict validation, and structural tests.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.
