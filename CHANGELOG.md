@@ -1,5 +1,27 @@
 # Changelog
 This file records notable repository changes by release version.
+## [Unreleased]
+
+### Recovery documentation
+
+- Added the Version `1.0.0` post-release audit.
+- Added the Version `2.0.0` recovery plan and completion checklist.
+- Clarified that Version `1.0.0` is a methodological checkpoint rather than a
+  completed predictive application.
+- Replaced stale `v0.1` placeholder documentation in `app/` and `models/`.
+- Preserved the original `v1.0.0` tag and release for auditability.
+
+### Planned for Version 2.0.0
+
+- Renewed chronological evaluation policy.
+- Leakage-safe historical feature engineering.
+- Recovered model comparison, calibration, and threshold analysis.
+- Interpretation, error analysis, and subgroup diagnostics.
+- Reproducible modeling runner and appropriate persisted artifacts.
+- Evidence-based Streamlit application.
+- Committed analytical figures and portfolio screenshots.
+- Documentation synchronization, clean-environment validation, and reviewed
+  Version `2.0.0` release.
 ## [1.0.0]
 ### Added
 - Immutable synthetic source-data integrity contracts.

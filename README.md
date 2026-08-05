@@ -4,6 +4,29 @@
 > All records in this repository are fully synthetic. They do not represent
 > real patients, clinical records, or healthcare operations. This educational
 > project is not validated for clinical or operational use.
+## Post-release recovery status
+
+Version `v1.0.0` is retained as an auditable methodological checkpoint, but it
+does **not** represent completion of the original end-to-end portfolio scope.
+
+The post-release audit confirmed strong leakage controls, chronological
+evaluation, calibration analysis, tests, and conservative reporting. It also
+identified missing charter deliverables:
+
+- no implemented Streamlit application;
+- no reusable persisted inference pipeline;
+- no committed portfolio figures or screenshots;
+- no completed model-interpretation and error-analysis layer;
+- no individualized appointment ranking from the selected constant-prior model.
+
+Recovery work is documented in:
+
+- [`docs/post_release_audit_v1.0.0.md`](docs/post_release_audit_v1.0.0.md)
+- [`docs/v2.0.0_recovery_plan.md`](docs/v2.0.0_recovery_plan.md)
+
+Until Version `2.0.0` is reviewed, this repository should be described as a
+leakage-aware methodological study with a negative appointment-level prediction
+result, not as a completed predictive application.
 ## Overview
 This repository implements a reproducible, leakage-controlled workflow for
 studying dental appointment no-show prediction. It includes immutable synthetic
