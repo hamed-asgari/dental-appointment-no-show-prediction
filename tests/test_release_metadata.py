@@ -1,6 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 import tomllib
+import yaml
 _ROOT = Path(
     __file__
 ).resolve().parents[1]
@@ -154,3 +155,108 @@ def test_readme_reports_current_project_status() -> None:
         ".github/"
         in readme
     )
+
+def test_citation_metadata_matches_release() -> None:
+    citation_path = (
+        _ROOT
+        / "CITATION.cff"
+    )
+    citation = yaml.safe_load(
+        citation_path.read_text(
+            encoding="utf-8"
+        )
+    )
+    with (
+        _ROOT
+        / "pyproject.toml"
+    ).open(
+        "rb"
+    ) as stream:
+        project = tomllib.load(
+            stream
+        )[
+            "project"
+        ]
+    assert citation[
+        "cff-version"
+    ] == "1.2.0"
+    assert citation[
+        "title"
+    ] == "Dental Appointment No-show Prediction"
+    assert citation[
+        "type"
+    ] == "software"
+    assert citation[
+        "authors"
+    ] == [
+        {
+            "family-names": "Asgari",
+            "given-names": "Hamed",
+        }
+    ]
+    assert citation[
+        "version"
+    ] == project[
+        "version"
+    ]
+    assert citation[
+        "repository-code"
+    ] == project[
+        "urls"
+    ][
+        "Repository"
+    ]
+    assert citation[
+        "url"
+    ] == project[
+        "urls"
+    ][
+        "Repository"
+    ]
+    assert "license" not in citation
+    assert "doi" not in citation
+    assert "date-released" not in citation
+def test_changelog_records_release_boundaries() -> None:
+    changelog = (
+        _ROOT
+        / "CHANGELOG.md"
+    ).read_text(
+        encoding="utf-8"
+    )
+    normalized = " ".join(
+        changelog.split()
+    )
+    required = (
+        "## [1.0.0]",
+        "calibration_prior",
+        "0.11985448975684472",
+        "0.12412028150991683",
+        "ROC AUC of `0.5`",
+        "no appointment-level ranking",
+        "no longer an untouched benchmark",
+        "No software license",
+    )
+    for value in required:
+        assert value in normalized
+def test_readme_links_release_metadata() -> None:
+    readme = (
+        _ROOT
+        / "README.md"
+    ).read_text(
+        encoding="utf-8"
+    )
+    required = (
+        "[CHANGELOG.md](CHANGELOG.md)",
+        "[CITATION.cff](CITATION.cff)",
+        "No software license",
+    )
+    for value in required:
+        assert value in readme
+    assert (
+        _ROOT
+        / "CHANGELOG.md"
+    ).is_file()
+    assert (
+        _ROOT
+        / "CITATION.cff"
+    ).is_file()

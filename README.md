@@ -86,6 +86,8 @@ vector provides no appointment-level ranking.
 |   `-- workflows/
 |       `-- ci.yml                     # Windows/Python 3.12 verification
 |-- tests/                           # Automated contracts and safeguards
+|-- CHANGELOG.md                     # Version 1.0.0 release record
+|-- CITATION.cff                     # Software citation metadata
 |-- pyproject.toml                   # Release and packaging metadata
 |-- requirements.txt
 |-- requirements-dev.txt
@@ -105,6 +107,13 @@ py -3.12 -m venv .venv
 ```
 Another Python 3.12 interpreter may be used when the Windows `py` launcher is
 not available.
+## Release and citation
+Version `1.0.0` is declared in `pyproject.toml`.
+- [CHANGELOG.md](CHANGELOG.md) records the implemented workflow, final declared
+  result, and scope boundaries.
+- [CITATION.cff](CITATION.cff) provides machine-readable software citation
+  metadata.
+No software license, DOI, or release archive identifier is currently declared.
 ## Generated outputs
 Dataset construction generates:
 - `data/processed/analytical_dataset.parquet`
