@@ -15,6 +15,8 @@ This file records notable repository changes by release version.
 
 - Frozen the Version 2 synthetic longitudinal data-generation and protected chronological evaluation policy before model development.
 
+- Added the frozen machine-readable Version 2 benchmark configuration and validated named-stream configuration loader.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.

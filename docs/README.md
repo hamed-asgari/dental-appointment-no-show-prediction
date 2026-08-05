@@ -37,6 +37,13 @@ through implemented operational threshold analysis:
     phase_11_final_pretest_evaluation.md) - Documents the leakage-safe final
     prior fit, sealed test probability vector, one-time chronological test
     audit, ranking interpretation, test-set status, and deployment boundary.
+13. [Version 2 data generation and evaluation policy](
+    v2_data_generation_and_evaluation_policy.md) - Freezes the longitudinal
+    synthetic benchmark, named random streams, prediction-time contract,
+    historical-feature boundary, rolling-origin development schedule, and
+    protected 2027 final test.
+14. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+    recovery phases and release-completion checklist.
 The repository currently implements canonical dataset construction,
 exploratory analysis, deterministic baseline preprocessing and fitting, a
 fixed Random Forest comparator, chronological probability calibration,
