@@ -16,3 +16,5 @@ data/raw/*.csv text eol=crlf
 *.jpeg binary
 *.gif binary
 *.pdf binary
+
+LICENSE text eol=lf

@@ -3,6 +3,7 @@ message: >-
   If you use this software, please cite it using the metadata below.
 title: "Dental Appointment No-show Prediction"
 type: software
+license: MIT
 authors:
   - family-names: "Asgari"
     given-names: "Hamed"

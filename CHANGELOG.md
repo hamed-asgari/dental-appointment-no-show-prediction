@@ -11,6 +11,8 @@ This file records notable repository changes by release version.
 - Replaced stale `v0.1` placeholder documentation in `app/` and `models/`.
 - Preserved the original `v1.0.0` tag and release for auditability.
 
+- Added the MIT License and synchronized package and citation metadata.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.
