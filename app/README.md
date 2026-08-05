@@ -8,10 +8,10 @@ directory is part of the Version `2.0.0` recovery scope.
 The application type must be selected only after the recovered model is
 evaluated under the renewed chronological evaluation policy:
 
-1. **Appointment-level risk demonstration** â€” allowed only if the final model
+1. **Appointment-level risk demonstration** - allowed only if the final model
    demonstrates useful appointment-level ranking and probability behavior
    beyond the population-prior baseline.
-2. **Transparent model-evaluation dashboard** â€” required if individualized
+2. **Transparent model-evaluation dashboard** - required if individualized
    prediction remains unsupported.
 
 The final application must include:
