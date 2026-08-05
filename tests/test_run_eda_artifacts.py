@@ -347,12 +347,11 @@ _EXPECTED_DIMENSIONS = {
 _PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
 
-def _file_sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as source:
-        for chunk in iter(lambda: source.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def _file_snapshot(path: Path) -> tuple[int, str]:
+    payload = path.read_bytes()
+    if path.suffix.casefold() == ".md":
+        payload = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return len(payload), hashlib.sha256(payload).hexdigest()
 
 
 def _tree_snapshot(
@@ -374,13 +373,13 @@ def _tree_snapshot(
                 entries.append((relative_name, "directory", None, None, None))
                 walk(Path(child.path), child_relative)
             else:
-                stat = child.stat(follow_symlinks=False)
+                size, digest = _file_snapshot(Path(child.path))
                 entries.append(
                     (
                         relative_name,
                         "file",
-                        stat.st_size,
-                        _file_sha256(Path(child.path)),
+                        size,
+                        digest,
                         None,
                     )
                 )
@@ -716,6 +715,20 @@ def test_no_new_public_module_owned_binding_or_public_main() -> None:
 def test_protected_tree_snapshots_match_exact_test_owned_literals() -> None:
     assert _tree_snapshot(_RAW_DIR) == _EXPECTED_RAW_TREE
     assert _tree_snapshot(_PROCESSED_DIR) == _EXPECTED_PROCESSED_TREE
+
+
+def test_tree_snapshot_canonicalizes_markdown_line_endings(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "tree"
+    root.mkdir()
+    readme = root / "README.md"
+
+    readme.write_bytes(b"# Title\r\n\r\nBody\r\n")
+    crlf_snapshot = _tree_snapshot(root)
+
+    readme.write_bytes(b"# Title\n\nBody\n")
+    assert _tree_snapshot(root) == crlf_snapshot
 
 
 def test_phase_five_builder_is_reused_with_verified_raw_inputs(
