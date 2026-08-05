@@ -27,6 +27,8 @@ This file records notable repository changes by release version.
 
 - Added deterministic strict-as-of dentist, visit-type, and weekday-hour attendance histories with frozen Beta smoothing, minimum-support gating, mutation tests, and benchmark summaries.
 
+- Added prediction-time-safe current appointment features, frozen evaluation partitions, label-maturity metadata, verified raw loading, and a target-free 32-feature Version 2 dataset builder.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.

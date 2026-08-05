@@ -91,6 +91,87 @@ V2_MODEL_FEATURE_COLUMNS = (
     *AGGREGATE_HISTORY_FEATURE_COLUMNS,
 )
 
+
+CURRENT_FEATURE_REQUIRED_APPOINTMENT_COLUMNS = (
+    *AGGREGATE_HISTORY_REQUIRED_APPOINTMENT_COLUMNS,
+    "planned_duration_min",
+    "booking_channel",
+    "reminder_sent_at",
+)
+
+CURRENT_FEATURE_REQUIRED_PATIENT_COLUMNS = (
+    "patient_id",
+    "birth_year",
+    "registered_at",
+)
+
+CURRENT_FEATURE_REQUIRED_DENTIST_COLUMNS = (
+    "dentist_id",
+    "start_date",
+)
+
+CURRENT_APPOINTMENT_OUTPUT_COLUMNS = (
+    "appointment_id",
+    "patient_id",
+    "dentist_id",
+    "prediction_time",
+    *CURRENT_APPOINTMENT_FEATURE_COLUMNS,
+)
+
+CURRENT_APPOINTMENT_DTYPES = MappingProxyType(
+    {
+        "appointment_id": "int64",
+        "patient_id": "int64",
+        "dentist_id": "int64",
+        "prediction_time": "datetime64[ns]",
+        "planned_duration_min": "int16",
+        "visit_type": "string",
+        "booking_channel": "string",
+        "booking_lead_time_hours": "float64",
+        "scheduled_weekday": "int8",
+        "scheduled_hour": "int8",
+        "scheduled_month": "int8",
+        "approximate_age_at_prediction": "int16",
+        "patient_registration_tenure_days": "int32",
+        "dentist_tenure_days": "int32",
+        "reminder_sent_by_prediction_time": "bool",
+    }
+)
+
+V2_EVALUATION_PARTITIONS = (
+    "context_only",
+    "warmup",
+    "development_fit",
+    "fold_1_validation",
+    "fold_2_validation",
+    "fold_3_validation",
+    "calibration",
+    "policy_selection",
+    "final_test",
+)
+
+V2_FEATURE_DATASET_AUDIT_COLUMNS = (
+    "appointment_id",
+    "patient_id",
+    "dentist_id",
+    "prediction_time",
+)
+
+V2_FEATURE_DATASET_PARTITION_COLUMNS = (
+    "evaluation_partition",
+)
+
+V2_FEATURE_DATASET_LABEL_METADATA_COLUMNS = (
+    "label_available_at",
+)
+
+V2_FEATURE_DATASET_COLUMNS = (
+    *V2_FEATURE_DATASET_AUDIT_COLUMNS,
+    *V2_MODEL_FEATURE_COLUMNS,
+    *V2_FEATURE_DATASET_PARTITION_COLUMNS,
+    *V2_FEATURE_DATASET_LABEL_METADATA_COLUMNS,
+)
+
 PATIENT_HISTORY_OUTPUT_COLUMNS = (
     *AUDIT_KEY_COLUMNS,
     *PATIENT_HISTORY_FEATURE_COLUMNS,
@@ -170,6 +251,11 @@ __all__ = (
     "ATTENDANCE_STATUSES",
     "AUDIT_KEY_COLUMNS",
     "CURRENT_APPOINTMENT_FEATURE_COLUMNS",
+    "CURRENT_APPOINTMENT_DTYPES",
+    "CURRENT_APPOINTMENT_OUTPUT_COLUMNS",
+    "CURRENT_FEATURE_REQUIRED_APPOINTMENT_COLUMNS",
+    "CURRENT_FEATURE_REQUIRED_DENTIST_COLUMNS",
+    "CURRENT_FEATURE_REQUIRED_PATIENT_COLUMNS",
     "HISTORY_REQUIRED_APPOINTMENT_COLUMNS",
     "HISTORY_STATUSES",
     "NO_SHOW_PRIOR_ALPHA",
@@ -181,6 +267,11 @@ __all__ = (
     "PATIENT_HISTORY_OUTPUT_COLUMNS",
     "PREDICTION_HORIZON_HOURS",
     "PRE_PREDICTION_INACTIVE_STATUSES",
+    "V2_EVALUATION_PARTITIONS",
+    "V2_FEATURE_DATASET_AUDIT_COLUMNS",
+    "V2_FEATURE_DATASET_COLUMNS",
+    "V2_FEATURE_DATASET_LABEL_METADATA_COLUMNS",
+    "V2_FEATURE_DATASET_PARTITION_COLUMNS",
     "V2_MODEL_FEATURE_COLUMNS",
     "V2_PROHIBITED_MODEL_COLUMNS",
 )
