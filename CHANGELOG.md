@@ -23,6 +23,8 @@ This file records notable repository changes by release version.
 
 - Frozen the Version 2 historical-feature contract, strict as-of availability rule, smoothing constants, cold-start defaults, and protected feature-target boundary.
 
+- Added immutable Version 2 feature schemas and a deterministic strict-as-of patient-history engine with cold-start, smoothing, recency, mutation, and frozen-benchmark tests.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.
