@@ -25,11 +25,11 @@ Recovery work is documented in:
 - [`docs/v2.0.0_recovery_plan.md`](docs/v2.0.0_recovery_plan.md)
 - [`docs/v2_r1_completion_evidence.md`](docs/v2_r1_completion_evidence.md)
 
-Version 2 recovery Phase R1 is complete on the recovery branch. Phase R2 has
-now run the frozen three-fold rolling-origin comparison and the pre-registered
-chronological calibration evaluation for the selected ranking model. The
-protected 2027 final-test targets have not been accessed and no final-test
-probability vector has been generated. Policy sensitivity remains pending.
+Version 2 recovery Phases R1 and R2 are complete on the recovery branch.
+Phase R2 completed the frozen three-fold rolling-origin comparison,
+pre-registered chronological calibration evaluation, and pre-registered
+policy-sensitivity analysis. The protected 2027 final-test targets have not
+been accessed and no final-test probability vector has been generated.
 
 Until Version `2.0.0` is reviewed, this repository should be described as a
 leakage-aware methodological study under recovery, not as a completed
@@ -48,9 +48,9 @@ results. It does not persist a trained production model or define an
 operational decision policy.
 ## Current project status
 Version 1 status: Phases 01 through 11 are complete. They remain the audited
-checkpoint. Version 2 recovery Phase R1 is frozen; Phase R2 rolling-origin
-ranking and chronological calibration are complete, with policy analysis still
-pending.
+checkpoint. Version 2 recovery Phases R1 and R2 are frozen and complete;
+interpretation, persistence, reproducibility, and the protected future-test
+evaluation belong to Phase R3.
 The implemented workflow now:
 - verifies immutable raw-file integrity;
 - constructs and validates the canonical analytical dataset;
@@ -182,8 +182,12 @@ Version 2 rolling-origin development outputs are committed under:
 Chronological calibration outputs are committed under:
 - `reports/modeling/v2/calibration/`
 
-These artifacts contain only permitted development/calibration predictions and
-metrics; protected `final_test` rows are excluded.
+Policy-sensitivity outputs are committed under:
+- `reports/modeling/v2/policy/`
+
+These Version 2 R2 artifacts contain only permitted development, calibration,
+and policy-selection predictions and metrics; protected `final_test` rows are
+excluded.
 ## Methodology
 The [documentation index](docs/README.md) links the approved contracts and
 implemented phases in methodological order.
@@ -220,12 +224,12 @@ threshold, or an operational policy. It does not implement model
 serialization, deployment, or a production decision system. The evaluated Version 1 test period cannot be reused as an untouched
 development benchmark.
 
-Version 2 recovery Phase R1 is complete and frozen. Phase R2 has completed the
-pre-registered rolling-origin estimator comparison and chronological
-calibration evaluation; threshold/policy analysis remains pending.
-Interpretation, persistence, final-test evaluation, and the evidence-based
-Streamlit decision gate belong to later recovery phases. No protected
-final-test claim is made at this stage.
+Version 2 recovery Phases R1 and R2 are complete and frozen. Phase R2
+completed the pre-registered rolling-origin estimator comparison,
+chronological calibration evaluation, and policy-sensitivity analysis without
+selecting an operational threshold. Interpretation, persistence, final-test
+evaluation, and the evidence-based Streamlit decision gate belong to later
+recovery phases. No protected final-test claim is made at this stage.
 ## Disclaimer
 All source records and derived outputs are synthetic. No real patient
 information is included, and repository results cannot establish clinical

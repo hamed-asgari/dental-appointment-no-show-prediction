@@ -106,22 +106,23 @@ def test_documentation_index_links_r1_closeout_documents() -> None:
     text = _text(DOCS_INDEX)
     assert "[Version 2 data dictionary](v2_data_dictionary.md)" in text
     assert "[Phase R1 completion evidence](v2_r1_completion_evidence.md)" in text
-    assert "Version 2 recovery Phase R1 is complete" in text
+    assert "Version 2 recovery Phases R1 and R2 are complete" in text
 
 
-def test_root_readme_reports_r2_calibration_without_claiming_final_test_success() -> None:
+def test_root_readme_reports_completed_r2_without_claiming_final_test_success() -> None:
     text = _normalized(README)
     required = (
-        "Version 2 recovery Phase R1 is complete on the recovery branch.",
-        "Phase R2 has now run the frozen three-fold rolling-origin comparison",
+        "Version 2 recovery Phases R1 and R2 are complete on the recovery branch.",
+        "frozen three-fold rolling-origin comparison",
         "chronological calibration evaluation",
+        "pre-registered policy-sensitivity analysis",
         "The protected 2027 final-test targets have not been accessed",
         "no final-test probability vector has been generated",
-        "Policy sensitivity remains pending.",
         "No protected final-test claim is made at this stage.",
     )
     for value in required:
         assert value in text
+    assert "Policy sensitivity remains pending." not in text
 
 
 def test_changelog_moves_completed_r1_items_out_of_planned_list() -> None:

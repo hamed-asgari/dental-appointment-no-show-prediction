@@ -73,7 +73,18 @@ through implemented operational threshold analysis:
     v2_r2_calibration_results.md) - Records the frozen chronology, calibration
     metrics, selection rule outcome, reliability-curve artifact, and unchanged
     protected-test state.
-22. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+22. [Phase R2 policy execution specification](
+    v2_r2_policy_execution_spec.md) - Freezes deterministic capacity,
+    tie-breaking, cost-threshold, and scenario-accounting mechanics before
+    policy outcomes are inspected.
+23. [Phase R2 policy-sensitivity results](
+    v2_r2_policy_results.md) - Records the registered capacity and cost
+    sensitivity grid, deterministic replay, artifact identity, and explicit
+    no-operational-threshold boundary.
+24. [Phase R2 completion evidence](v2_r2_completion_evidence.md) - Records the
+    frozen R2 checkpoints, test and CI evidence, artifact identities, and the
+    protected-test gate into Phase R3.
+25. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
@@ -81,8 +92,8 @@ same probability to every appointment and therefore provides no
 appointment-level ranking; that previously examined Version 1 test period is
 not reused for recovery model selection.
 
-Version 2 recovery Phase R1 is complete on the recovery branch. Phase R2 has
-now completed its frozen rolling-origin ranking comparison and chronological
-calibration evaluation under the pre-metric contract. The real protected 2027
-final-test targets have not been accessed and no final-test probability vector
-has been generated. Policy sensitivity remains pending.
+Version 2 recovery Phases R1 and R2 are complete on the recovery branch.
+Phase R2 completed its frozen rolling-origin ranking comparison, chronological
+calibration evaluation, and policy-sensitivity analysis under pre-outcome
+contracts. The real protected 2027 final-test targets have not been accessed
+and no final-test probability vector has been generated.

@@ -57,10 +57,17 @@ This file records notable repository changes by release version.
   calibration intercept/slope, deterministic 10-bin reliability curves,
   selection evidence, artifact hashes, and unchanged protected-test state.
 
+- Frozen deterministic Version 2 policy-execution mechanics before outcome
+  exposure, including capacity rounding, tie-breaking, cost thresholds, and
+  relative-cost accounting.
+- Added the frozen Version 2 policy-sensitivity engine and committed the first
+  registered 16-scenario policy batch with deterministic artifact identities,
+  byte-identical replay evidence, and no operational-threshold selection.
+- Closed recovery Phase R2 with synchronized modeling, calibration, and policy
+  evidence while the protected 2027 final test remained unopened.
+
 
 ### Planned for Version 2.0.0
-
-- Recovered model comparison, calibration, and threshold analysis.
 - Interpretation, error analysis, and subgroup diagnostics.
 - Reproducible modeling runner and appropriate persisted artifacts.
 - Evidence-based Streamlit application.

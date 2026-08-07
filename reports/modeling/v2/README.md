@@ -16,4 +16,7 @@ identities of the generated result artifacts.
 
 Chronological calibration artifacts are committed under `calibration/` and
 follow the already frozen calibration chronology. Policy-sensitivity artifacts
-are added in the next R2 batch.
+are committed under `policy/` and follow the frozen execution mechanics in
+`docs/v2_r2_policy_execution_spec.md`. The policy batch contains no protected
+`final_test` rows or probabilities and does not select an operational
+threshold.
