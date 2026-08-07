@@ -61,7 +61,7 @@ gate_frame["Result"] = gate_frame["Pass"].map(
 st.dataframe(
     gate_frame[["Gate", "Observed", "Requirement", "Result"]],
     hide_index=True,
-    use_container_width=True,
+    width="stretch",
 )
 
 st.error(
@@ -125,7 +125,7 @@ st.image(
         "Frozen protected-test precision-recall evidence. Ranking improvement "
         "does not by itself validate individualized operational probabilities."
     ),
-    use_container_width=True,
+    width="stretch",
 )
 
 st.header("4. Calibration evidence")
@@ -136,7 +136,7 @@ st.image(
         ]
     ),
     caption="Frozen protected-test calibration evidence.",
-    use_container_width=True,
+    width="stretch",
 )
 st.markdown(
     f"""
@@ -159,7 +159,7 @@ st.image(
         "Pre-registered 5%, 10%, and 20% capacity sensitivity. Descriptive "
         "analysis only; no operational threshold or clinic policy was selected."
     ),
-    use_container_width=True,
+    width="stretch",
 )
 st.info(
     "Capacity and cost scenarios are sensitivity analyses, not a validated "
@@ -170,7 +170,7 @@ st.header("6. Pre-test interpretation")
 st.dataframe(
     pd.DataFrame(top_feature_rows(summary)),
     hide_index=True,
-    use_container_width=True,
+    width="stretch",
 )
 st.caption(
     "Permutation importance was computed before protected-test access on the "

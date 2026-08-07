@@ -46,6 +46,7 @@ def test_app_source_has_no_protected_access_or_runtime_scoring() -> None:
     )
     for needle in prohibited:
         assert needle not in source
+    assert "use_container_width" not in source
 
 
 def test_app_readme_has_frozen_launch_command_and_boundaries() -> None:
