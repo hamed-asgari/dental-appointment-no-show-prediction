@@ -106,10 +106,38 @@ _EXPECTED_RAW_TREE = (
 )
 _EXPECTED_PROCESSED_TREE = (
     (
-        ".gitkeep",
-        "file",
-        0,
-        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        'README.md',
+        'file',
+        307,
+        'fbebd98d7fc74a13be7a624f74f0ec983f99f80a8648175ce866730149450d69',
+        None,
+    ),
+    (
+        'v2',
+        'directory',
+        None,
+        None,
+        None,
+    ),
+    (
+        'v2/README.md',
+        'file',
+        865,
+        '3f5ae76755d331685bb46054cc65d37612fa6b3b38812de244ec706d94c5592c',
+        None,
+    ),
+    (
+        'v2/v2_feature_dataset.csv',
+        'file',
+        6_705_540,
+        '08a2c16ca6cc66f91fda1cd09a2549a3e2d5357c2b975eb2f55f4ade66a46b53',
+        None,
+    ),
+    (
+        'v2/v2_feature_dataset.manifest.json',
+        'file',
+        7_086,
+        '2ee3f7d42f2d73fdcde71fd601fd0423d5e610767ac5162afd38c33bf2fb8073',
         None,
     ),
 )

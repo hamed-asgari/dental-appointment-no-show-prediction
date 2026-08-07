@@ -50,7 +50,11 @@ through implemented operational threshold analysis:
     v2_historical_feature_contract.md) - Freezes the strict as-of event
     boundary, approved patient and aggregate history features, smoothing,
     cold-start behavior, feature-target separation, and leakage tests.
-16. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+16. [Version 2 processed data and protected target access](
+    v2_processed_data_and_target_access.md) - Documents the deterministic
+    target-free processed artifact, strict label-maturity access, final-test
+    probability seal, hashes, and protected target gate.
+17. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The repository currently implements canonical dataset construction,
 exploratory analysis, deterministic baseline preprocessing and fitting, a

@@ -29,6 +29,10 @@ This file records notable repository changes by release version.
 
 - Added prediction-time-safe current appointment features, frozen evaluation partitions, label-maturity metadata, verified raw loading, and a target-free 32-feature Version 2 dataset builder.
 
+- Added deterministic target-free Version 2 processed-data export, frozen
+  artifact identities, strict non-test label-maturity access, and a gated
+  final-test target accessor that requires a prewritten probability vector.
+
 ### Planned for Version 2.0.0
 
 - Renewed chronological evaluation policy.
