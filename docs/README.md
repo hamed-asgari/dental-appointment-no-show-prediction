@@ -104,7 +104,10 @@ through implemented operational threshold analysis:
 29. [Version 2 model card](v2_model_card.md) - Summarizes the frozen
     Logistic Regression pipeline, protected-test evidence, calibration limits,
     app decision, reproducibility command, and synthetic-data scope.
-30. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+30. [Phase R3 formal closeout](v2_r3_closeout.md) - Seals the completed
+    protected-test evaluation and final reporting package with exact commit,
+    artifact, CI, and post-test immutability evidence.
+31. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
@@ -115,9 +118,10 @@ not reused for recovery model selection.
 Version 2 recovery Phases R1 and R2 are complete on the recovery branch.
 Phase R2 completed its frozen rolling-origin ranking comparison, chronological
 calibration evaluation, and policy-sensitivity analysis under pre-outcome
-contracts. Phase R3 now has a frozen execution contract, a persisted frozen
-model pipeline, completed pre-test interpretation/error/subgroup diagnostics,
-and a one-time protected 2027 final-test evaluation performed only after the
-4,343-row probability vector was exact-commit CI sealed. The pre-frozen app
-decision gate selects `transparent_model_evaluation_dashboard`; no post-test model,
-calibration, feature, or threshold tuning is permitted.
+contracts. Phase R3 is formally closed. It includes the frozen execution
+contract, persisted model pipeline, pre-test diagnostics, SHA-256-sealed
+target-free protected-test probability vector, one-time protected 2027
+evaluation, model card, reproducible final reporting runner, and committed key
+analytical figures. The pre-frozen app gate selects
+`transparent_model_evaluation_dashboard`; no post-test model, calibration,
+feature, or threshold tuning is permitted.
