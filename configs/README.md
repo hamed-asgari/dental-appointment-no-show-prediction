@@ -17,3 +17,8 @@ final-test target access before any recovered Version 2 model metric is run.
 
 Changing this file after metrics are inspected is a contract amendment and
 must be documented explicitly rather than treated as ordinary tuning.
+`v2_r3_execution.json` is the frozen machine-readable contract for recovery
+Phase R3. It fixes the persisted-model identity, pre-test interpretation and
+subgroup plan, protected-test probability-seal sequence, one-time target gate,
+final reporting metrics, and the evidence-based app decision rule. It is frozen
+before any protected-test probability vector or target access.

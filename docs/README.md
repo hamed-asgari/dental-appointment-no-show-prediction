@@ -84,7 +84,11 @@ through implemented operational threshold analysis:
 24. [Phase R2 completion evidence](v2_r2_completion_evidence.md) - Records the
     frozen R2 checkpoints, test and CI evidence, artifact identities, and the
     protected-test gate into Phase R3.
-25. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+25. [Phase R3 execution contract](v2_r3_execution_contract.md) - Freezes
+    persistence, pre-test interpretation and subgroup diagnostics, the
+    protected-test probability seal and one-time target gate, final reporting,
+    and the evidence-based app decision rule.
+26. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
