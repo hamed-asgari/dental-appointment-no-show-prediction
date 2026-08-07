@@ -98,6 +98,8 @@ def test_recovery_plan_marks_r1_complete_and_r2_as_next_phase() -> None:
     assert "docs/v2_r1_completion_evidence.md" in r1
     assert "- [x] no row can use future appointment outcomes" in r1
     assert "- [x] no protected 2027 final-test metric has been inspected" in r1
+    assert "- [x] Leakage-safe historical features implemented" in text
+    assert "- [x] Feature leakage tests added" in text
 
 
 def test_documentation_index_links_r1_closeout_documents() -> None:
