@@ -1,0 +1,39 @@
+{
+  "appointment_order_sha256": "addb9ab672383b10976aec4eaa94f359bbbe4c0bf5b634b313265c659c9c3cd6",
+  "average_precision_absolute_uplift_vs_population_prior": 0.06472620063430369,
+  "brier_delta_model_minus_population_prior": 0.000517993471194883,
+  "final_test_probabilities_generated": true,
+  "final_test_target_accessed": true,
+  "log_loss_delta_model_minus_population_prior": -0.0023636968008977632,
+  "model": {
+    "average_precision": 0.14715769959815356,
+    "brier_score": 0.07620524534951674,
+    "calibration_intercept": -0.9620523895028728,
+    "calibration_slope": 0.6890337023179296,
+    "log_loss": 0.2826231342607363,
+    "mean_predicted_probability": 0.11319024204909915,
+    "roc_auc": 0.6300295101042317
+  },
+  "partition": "final_test",
+  "phase": "R3",
+  "population_prior_baseline": {
+    "average_precision": 0.08243149896384987,
+    "brier_score": 0.07568725187832186,
+    "log_loss": 0.2849868310616341,
+    "mean_predicted_probability": 0.08955223880597014,
+    "roc_auc": 0.5
+  },
+  "population_prior_probability": 0.08955223880597014,
+  "positive_count": 358,
+  "post_test_model_tuning_permitted": false,
+  "prevalence": 0.08243149896384987,
+  "probability_manifest_sha256": "412c75ff76882536eab0dc2ee5df4c3da8551c7b99fe83402ab5ac0f679b46e4",
+  "probability_vector_sha256": "7a4af37da40c1515a6ee567dd12861b57cf08e2e65b516e3c7e3d2aa65237126",
+  "sample_size": 4343,
+  "schema_version": "1.0.0",
+  "selected_calibration_method": "uncalibrated",
+  "selected_ranking_model": "logistic_regression",
+  "single_operational_threshold_selected": false,
+  "stage": "one_time_protected_final_test_evaluation",
+  "target_access_count_this_evaluation_batch": 1
+}

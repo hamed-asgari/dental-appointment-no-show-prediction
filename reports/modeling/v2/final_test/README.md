@@ -20,3 +20,18 @@ Artifacts:
 This checkpoint is not permission to inspect protected targets. The probability
 vector must first be committed, pushed, and CI-green. Target access remains a
 separate explicit one-time R3 operation.
+
+## One-time opened evaluation
+
+After the sealed probability-vector commit passed CI, the protected target was
+opened once through the gated accessor. Committed evaluation artifacts are:
+
+- `final_test_evaluation_predictions.csv`
+- `final_test_metrics.json`
+- `final_test_policy_scenarios.csv`
+- `final_test_app_decision.json`
+- `final_test_evaluation_manifest.json`
+
+The pre-frozen R3 app gate selects
+`transparent_model_evaluation_dashboard`. The result may determine only the R4 app
+type; it may not trigger model, calibration, feature, or threshold tuning.

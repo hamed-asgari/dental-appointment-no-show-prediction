@@ -26,7 +26,9 @@ committed under `diagnostics/`. They use only `policy_selection` plus the
 persisted frozen pipeline, preserve the registered capacity fractions, and do
 not score or open the protected 2027 final test.
 
-Phase R3 now also contains `final_test/final_test_probabilities.csv` plus its
-seal manifest. The 4,343-row vector was produced from target-free final-test
-features only. No protected target or target-derived metric has been accessed;
-target access remains blocked until this exact commit is CI-green.
+Phase R3 contains the immutable sealed
+`final_test/final_test_probabilities.csv` and the one-time opened evaluation
+artifacts under `final_test/`. The protected target was accessed only after the
+probability-vector commit was CI-green. The pre-frozen app gate selects
+`transparent_model_evaluation_dashboard`; no final-test threshold or post-test model
+change is permitted.

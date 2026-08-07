@@ -97,7 +97,11 @@ through implemented operational threshold analysis:
     v2_r3_final_test_probability_seal.md) - Records the target-free 4,343-row
     probability vector, appointment-order identity, SHA-256 seal, and the
     mandatory commit-plus-CI gate before protected-target access.
-28. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+28. [Phase R3 final chronological test results](
+    v2_r3_final_test_results.md) - Records the one-time protected evaluation,
+    frozen population-prior comparison, registered policy replay, and the
+    pre-frozen evidence-based R4 app decision.
+29. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
@@ -109,7 +113,8 @@ Version 2 recovery Phases R1 and R2 are complete on the recovery branch.
 Phase R2 completed its frozen rolling-origin ranking comparison, chronological
 calibration evaluation, and policy-sensitivity analysis under pre-outcome
 contracts. Phase R3 now has a frozen execution contract, a persisted frozen
-model pipeline, completed pre-test interpretation/error/subgroup diagnostics
-on `policy_selection`, and a target-free 4,343-row protected-test probability
-vector awaiting exact-commit CI sealing. The real protected 2027 final-test
-targets have not been accessed.
+model pipeline, completed pre-test interpretation/error/subgroup diagnostics,
+and a one-time protected 2027 final-test evaluation performed only after the
+4,343-row probability vector was exact-commit CI sealed. The pre-frozen app
+decision gate selects `transparent_model_evaluation_dashboard`; no post-test model,
+calibration, feature, or threshold tuning is permitted.
