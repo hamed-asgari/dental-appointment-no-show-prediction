@@ -122,10 +122,10 @@ def test_model_card_documents_decision_and_one_command_reproduction() -> None:
     )
 
 
-def test_recovery_plan_marks_r3_reporting_work_implemented_not_closed() -> None:
+def test_recovery_plan_marks_r3_reporting_work_formally_closed() -> None:
     text = RECOVERY_PLAN.read_text(encoding="utf-8")
     r3 = text[text.index("## Phase R3"):text.index("## Phase R4")]
-    assert "final reporting package implemented" in r3
-    assert "CI verification pending before R3 closeout" in r3
+    assert "complete and formally closed" in r3
+    assert "CI verification pending before R3 closeout" not in r3
     assert "- [x] Modeling runner implemented" in text
     assert "- [ ] Figures and screenshots committed" in text
