@@ -106,24 +106,29 @@ def test_documentation_index_links_r1_closeout_documents() -> None:
     text = _text(DOCS_INDEX)
     assert "[Version 2 data dictionary](v2_data_dictionary.md)" in text
     assert "[Phase R1 completion evidence](v2_r1_completion_evidence.md)" in text
-    assert "Version 2 recovery Phases R1 and R2 are complete" in text
+    assert "Version 2 recovery Phases R1 through R3 are complete" in text
+    assert "v2_r4_application_contract.md" in text
+    assert "v2_r4_portfolio_architecture.md" in text
 
-
-def test_root_readme_reports_completed_r2_without_claiming_final_test_success() -> None:
+def test_root_readme_reports_current_v2_post_test_state() -> None:
     text = _normalized(README)
     required = (
-        "Version 2 recovery Phases R1 and R2 are complete on the recovery branch.",
-        "frozen three-fold rolling-origin comparison",
-        "chronological calibration evaluation",
-        "pre-registered policy-sensitivity analysis",
-        "The protected 2027 final-test targets have not been accessed",
-        "no final-test probability vector has been generated",
-        "No protected final-test claim is made at this stage.",
+        "Recovery Phases R0 through R3 are complete.",
+        "The protected 2027 final test has already been accessed exactly once",
+        "transparent_model_evaluation_dashboard",
+        "Version `2.0.0` is still under recovery review",
     )
     for value in required:
         assert value in text
-    assert "Policy sensitivity remains pending." not in text
 
+    stale = (
+        "The protected 2027 final-test targets have not been accessed",
+        "no final-test probability vector has been generated",
+        "No protected final-test claim is made at this stage.",
+        "Policy sensitivity remains pending.",
+    )
+    for value in stale:
+        assert value not in text
 
 def test_changelog_moves_completed_r1_items_out_of_planned_list() -> None:
     text = _text(CHANGELOG)

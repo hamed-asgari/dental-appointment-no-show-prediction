@@ -94,7 +94,7 @@ def test_recovery_plan_marks_r2_complete_and_updates_checklist() -> None:
     assert "- [x] Threshold/cost analysis updated" in text
 
 
-def test_documentation_surfaces_completed_r2_without_opening_r3_test() -> None:
+def test_documentation_surfaces_r2_evidence_after_r3_and_r4() -> None:
     docs = _normalized(DOCS_INDEX)
     readme = _normalized(README)
     reports = _normalized(REPORTS_README)
@@ -102,18 +102,19 @@ def test_documentation_surfaces_completed_r2_without_opening_r3_test() -> None:
     assert "[Phase R2 completion evidence](v2_r2_completion_evidence.md)" in _text(
         DOCS_INDEX
     )
-    assert "Version 2 recovery Phases R1 and R2 are complete" in docs
-    assert "policy-sensitivity analysis" in docs
+    assert "Version 2 recovery Phases R1 through R3 are complete" in docs
+    assert "transparent_model_evaluation_dashboard" in docs
+    assert "Phase R4 has implemented the read-only Streamlit evaluation dashboard" in docs
     assert "Policy sensitivity remains pending." not in docs
 
-    assert "Version 2 recovery Phases R1 and R2 are complete" in readme
-    assert "pre-registered policy-sensitivity analysis" in readme
+    assert "Recovery Phases R0 through R3 are complete." in readme
+    assert "The protected 2027 final test has already been accessed exactly once" in readme
+    assert "transparent_model_evaluation_dashboard" in readme
+    assert "No protected final-test claim is made at this stage." not in readme
     assert "Policy sensitivity remains pending." not in readme
-    assert "No protected final-test claim is made at this stage." in readme
 
     assert "Policy-sensitivity artifacts are committed under `policy/`" in reports
     assert "does not select an operational threshold" in reports
-
 
 def test_changelog_moves_completed_r2_modeling_out_of_planned_list() -> None:
     text = _text(CHANGELOG)

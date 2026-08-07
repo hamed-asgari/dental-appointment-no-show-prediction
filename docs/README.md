@@ -109,19 +109,29 @@ through implemented operational threshold analysis:
     artifact, CI, and post-test immutability evidence.
 31. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
+32. [Phase R4 application contract](
+    v2_r4_application_contract.md) - Freezes the evidence-based Streamlit app
+    type, allowed artifact inputs, prohibited runtime scoring paths, integrity
+    checks, required portfolio sections, and R4 acceptance boundary.
+33. [Phase R4 portfolio architecture](
+    v2_r4_portfolio_architecture.md) - Documents the Version 2 evidence flow
+    from the synthetic benchmark through frozen reporting and the read-only
+    Streamlit presentation layer, including the no-runtime-scoring boundary.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
 same probability to every appointment and therefore provides no
 appointment-level ranking; that previously examined Version 1 test period is
 not reused for recovery model selection.
 
-Version 2 recovery Phases R1 and R2 are complete on the recovery branch.
-Phase R2 completed its frozen rolling-origin ranking comparison, chronological
-calibration evaluation, and policy-sensitivity analysis under pre-outcome
-contracts. Phase R3 is formally closed. It includes the frozen execution
-contract, persisted model pipeline, pre-test diagnostics, SHA-256-sealed
-target-free protected-test probability vector, one-time protected 2027
-evaluation, model card, reproducible final reporting runner, and committed key
-analytical figures. The pre-frozen app gate selects
-`transparent_model_evaluation_dashboard`; no post-test model, calibration,
-feature, or threshold tuning is permitted.
+Version 2 recovery Phases R1 through R3 are complete on the recovery branch.
+Phase R3 is formally closed and includes the frozen execution contract,
+persisted model pipeline, pre-test diagnostics, SHA-256-sealed target-free
+protected-test probability vector, one-time protected 2027 evaluation, model
+card, reproducible final reporting runner, and committed analytical figures.
+The pre-frozen app gate selects `transparent_model_evaluation_dashboard`.
+
+Phase R4 has implemented the read-only Streamlit evaluation dashboard, artifact
+integrity checks, application tests, portfolio screenshots, and architecture
+documentation. Formal R4 closeout remains pending the exact-head CI seal for
+the portfolio-integration batch. No post-test model, calibration, feature, or
+threshold tuning is permitted.

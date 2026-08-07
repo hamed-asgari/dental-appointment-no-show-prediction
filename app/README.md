@@ -17,6 +17,7 @@ The app does not:
 - display patient-level "high risk" labels;
 - expose an operating-threshold control;
 - access protected final-test targets;
+- load the persisted model for runtime inference;
 - refit or recalibrate the model.
 
 ## Launch
@@ -44,3 +45,25 @@ The dashboard displays:
 
 Its primary machine-readable inputs are the committed R3 final-reporting
 summary and manifest under `reports/modeling/v2/final_reporting/`.
+
+## Portfolio screenshots
+
+Actual screenshots from the committed application state are stored in
+`reports/screenshots/`:
+
+- `v2_streamlit_overview.png`
+- `v2_streamlit_performance.png`
+- `v2_streamlit_calibration_capacity.png`
+- `v2_streamlit_interpretation_limitations.png`
+
+Their dimensions and SHA-256 identities are documented in
+[`../reports/screenshots/README.md`](../reports/screenshots/README.md).
+
+## Architecture
+
+The presentation/data-flow boundary is documented in
+[`../docs/v2_r4_portfolio_architecture.md`](../docs/v2_r4_portfolio_architecture.md).
+
+The application consumes frozen reporting artifacts only. There is no runtime
+path from user input to model inference, protected-target access, recalibration,
+or threshold selection.
