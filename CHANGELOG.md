@@ -39,6 +39,13 @@ This file records notable repository changes by release version.
   unaccessed.
 
 
+- Frozen the Version 2 model-development and selection contract before any
+  recovered model metric, including exact preprocessing, fixed Logistic
+  Regression and Random Forest candidates, rolling-origin ranking guardrails,
+  calibration chronology, threshold-sensitivity scenarios, and continued
+  prohibition on protected 2027 test access.
+
+
 ### Planned for Version 2.0.0
 
 - Recovered model comparison, calibration, and threshold analysis.

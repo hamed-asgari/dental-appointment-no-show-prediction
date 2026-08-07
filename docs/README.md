@@ -60,7 +60,12 @@ through implemented operational threshold analysis:
 18. [Phase R1 completion evidence](v2_r1_completion_evidence.md) - Records the
     frozen identities, implementation checkpoints, test/CI evidence, protected
     target state, and the gate into recovered modeling.
-19. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+19. [Version 2 model development and selection contract](
+    v2_model_development_and_selection_contract.md) - Freezes the exact
+    candidate menu, preprocessing, rolling-origin ranking gate, calibration
+    chronology, threshold-sensitivity grid, and protected-test prohibition
+    before any recovered Version 2 model metric is computed.
+20. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
@@ -74,6 +79,5 @@ strict-as-of patient and aggregate history, 32 approved model features,
 target-free processed features, renewed chronological partitions, strict label
 maturity, and a gated protected 2027 final-test target accessor. The real
 protected 2027 final-test targets have not been accessed and no protected test
-metric has been inspected. Recovered model comparison, calibration, threshold
-analysis, persistence, interpretation, and application work begin in later
-recovery phases.
+metric has been inspected. Phase R2 has only frozen its model-development and
+selection contract; no recovered Version 2 model metric has been computed yet.
