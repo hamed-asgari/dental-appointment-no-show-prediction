@@ -109,14 +109,15 @@ def test_documentation_index_links_r1_closeout_documents() -> None:
     assert "Version 2 recovery Phase R1 is complete" in text
 
 
-def test_root_readme_reports_r2_ranking_without_claiming_final_test_success() -> None:
+def test_root_readme_reports_r2_calibration_without_claiming_final_test_success() -> None:
     text = _normalized(README)
     required = (
         "Version 2 recovery Phase R1 is complete on the recovery branch.",
         "Phase R2 has now run the frozen three-fold rolling-origin comparison",
+        "chronological calibration evaluation",
         "The protected 2027 final-test targets have not been accessed",
         "no final-test probability vector has been generated",
-        "Calibration and policy sensitivity remain pending.",
+        "Policy sensitivity remains pending.",
         "No protected final-test claim is made at this stage.",
     )
     for value in required:

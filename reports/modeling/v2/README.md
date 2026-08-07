@@ -14,4 +14,6 @@ test targets, or final-test probabilities.
 versions, selected ranking candidate, protected-test state, and SHA-256
 identities of the generated result artifacts.
 
-Calibration and policy-sensitivity artifacts are added in later R2 batches.
+Chronological calibration artifacts are committed under `calibration/` and
+follow the already frozen calibration chronology. Policy-sensitivity artifacts
+are added in the next R2 batch.

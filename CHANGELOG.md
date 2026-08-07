@@ -52,6 +52,12 @@ This file records notable repository changes by release version.
   without accessing or scoring the protected 2027 final test.
 
 
+- Added the frozen Version 2 chronological calibration evaluation for the
+  selected ranking model, including uncalibrated/sigmoid/isotonic comparison,
+  calibration intercept/slope, deterministic 10-bin reliability curves,
+  selection evidence, artifact hashes, and unchanged protected-test state.
+
+
 ### Planned for Version 2.0.0
 
 - Recovered model comparison, calibration, and threshold analysis.

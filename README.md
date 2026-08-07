@@ -26,10 +26,10 @@ Recovery work is documented in:
 - [`docs/v2_r1_completion_evidence.md`](docs/v2_r1_completion_evidence.md)
 
 Version 2 recovery Phase R1 is complete on the recovery branch. Phase R2 has
-now run the frozen three-fold rolling-origin comparison for the population
-prior, Logistic Regression, and Random Forest candidates. The protected 2027
-final-test targets have not been accessed and no final-test probability vector
-has been generated. Calibration and policy sensitivity remain pending.
+now run the frozen three-fold rolling-origin comparison and the pre-registered
+chronological calibration evaluation for the selected ranking model. The
+protected 2027 final-test targets have not been accessed and no final-test
+probability vector has been generated. Policy sensitivity remains pending.
 
 Until Version `2.0.0` is reviewed, this repository should be described as a
 leakage-aware methodological study under recovery, not as a completed
@@ -49,7 +49,8 @@ operational decision policy.
 ## Current project status
 Version 1 status: Phases 01 through 11 are complete. They remain the audited
 checkpoint. Version 2 recovery Phase R1 is frozen; Phase R2 rolling-origin
-ranking is complete, with calibration and policy analysis still pending.
+ranking and chronological calibration are complete, with policy analysis still
+pending.
 The implemented workflow now:
 - verifies immutable raw-file integrity;
 - constructs and validates the canonical analytical dataset;
@@ -178,8 +179,11 @@ Exploratory analysis generates deterministic CSV and PNG artifacts under:
 Version 2 rolling-origin development outputs are committed under:
 - `reports/modeling/v2/`
 
-They contain only development/validation predictions and metrics; protected
-`final_test` rows are excluded.
+Chronological calibration outputs are committed under:
+- `reports/modeling/v2/calibration/`
+
+These artifacts contain only permitted development/calibration predictions and
+metrics; protected `final_test` rows are excluded.
 ## Methodology
 The [documentation index](docs/README.md) links the approved contracts and
 implemented phases in methodological order.
@@ -217,10 +221,11 @@ serialization, deployment, or a production decision system. The evaluated Versio
 development benchmark.
 
 Version 2 recovery Phase R1 is complete and frozen. Phase R2 has completed the
-pre-registered rolling-origin estimator comparison; calibration and threshold
-analysis remain pending. Interpretation, persistence, final-test evaluation,
-and the evidence-based Streamlit decision gate belong to later recovery
-phases. No protected final-test claim is made at this stage.
+pre-registered rolling-origin estimator comparison and chronological
+calibration evaluation; threshold/policy analysis remains pending.
+Interpretation, persistence, final-test evaluation, and the evidence-based
+Streamlit decision gate belong to later recovery phases. No protected
+final-test claim is made at this stage.
 ## Disclaimer
 All source records and derived outputs are synthetic. No real patient
 information is included, and repository results cannot establish clinical

@@ -69,7 +69,11 @@ through implemented operational threshold analysis:
     v2_r2_rolling_origin_results.md) - Records the first recovered Version 2
     model metrics, strict mature fold populations, frozen ranking decision,
     artifact identities, and unchanged protected-test state.
-21. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+21. [Phase R2 chronological calibration results](
+    v2_r2_calibration_results.md) - Records the frozen chronology, calibration
+    metrics, selection rule outcome, reliability-curve artifact, and unchanged
+    protected-test state.
+22. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
@@ -78,7 +82,7 @@ appointment-level ranking; that previously examined Version 1 test period is
 not reused for recovery model selection.
 
 Version 2 recovery Phase R1 is complete on the recovery branch. Phase R2 has
-now completed its frozen rolling-origin ranking comparison under the pre-metric
-contract. The real protected 2027 final-test targets have not been accessed and
-no final-test probability vector has been generated. Calibration and policy
-sensitivity remain pending.
+now completed its frozen rolling-origin ranking comparison and chronological
+calibration evaluation under the pre-metric contract. The real protected 2027
+final-test targets have not been accessed and no final-test probability vector
+has been generated. Policy sensitivity remains pending.

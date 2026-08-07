@@ -184,9 +184,10 @@ def test_documentation_indexes_record_contract_without_model_results() -> None:
     assert "v2_model_development.json" in configs
     r2 = recovery[recovery.index("## Phase R2"):recovery.index("## Phase R3")]
     assert (
-        "**Status: rolling-origin ranking complete; calibration and policy "
-        "analysis pending.**"
+        "**Status: rolling-origin ranking and chronological calibration complete; "
+        "policy analysis pending.**"
     ) in r2
     assert "v2_r2_rolling_origin_results.md" in r2
+    assert "v2_r2_calibration_results.md" in r2
     assert "protected 2027 final-test target remains closed" in r2
     assert "Frozen the Version 2 model-development and selection contract" in changelog
