@@ -65,7 +65,11 @@ through implemented operational threshold analysis:
     candidate menu, preprocessing, rolling-origin ranking gate, calibration
     chronology, threshold-sensitivity grid, and protected-test prohibition
     before any recovered Version 2 model metric is computed.
-20. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+20. [Phase R2 rolling-origin ranking results](
+    v2_r2_rolling_origin_results.md) - Records the first recovered Version 2
+    model metrics, strict mature fold populations, frozen ranking decision,
+    artifact identities, and unchanged protected-test state.
+21. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
@@ -73,11 +77,8 @@ same probability to every appointment and therefore provides no
 appointment-level ranking; that previously examined Version 1 test period is
 not reused for recovery model selection.
 
-Version 2 recovery Phase R1 is complete on the recovery branch. The repository
-now also contains a separately frozen longitudinal synthetic benchmark,
-strict-as-of patient and aggregate history, 32 approved model features,
-target-free processed features, renewed chronological partitions, strict label
-maturity, and a gated protected 2027 final-test target accessor. The real
-protected 2027 final-test targets have not been accessed and no protected test
-metric has been inspected. Phase R2 has only frozen its model-development and
-selection contract; no recovered Version 2 model metric has been computed yet.
+Version 2 recovery Phase R1 is complete on the recovery branch. Phase R2 has
+now completed its frozen rolling-origin ranking comparison under the pre-metric
+contract. The real protected 2027 final-test targets have not been accessed and
+no final-test probability vector has been generated. Calibration and policy
+sensitivity remain pending.

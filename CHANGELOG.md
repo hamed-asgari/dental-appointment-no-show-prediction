@@ -46,6 +46,12 @@ This file records notable repository changes by release version.
   prohibition on protected 2027 test access.
 
 
+- Added the frozen Version 2 rolling-origin modeling runner and committed
+  development/validation predictions, threshold-free metrics, macro/pooled
+  summaries, ranking-selection evidence, artifact hashes, and runtime identity
+  without accessing or scoring the protected 2027 final test.
+
+
 ### Planned for Version 2.0.0
 
 - Recovered model comparison, calibration, and threshold analysis.

@@ -25,12 +25,11 @@ Recovery work is documented in:
 - [`docs/v2.0.0_recovery_plan.md`](docs/v2.0.0_recovery_plan.md)
 - [`docs/v2_r1_completion_evidence.md`](docs/v2_r1_completion_evidence.md)
 
-Version 2 recovery Phase R1 is now complete on the recovery branch. It provides
-a separately frozen longitudinal benchmark, strict-as-of historical features,
-a 32-feature target-free processed dataset, renewed chronological evaluation
-partitions, and gated protected 2027 target access. No recovered model
-selection has started and the real protected 2027 final-test targets have not
-been accessed.
+Version 2 recovery Phase R1 is complete on the recovery branch. Phase R2 has
+now run the frozen three-fold rolling-origin comparison for the population
+prior, Logistic Regression, and Random Forest candidates. The protected 2027
+final-test targets have not been accessed and no final-test probability vector
+has been generated. Calibration and policy sensitivity remain pending.
 
 Until Version `2.0.0` is reviewed, this repository should be described as a
 leakage-aware methodological study under recovery, not as a completed
@@ -49,8 +48,8 @@ results. It does not persist a trained production model or define an
 operational decision policy.
 ## Current project status
 Version 1 status: Phases 01 through 11 are complete. They remain the audited
-checkpoint. Version 2 recovery Phase R1 is complete; Phase R2 recovered
-modeling has not started.
+checkpoint. Version 2 recovery Phase R1 is frozen; Phase R2 rolling-origin
+ranking is complete, with calibration and policy analysis still pending.
 The implemented workflow now:
 - verifies immutable raw-file integrity;
 - constructs and validates the canonical analytical dataset;
@@ -176,7 +175,11 @@ records `final_test_target_accessed = false`.
 Exploratory analysis generates deterministic CSV and PNG artifacts under:
 - `reports/eda/`
 
-Recovered Version 2 modeling outputs have not yet been created.
+Version 2 rolling-origin development outputs are committed under:
+- `reports/modeling/v2/`
+
+They contain only development/validation predictions and metrics; protected
+`final_test` rows are excluded.
 ## Methodology
 The [documentation index](docs/README.md) links the approved contracts and
 implemented phases in methodological order.
@@ -213,10 +216,11 @@ threshold, or an operational policy. It does not implement model
 serialization, deployment, or a production decision system. The evaluated Version 1 test period cannot be reused as an untouched
 development benchmark.
 
-Version 2 recovery Phase R1 is complete. Recovered estimator comparison,
-calibration, threshold analysis, interpretation, persistence, and the
-evidence-based Streamlit decision gate belong to later recovery phases. No
-claim is made yet that Version 2 provides useful appointment-level ranking.
+Version 2 recovery Phase R1 is complete and frozen. Phase R2 has completed the
+pre-registered rolling-origin estimator comparison; calibration and threshold
+analysis remain pending. Interpretation, persistence, final-test evaluation,
+and the evidence-based Streamlit decision gate belong to later recovery
+phases. No protected final-test claim is made at this stage.
 ## Disclaimer
 All source records and derived outputs are synthetic. No real patient
 information is included, and repository results cannot establish clinical

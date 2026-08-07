@@ -183,6 +183,10 @@ def test_documentation_indexes_record_contract_without_model_results() -> None:
     assert "v2_model_development_and_selection_contract.md" in docs
     assert "v2_model_development.json" in configs
     r2 = recovery[recovery.index("## Phase R2"):recovery.index("## Phase R3")]
-    assert "**Status: model-development contract frozen; metrics not yet run.**" in r2
-    assert "No Version 2 recovered-model metric is recorded at this checkpoint." in r2
+    assert (
+        "**Status: rolling-origin ranking complete; calibration and policy "
+        "analysis pending.**"
+    ) in r2
+    assert "v2_r2_rolling_origin_results.md" in r2
+    assert "protected 2027 final-test target remains closed" in r2
     assert "Frozen the Version 2 model-development and selection contract" in changelog
