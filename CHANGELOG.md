@@ -67,13 +67,18 @@ This file records notable repository changes by release version.
   evidence while the protected 2027 final test remained unopened.
 
 
+### Recovery Phase R4 closeout
+- Closed recovery Phase R4 after implementing the evidence-based Streamlit
+  evaluation dashboard, committing portfolio screenshots and architecture
+  documentation, and sealing portfolio commit `568be27` with successful PR CI
+  run `31217805371`.
+- Preserved the frozen `transparent_model_evaluation_dashboard` decision with
+  no protected-target re-access, model refit, recalibration, feature change,
+  post-test tuning, or final-test threshold selection.
+
 ### Planned for Version 2.0.0
-- Interpretation, error analysis, and subgroup diagnostics.
-- Reproducible modeling runner and appropriate persisted artifacts.
-- Evidence-based Streamlit application.
-- Committed analytical figures and portfolio screenshots.
-- Documentation synchronization, clean-environment validation, and reviewed
-  Version `2.0.0` release.
+- Clean-environment reproduction and final documentation consistency checks.
+- Final CI, release review, and reviewed Version `2.0.0` release.
 ## [1.0.0]
 ### Added
 - Immutable synthetic source-data integrity contracts.

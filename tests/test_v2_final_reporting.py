@@ -128,4 +128,4 @@ def test_recovery_plan_marks_r3_reporting_work_formally_closed() -> None:
     assert "complete and formally closed" in r3
     assert "CI verification pending before R3 closeout" not in r3
     assert "- [x] Modeling runner implemented" in text
-    assert "- [ ] Figures and screenshots committed" in text
+    assert "- [x] Figures and screenshots committed" in text

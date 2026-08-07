@@ -12,10 +12,11 @@ Version `v1.0.0` remains an immutable methodological checkpoint. The active
 Version 2 recovery branch rebuilds the project as a leakage-controlled,
 end-to-end Clinical AI portfolio study.
 
-Recovery Phases R0 through R3 are complete. Phase R4 has implemented and
-locally smoke-tested the evidence-based Streamlit application and assembled the
-portfolio screenshots and architecture documentation. Formal R4 closeout still
-requires the exact-head CI seal after this portfolio-integration batch.
+Recovery Phases R0 through R3 are complete. Phase R4 is also complete and
+formally closed after the evidence-based Streamlit application, portfolio
+screenshots, architecture documentation, and exact-head CI seal were completed.
+Phase R5 is the next recovery stage and covers clean-environment reproduction,
+final documentation consistency, release review, and Version `2.0.0` packaging.
 
 The protected 2027 final test has already been accessed exactly once under the
 pre-frozen R3 contract. No protected-target re-access, model refit,
@@ -197,8 +198,8 @@ constant-prior model provided no appointment-level ranking and its test period
 has already been examined.
 
 Version `2.0.0` is still under recovery review and has **not** yet been released.
-The release is gated by formal R4 closeout followed by R5 clean-environment
-validation, documentation consistency checks, CI, and release packaging.
+The release is now gated by R5 clean-environment reproduction, final
+documentation consistency checks, CI, release review, and packaging.
 
 Historical Version 1 deficiencies remain documented in
 [`docs/post_release_audit_v1.0.0.md`](docs/post_release_audit_v1.0.0.md); those
