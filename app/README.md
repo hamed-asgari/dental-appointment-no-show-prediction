@@ -1,27 +1,46 @@
 # Application
 
-## Current status
+## Version 2 application
 
-A Streamlit application was **not** implemented in Version `1.0.0`. This
-directory is part of the Version `2.0.0` recovery scope.
+Version 2 implements a **transparent model-evaluation dashboard** in Streamlit.
+The application type was frozen before R4 implementation after the protected
+final-test gate rejected an appointment-level risk demonstration because the
+model Brier score was slightly worse than the frozen population-prior baseline.
 
-The application type must be selected only after the recovered model is
-evaluated under the renewed chronological evaluation policy:
+The dashboard is portfolio/research presentation only. All records are fully synthetic,
+and the model is **not validated for clinical or operational use**.
 
-1. **Appointment-level risk demonstration** - allowed only if the final model
-   demonstrates useful appointment-level ranking and probability behavior
-   beyond the population-prior baseline.
-2. **Transparent model-evaluation dashboard** - required if individualized
-   prediction remains unsupported.
+The app does not:
 
-The final application must include:
+- accept patient or appointment inputs for individualized prediction;
+- score new appointments;
+- display patient-level "high risk" labels;
+- expose an operating-threshold control;
+- access protected final-test targets;
+- refit or recalibrate the model.
 
-- a clear fully synthetic-data disclaimer;
-- a statement that the project is not validated for clinical or operational use;
-- documented launch instructions;
-- input validation;
-- behavior consistent with the evidence-based app decision gate;
-- screenshots committed under `reports/screenshots/`.
+## Launch
 
-No patient-level risk calculator should be built around the current constant
-population-prior result.
+From the repository root, using the locked Python 3.12 environment:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app/streamlit_app.py
+```
+
+The application validates the SHA-256 identities and state flags of its frozen
+R3 reporting inputs before rendering evidence. An integrity failure stops
+evidence rendering rather than recomputing or silently replacing results.
+
+## Evidence displayed
+
+The dashboard displays:
+
+- the four pre-frozen application-decision gates;
+- frozen protected-test discrimination and calibration metrics;
+- the committed precision-recall and calibration figures;
+- the pre-registered capacity-sensitivity figure;
+- pre-test permutation importance;
+- limitations and an external-validation plan.
+
+Its primary machine-readable inputs are the committed R3 final-reporting
+summary and manifest under `reports/modeling/v2/final_reporting/`.
