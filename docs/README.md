@@ -88,7 +88,12 @@ through implemented operational threshold analysis:
     persistence, pre-test interpretation and subgroup diagnostics, the
     protected-test probability seal and one-time target gate, final reporting,
     and the evidence-based app decision rule.
-26. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+26. [Phase R3 pre-test diagnostic results](
+    v2_r3_pretest_diagnostics_results.md) - Records policy-selection
+    permutation importance, error analysis, first-time versus repeat-patient
+    behavior, subgroup support, and registered-capacity diagnostics before the
+    protected final-test seal.
+27. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
@@ -99,5 +104,8 @@ not reused for recovery model selection.
 Version 2 recovery Phases R1 and R2 are complete on the recovery branch.
 Phase R2 completed its frozen rolling-origin ranking comparison, chronological
 calibration evaluation, and policy-sensitivity analysis under pre-outcome
-contracts. The real protected 2027 final-test targets have not been accessed
-and no final-test probability vector has been generated.
+contracts. Phase R3 now has a frozen execution contract, a persisted frozen
+model pipeline, and completed pre-test interpretation/error/subgroup
+diagnostics on `policy_selection`. The real protected 2027 final-test targets
+have not been accessed and no final-test probability vector has been
+generated.

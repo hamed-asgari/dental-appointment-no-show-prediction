@@ -20,3 +20,8 @@ are committed under `policy/` and follow the frozen execution mechanics in
 `docs/v2_r2_policy_execution_spec.md`. The policy batch contains no protected
 `final_test` rows or probabilities and does not select an operational
 threshold.
+
+Phase R3 pre-test interpretation, error-analysis, and subgroup artifacts are
+committed under `diagnostics/`. They use only `policy_selection` plus the
+persisted frozen pipeline, preserve the registered capacity fractions, and do
+not score or open the protected 2027 final test.

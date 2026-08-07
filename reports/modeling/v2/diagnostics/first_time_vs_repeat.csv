@@ -1,0 +1,3 @@
+cohort,subgroup_feature,subgroup_value,sample_size,positive_count,negative_count,prevalence,supported_for_quantitative_reporting,average_precision,roc_auc,brier_score,log_loss
+first_time,patient_history_available,false,84,11,73,0.130952380952,False,,,,
+repeat,patient_history_available,true,979,81,898,0.0827374872319,True,0.111155938261,0.565619071187,0.0768801084248,0.289290205464
