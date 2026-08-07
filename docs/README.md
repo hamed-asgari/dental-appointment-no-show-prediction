@@ -101,7 +101,10 @@ through implemented operational threshold analysis:
     v2_r3_final_test_results.md) - Records the one-time protected evaluation,
     frozen population-prior comparison, registered policy replay, and the
     pre-frozen evidence-based R4 app decision.
-29. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+29. [Version 2 model card](v2_model_card.md) - Summarizes the frozen
+    Logistic Regression pipeline, protected-test evidence, calibration limits,
+    app decision, reproducibility command, and synthetic-data scope.
+30. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the

@@ -32,3 +32,10 @@ artifacts under `final_test/`. The protected target was accessed only after the
 probability-vector commit was CI-green. The pre-frozen app gate selects
 `transparent_model_evaluation_dashboard`; no final-test threshold or post-test model
 change is permitted.
+
+The R3 final reporting package adds
+`final_reporting/final_reporting_summary.json` and
+`final_reporting/final_reporting_manifest.json` plus deterministic analytical
+figures under `reports/figures/`. The documented reporting runner consumes only
+committed post-access evaluation artifacts and never reopens the protected
+target.

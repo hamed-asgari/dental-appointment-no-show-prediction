@@ -74,3 +74,23 @@ post_test_model_tuning_permitted = false
 ```
 
 All performance claims remain scoped to the synthetic longitudinal benchmark.
+
+## Reproducible final reporting
+
+The committed post-access evaluation can be converted into the final summary
+and analytical figures without reopening the protected target:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.modeling.v2_final_reporting --overwrite
+```
+
+This command verifies frozen source hashes and regenerates:
+
+- `reports/modeling/v2/final_reporting/final_reporting_summary.json`
+- `reports/modeling/v2/final_reporting/final_reporting_manifest.json`
+- `reports/figures/v2_final_precision_recall_curve.png`
+- `reports/figures/v2_final_calibration_curve.png`
+- `reports/figures/v2_final_capacity_tradeoff.png`
+
+The runner does not call the protected-target accessor and cannot change the
+model, calibration, sealed probability vector, or operational-threshold state.
