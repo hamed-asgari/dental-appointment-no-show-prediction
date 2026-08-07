@@ -33,10 +33,14 @@ This file records notable repository changes by release version.
   artifact identities, strict non-test label-maturity access, and a gated
   final-test target accessor that requires a prewritten probability vector.
 
+- Closed recovery Phase R1 with a frozen Version 2 data dictionary,
+  implementation/CI evidence, target-free processed artifact identity, and an
+  explicit gate into recovered modeling while the protected 2027 test remains
+  unaccessed.
+
+
 ### Planned for Version 2.0.0
 
-- Renewed chronological evaluation policy.
-- Leakage-safe historical feature engineering.
 - Recovered model comparison, calibration, and threshold analysis.
 - Interpretation, error analysis, and subgroup diagnostics.
 - Reproducible modeling runner and appropriate persisted artifacts.

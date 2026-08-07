@@ -54,20 +54,26 @@ through implemented operational threshold analysis:
     v2_processed_data_and_target_access.md) - Documents the deterministic
     target-free processed artifact, strict label-maturity access, final-test
     probability seal, hashes, and protected target gate.
-17. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
+17. [Version 2 data dictionary](v2_data_dictionary.md) - Defines the frozen
+    raw schemas, all 32 approved model features, audit metadata, partitions,
+    target-access boundary, and prohibited direct inputs.
+18. [Phase R1 completion evidence](v2_r1_completion_evidence.md) - Records the
+    frozen identities, implementation checkpoints, test/CI evidence, protected
+    target state, and the gate into recovered modeling.
+19. [Version 2 recovery plan](v2.0.0_recovery_plan.md) - Tracks the audited
     recovery phases and release-completion checklist.
-The repository currently implements canonical dataset construction,
-exploratory analysis, deterministic baseline preprocessing and fitting, a
-fixed Random Forest comparator, chronological probability calibration,
-temporal-validation calibration-candidate selection, deterministic
-threshold-state enumeration, break-even sensitivity analysis, final pre-test
-prior fitting, and one-time chronological test probability evaluation.
-The selected Phase 09 candidate is `calibration_prior`. It provides the best
-declared validation Brier score and log loss, but assigns the same probability
-to every appointment and therefore provides no appointment-level ranking.
-Phase 10 selects no cost values, effectiveness, threshold, or operational
-policy. Phase 11 fits the selected prior on the eligible pre-test population
-and performs the declared one-time chronological test probability audit. The
-final probability remains constant and provides no ranking. The evaluated test
-period is no longer untouched. Model persistence, deployment, and operational
-policy selection remain outside the repository scope.
+The Version 1 methodology through its one-time chronological test audit remains
+an immutable audit checkpoint. Its selected `calibration_prior` assigns the
+same probability to every appointment and therefore provides no
+appointment-level ranking; that previously examined Version 1 test period is
+not reused for recovery model selection.
+
+Version 2 recovery Phase R1 is complete on the recovery branch. The repository
+now also contains a separately frozen longitudinal synthetic benchmark,
+strict-as-of patient and aggregate history, 32 approved model features,
+target-free processed features, renewed chronological partitions, strict label
+maturity, and a gated protected 2027 final-test target accessor. The real
+protected 2027 final-test targets have not been accessed and no protected test
+metric has been inspected. Recovered model comparison, calibration, threshold
+analysis, persistence, interpretation, and application work begin in later
+recovery phases.

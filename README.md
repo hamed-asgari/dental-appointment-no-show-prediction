@@ -23,10 +23,18 @@ Recovery work is documented in:
 
 - [`docs/post_release_audit_v1.0.0.md`](docs/post_release_audit_v1.0.0.md)
 - [`docs/v2.0.0_recovery_plan.md`](docs/v2.0.0_recovery_plan.md)
+- [`docs/v2_r1_completion_evidence.md`](docs/v2_r1_completion_evidence.md)
+
+Version 2 recovery Phase R1 is now complete on the recovery branch. It provides
+a separately frozen longitudinal benchmark, strict-as-of historical features,
+a 32-feature target-free processed dataset, renewed chronological evaluation
+partitions, and gated protected 2027 target access. No recovered model
+selection has started and the real protected 2027 final-test targets have not
+been accessed.
 
 Until Version `2.0.0` is reviewed, this repository should be described as a
-leakage-aware methodological study with a negative appointment-level prediction
-result, not as a completed predictive application.
+leakage-aware methodological study under recovery, not as a completed
+predictive application.
 ## Overview
 This repository implements a reproducible, leakage-controlled workflow for
 studying dental appointment no-show prediction. It includes immutable synthetic
@@ -40,7 +48,9 @@ calibration-validation, operational-sensitivity, and final chronological test
 results. It does not persist a trained production model or define an
 operational decision policy.
 ## Current project status
-Phases 01 through 11 are complete.
+Version 1 status: Phases 01 through 11 are complete. They remain the audited
+checkpoint. Version 2 recovery Phase R1 is complete; Phase R2 recovered
+modeling has not started.
 The implemented workflow now:
 - verifies immutable raw-file integrity;
 - constructs and validates the canonical analytical dataset;
@@ -59,7 +69,16 @@ The implemented workflow now:
 - keeps validation labels outside fitting and ex-ante policy construction;
 - fits the selected `calibration_prior` on all eligible pre-test targets;
 - seals one constant probability for every chronological test appointment;
-- performs the pre-registered one-time test probability audit.
+- performs the pre-registered one-time Version 1 test probability audit;
+- verifies a frozen Version 2 longitudinal raw benchmark and manifest;
+- constructs strict-as-of patient, dentist, visit-type, and weekday-hour
+  histories;
+- builds 32 prediction-time-safe Version 2 model features;
+- commits a deterministic target-free Version 2 processed feature artifact;
+- freezes Version 2 rolling-origin, calibration, policy-selection, and protected
+  2027 final-test partitions; and
+- gates Version 2 final-test targets behind explicit opt-in plus a prewritten,
+  validated, and SHA-256-sealed probability vector.
 The Phase 09 populations contain 2,520 base-fit appointments, 1,150 calibration
 appointments, and 1,541 temporal-validation appointments.
 The declared Phase 09 validation results are:
@@ -88,36 +107,38 @@ vector provides no appointment-level ranking.
 ```text
 .
 |-- data/
-|   |-- raw/                         # Immutable synthetic source files
+|   |-- raw/
+|   |   `-- v2/                      # Frozen Version 2 longitudinal benchmark
 |   |-- interim/                     # Reserved intermediate products
-|   `-- processed/                   # Generated dataset outputs
+|   `-- processed/
+|       `-- v2/                      # Committed target-free Version 2 features
 |-- docs/
 |   |-- README.md                    # Methodology index
-|   |-- phase_06_exploratory_data_analysis.md
-|   |-- phase_07_baseline_modeling.md
-|   |-- phase_08_tree_based_comparison.md
-|   |-- phase_09_probability_calibration.md
-|   |-- phase_10_operational_threshold_analysis.md
-|   `-- phase_11_final_pretest_evaluation.md
+|   |-- v2_data_dictionary.md
+|   |-- v2_r1_completion_evidence.md
+|   `-- v2.0.0_recovery_plan.md
 |-- reports/
-|   `-- eda/                         # Generated and ignored EDA artifacts
+|   `-- eda/                         # Version 1 generated/ignored EDA artifacts
 |-- src/
-|   |-- analysis/                    # Leakage-safe EDA implementation
-|   |-- data/                        # Canonical dataset construction
-|   `-- modeling/                    # Baseline, comparison, and calibration
+|   |-- analysis/                    # Version 1 leakage-safe EDA
+|   |-- data/                        # Version 1 and Version 2 data builders
+|   |-- features/                    # Version 2 prediction-time-safe features
+|   |-- modeling/                    # Version 1 modeling checkpoint
+|   `-- synthetic/                   # Version 2 longitudinal generator
 |-- .github/
 |   `-- workflows/
-|       `-- ci.yml                     # Windows/Python 3.12 verification
+|       `-- ci.yml                   # Windows/Python 3.12 verification
 |-- tests/                           # Automated contracts and safeguards
-|-- CHANGELOG.md                     # Version 1.0.0 release record
+|-- CHANGELOG.md                     # Release and recovery record
 |-- CITATION.cff                     # Software citation metadata
 |-- pyproject.toml                   # Release and packaging metadata
 |-- requirements.txt
 |-- requirements-dev.txt
 `-- requirements.lock.txt
 ```
-Generated files under `data/processed/` and `reports/eda/` are ignored by Git
-and should be rebuilt from immutable raw inputs.
+Version 1 generated analytical outputs and `reports/eda/` remain rebuildable
+workflow products. Version 2 uses a separate committed target-free artifact
+under `data/processed/v2/` whose exact CSV and manifest hashes are frozen.
 ## Quick start
 Use Python 3.12 and run these commands from PowerShell:
 ```powershell
@@ -125,6 +146,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m src.data.export_v2_processed --verify-only
 .\.venv\Scripts\python.exe -m src.data.build_dataset
 .\.venv\Scripts\python.exe -m src.analysis.run_eda
 ```
@@ -139,14 +161,22 @@ Version `1.0.0` is declared in `pyproject.toml`.
 This project is licensed under the [MIT License](LICENSE). No DOI or release
 archive identifier is currently declared.
 ## Generated outputs
-Dataset construction generates:
+Version 1 dataset construction generates:
 - `data/processed/analytical_dataset.parquet`
 - `data/processed/analytical_dataset.manifest.json`
+
+Version 2 Phase R1 commits the deterministic target-free feature artifact:
+- `data/processed/v2/v2_feature_dataset.csv`
+- `data/processed/v2/v2_feature_dataset.manifest.json`
+
+The Version 2 artifact contains 21,755 eligible rows, 38 columns, and the exact
+32-feature model allowlist. It does not contain `target`, and its manifest
+records `final_test_target_accessed = false`.
+
 Exploratory analysis generates deterministic CSV and PNG artifacts under:
 - `reports/eda/`
-Model comparison, probability calibration, and operational sensitivity
-analysis evaluate in memory and intentionally do not serialize estimators,
-probabilities, metric tables, policy tables, or test-set results.
+
+Recovered Version 2 modeling outputs have not yet been created.
 ## Methodology
 The [documentation index](docs/README.md) links the approved contracts and
 implemented phases in methodological order.
@@ -162,7 +192,15 @@ ex-ante boundary and validation prevalence only for replay audit.
 Phase 11 final fitting uses only eligible train and validation targets.
 Test metadata is target-free during probability generation. Test targets were
 accessed once only after the probability vector was sealed, so the existing
-test period is no longer untouched for future development.
+Version 1 test period is no longer untouched for future development.
+
+Version 2 uses a separate frozen benchmark. Its feature builder enforces
+`historical_status_updated_at < current_prediction_time`, its model selector
+returns only the 32 approved predictors, and development target access requires
+`label_available_at < model_fit_time`. The protected 2027 final-test target
+accessor requires explicit opt-in and a complete probability vector sealed
+before raw final-test statuses are joined. At the Phase R1 closeout checkpoint,
+the real protected 2027 targets remain unaccessed.
 ## Scope boundary
 The repository currently implements dataset construction, exploratory analysis,
 baseline preprocessing and fitting, a fixed Random Forest comparator,
@@ -172,8 +210,13 @@ sensitivity analysis, leakage-safe final pre-test prior fitting, and a
 pre-registered one-time chronological test probability audit.
 It does not select operational cost values, intervention effectiveness, a final
 threshold, or an operational policy. It does not implement model
-serialization, deployment, or a production decision system. The evaluated
-test period cannot be reused as an untouched development benchmark.
+serialization, deployment, or a production decision system. The evaluated Version 1 test period cannot be reused as an untouched
+development benchmark.
+
+Version 2 recovery Phase R1 is complete. Recovered estimator comparison,
+calibration, threshold analysis, interpretation, persistence, and the
+evidence-based Streamlit decision gate belong to later recovery phases. No
+claim is made yet that Version 2 provides useful appointment-level ranking.
 ## Disclaimer
 All source records and derived outputs are synthetic. No real patient
 information is included, and repository results cannot establish clinical
