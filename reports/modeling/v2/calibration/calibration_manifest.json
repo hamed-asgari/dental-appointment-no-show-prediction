@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "calibration_metrics.csv": {
+      "sha256": "9c6ded314852564755cf83a7da8ad172b205f211dcf80b7f2471504b1b284f74",
+      "size_bytes": 700
+    },
+    "calibration_predictions.csv": {
+      "sha256": "aca987a269976affc69d698677edebf4d673073f788b4988f54884a499fe6783",
+      "size_bytes": 64401
+    },
+    "calibration_reliability_curve.csv": {
+      "sha256": "660c97889964114c24e5c6113f9e4a1d63d5cf2cb5edb9e954b0bc9dedf00044",
+      "size_bytes": 2444
+    },
+    "calibration_selection.json": {
+      "sha256": "5e2023517c9918387497a17c09592a31e8dd43cd574db8efc7d91ae004acd417",
+      "size_bytes": 1167
+    }
+  },
+  "base_training_positive_count": 978,
+  "base_training_rows": 10921,
+  "calibration_evaluation_positive_count": 25,
+  "calibration_evaluation_rows": 328,
+  "calibration_fit_positive_count": 50,
+  "calibration_fit_rows": 738,
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "model_config_sha256": "0b39dbe9b15c64579a81e7b9dbeaad5e5a6694fc5066698fbcfd4623a1bd1dd6",
+  "model_contract_sha256": "735953523db15e36b82bacfb022915c3eff0c4f4329f16c72877dc32f8ff597f",
+  "phase": "R2",
+  "processed_dataset_fingerprint": "0f3243e4ef3d832ae5562a98354828bad481a6691a0e17e6a5271307143b5787",
+  "processed_dataset_sha256": "08a2c16ca6cc66f91fda1cd09a2549a3e2d5357c2b975eb2f55f4ade66a46b53",
+  "processed_manifest_sha256": "2ee3f7d42f2d73fdcde71fd601fd0423d5e610767ac5162afd38c33bf2fb8073",
+  "rolling_origin_manifest_sha256": "e575b10835645d3a643c396803cfff21f5c1c1cdad9b988ee07037ef045beb45",
+  "runtime": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0"
+  },
+  "schema_version": "1.0.0",
+  "selected_calibration_method": "uncalibrated",
+  "selected_ranking_model": "logistic_regression",
+  "stage": "chronological_calibration"
+}

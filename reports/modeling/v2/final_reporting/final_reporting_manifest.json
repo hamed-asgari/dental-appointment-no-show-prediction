@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "final_reporting_summary.json": {
+      "sha256": "76ed771871b696b4e0cd0c262b7d13f3bb03d03a187edd84c40934f1d2bfbbf7",
+      "size_bytes": 5298
+    },
+    "v2_final_calibration_curve.png": {
+      "sha256": "eb98404d809b0ab691decb2cb10a3d0c3b2a495cbef8637d75a468e86f25834f",
+      "size_bytes": 67021
+    },
+    "v2_final_capacity_tradeoff.png": {
+      "sha256": "965ee9e77e35b05ae380d017b88a7fa952fd6b82bf608cb8fc71b66cf01827a1",
+      "size_bytes": 53030
+    },
+    "v2_final_precision_recall_curve.png": {
+      "sha256": "e706d92fa13e09c5fda7da2fcd0f6a8c55332d524ae0e221d370ef792ebd7b95",
+      "size_bytes": 51003
+    }
+  },
+  "calibration_change_performed": false,
+  "final_test_threshold_selected": false,
+  "model_refit_performed": false,
+  "phase": "R3",
+  "post_test_model_tuning_permitted": false,
+  "schema_version": "1.0.0",
+  "selected_app_type": "transparent_model_evaluation_dashboard",
+  "source_hashes": {
+    "diagnostics_manifest": "5a207b8a4984a203f64d1015c7a99b254db1108440dde71738abd3c936f9f8f2",
+    "evaluation_manifest": "c8a2158bf98c4230bc66180d66dc4e4e88f8e3fff8b2ce0538fd58f4cf29a2af",
+    "persistence_metadata": "33eda2b123e592813008a004b4aa3f353ac1a2bda51ca5eaddb45954eeea6224",
+    "probability_manifest": "412c75ff76882536eab0dc2ee5df4c3da8551c7b99fe83402ab5ac0f679b46e4",
+    "probability_vector": "7a4af37da40c1515a6ee567dd12861b57cf08e2e65b516e3c7e3d2aa65237126"
+  },
+  "stage": "final_reporting_package",
+  "target_reaccess_performed": false
+}

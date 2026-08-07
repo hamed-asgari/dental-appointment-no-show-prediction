@@ -985,10 +985,30 @@ def test_repeated_writes_are_semantically_identical(
     assert bd.calculate_sha256(first_output) == bd.calculate_sha256(second_output)
 
 
-def test_processed_directory_contains_only_gitkeep() -> None:
-    files = {
+def test_processed_directory_contains_only_versioned_v2_artifacts() -> None:
+    processed_dir = REPOSITORY_ROOT / "data" / "processed"
+
+    root_files = {
         path.name
-        for path in (REPOSITORY_ROOT / "data" / "processed").iterdir()
+        for path in processed_dir.iterdir()
         if path.is_file()
     }
-    assert files == {".gitkeep"}
+    root_directories = {
+        path.name
+        for path in processed_dir.iterdir()
+        if path.is_dir()
+    }
+
+    assert root_files == {"README.md"}
+    assert root_directories == {"v2"}
+
+    v2_files = {
+        path.name
+        for path in (processed_dir / "v2").iterdir()
+        if path.is_file()
+    }
+    assert v2_files == {
+        "README.md",
+        "v2_feature_dataset.csv",
+        "v2_feature_dataset.manifest.json",
+    }

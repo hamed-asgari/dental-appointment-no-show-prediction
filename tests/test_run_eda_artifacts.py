@@ -34,40 +34,110 @@ _RAW_DIR = _REPOSITORY_ROOT / "data" / "raw"
 _PROCESSED_DIR = _REPOSITORY_ROOT / "data" / "processed"
 _EXPECTED_RAW_TREE = (
     (
-        "README.md",
-        "file",
-        3_403,
-        "4b5a0c028946401d5ae0b9ac6b348724961dadaf9e797d4a0d2b83406a079086",
+        'README.md',
+        'file',
+        3_523,
+        'c688f0bd2dd2bd77e78916abeea89532bea2746be1a590cba0493a3ece698be6',
         None,
     ),
     (
-        "appointments.csv",
-        "file",
+        'appointments.csv',
+        'file',
         1_410_520,
-        "4f3736f78cda615d1401d3f639b5e29e47781a1ae1c820c1e6f248eae57a00df",
+        '4f3736f78cda615d1401d3f639b5e29e47781a1ae1c820c1e6f248eae57a00df',
         None,
     ),
     (
-        "dentists.csv",
-        "file",
+        'dentists.csv',
+        'file',
         468,
-        "bf83d1848236e8f5fc8ee5ef3bb21fec2690f85c3c2f259840c16c271a00ab47",
+        'bf83d1848236e8f5fc8ee5ef3bb21fec2690f85c3c2f259840c16c271a00ab47',
         None,
     ),
     (
-        "patients.csv",
-        "file",
+        'patients.csv',
+        'file',
         191_039,
-        "e416843a80568a91455e5cff872bbca5b49be16f109022d56c687cdf2683cc69",
+        'e416843a80568a91455e5cff872bbca5b49be16f109022d56c687cdf2683cc69',
+        None,
+    ),
+    (
+        'v2',
+        'directory',
+        None,
+        None,
+        None,
+    ),
+    (
+        'v2/README.md',
+        'file',
+        1_031,
+        '3e4cf20dc7fb9fb523a202146298d9f520291d1a4976497fc12de1fe014a4d42',
+        None,
+    ),
+    (
+        'v2/appointments.csv',
+        'file',
+        4_723_397,
+        '00d759e69fa51eb5250fafb07e844a7c7ba0cb16dec2b80de47ce78092a162ba',
+        None,
+    ),
+    (
+        'v2/dentists.csv',
+        'file',
+        460,
+        '22426232d2fa4051ebe1484b5b495ed5afc2d51e2f5c3f19c654aa1f61cad5e8',
+        None,
+    ),
+    (
+        'v2/patients.csv',
+        'file',
+        377_003,
+        '37df61e47d4060f1e92af49de224228e02451c9eb72e2820f037285ffa9a8ad6',
+        None,
+    ),
+    (
+        'v2/v2_synthetic_benchmark.manifest.json',
+        'file',
+        5_169,
+        '7702fa5fa0638c52dd0598e28f35f678fb5d61a886faadf9b38a6e292fdcd561',
         None,
     ),
 )
 _EXPECTED_PROCESSED_TREE = (
     (
-        ".gitkeep",
-        "file",
-        0,
-        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        'README.md',
+        'file',
+        307,
+        'fbebd98d7fc74a13be7a624f74f0ec983f99f80a8648175ce866730149450d69',
+        None,
+    ),
+    (
+        'v2',
+        'directory',
+        None,
+        None,
+        None,
+    ),
+    (
+        'v2/README.md',
+        'file',
+        865,
+        '3f5ae76755d331685bb46054cc65d37612fa6b3b38812de244ec706d94c5592c',
+        None,
+    ),
+    (
+        'v2/v2_feature_dataset.csv',
+        'file',
+        6_705_540,
+        '08a2c16ca6cc66f91fda1cd09a2549a3e2d5357c2b975eb2f55f4ade66a46b53',
+        None,
+    ),
+    (
+        'v2/v2_feature_dataset.manifest.json',
+        'file',
+        7_086,
+        '2ee3f7d42f2d73fdcde71fd601fd0423d5e610767ac5162afd38c33bf2fb8073',
         None,
     ),
 )
@@ -305,12 +375,11 @@ _EXPECTED_DIMENSIONS = {
 _PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
 
-def _file_sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as source:
-        for chunk in iter(lambda: source.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def _file_snapshot(path: Path) -> tuple[int, str]:
+    payload = path.read_bytes()
+    if path.suffix.casefold() == ".md":
+        payload = payload.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return len(payload), hashlib.sha256(payload).hexdigest()
 
 
 def _tree_snapshot(
@@ -332,13 +401,13 @@ def _tree_snapshot(
                 entries.append((relative_name, "directory", None, None, None))
                 walk(Path(child.path), child_relative)
             else:
-                stat = child.stat(follow_symlinks=False)
+                size, digest = _file_snapshot(Path(child.path))
                 entries.append(
                     (
                         relative_name,
                         "file",
-                        stat.st_size,
-                        _file_sha256(Path(child.path)),
+                        size,
+                        digest,
                         None,
                     )
                 )
@@ -674,6 +743,20 @@ def test_no_new_public_module_owned_binding_or_public_main() -> None:
 def test_protected_tree_snapshots_match_exact_test_owned_literals() -> None:
     assert _tree_snapshot(_RAW_DIR) == _EXPECTED_RAW_TREE
     assert _tree_snapshot(_PROCESSED_DIR) == _EXPECTED_PROCESSED_TREE
+
+
+def test_tree_snapshot_canonicalizes_markdown_line_endings(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "tree"
+    root.mkdir()
+    readme = root / "README.md"
+
+    readme.write_bytes(b"# Title\r\n\r\nBody\r\n")
+    crlf_snapshot = _tree_snapshot(root)
+
+    readme.write_bytes(b"# Title\n\nBody\n")
+    assert _tree_snapshot(root) == crlf_snapshot
 
 
 def test_phase_five_builder_is_reused_with_verified_raw_inputs(

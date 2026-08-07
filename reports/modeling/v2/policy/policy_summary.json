@@ -1,0 +1,31 @@
+{
+  "base_fit_time": "2026-07-01T00:00:00",
+  "base_training_positive_count": 978,
+  "base_training_rows": 10921,
+  "calibration_manifest_sha256": "5b2e701753a2d0e0d2f9a7efaddf46b2f316643e66dd8c11727373927c8a5d7a",
+  "capacity_fractions": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "false_negative_to_false_positive_cost_ratios": [
+    1.0,
+    2.0,
+    5.0,
+    10.0
+  ],
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "model_config_sha256": "0b39dbe9b15c64579a81e7b9dbeaad5e5a6694fc5066698fbcfd4623a1bd1dd6",
+  "model_contract_sha256": "735953523db15e36b82bacfb022915c3eff0c4f4329f16c72877dc32f8ff597f",
+  "policy_decision_time": "2027-01-01T00:00:00",
+  "policy_execution_spec_sha256": "4e12c2db3a95ed096040e558b567106a7569a07f3fdec8fb2d28570dedc90863",
+  "policy_selection_positive_count": 92,
+  "policy_selection_positive_rate": 0.08654750705550329,
+  "policy_selection_rows": 1063,
+  "rolling_origin_manifest_sha256": "e575b10835645d3a643c396803cfff21f5c1c1cdad9b988ee07037ef045beb45",
+  "scenario_count": 16,
+  "selected_calibration_method": "uncalibrated",
+  "selected_ranking_model": "logistic_regression",
+  "single_operational_threshold_selected": false
+}

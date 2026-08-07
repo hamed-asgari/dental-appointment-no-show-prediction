@@ -60,6 +60,14 @@ def test_pyproject_release_contract() -> None:
         }
     ]
     assert project[
+        "license"
+    ] == "MIT"
+    assert project[
+        "license-files"
+    ] == [
+        "LICENSE",
+    ]
+    assert project[
         "dynamic"
     ] == [
         "dependencies",
@@ -70,6 +78,9 @@ def test_pyproject_release_contract() -> None:
     assert build[
         "build-backend"
     ] == "setuptools.build_meta"
+    assert "setuptools>=77" in build[
+        "requires"
+    ]
     dynamic = metadata[
         "tool"
     ][
@@ -121,6 +132,7 @@ def test_line_ending_contract() -> None:
         "*.csv text eol=lf",
         "data/raw/*.csv text eol=crlf",
         "*.parquet binary",
+        "LICENSE text eol=lf",
     )
     for value in required:
         assert value in attributes
@@ -226,7 +238,7 @@ def test_citation_metadata_matches_release() -> None:
     ][
         "Repository"
     ]
-    assert "license" not in citation
+    assert citation["license"] == "MIT"
     assert "doi" not in citation
     assert "date-released" not in citation
 def test_changelog_records_release_boundaries() -> None:
@@ -261,7 +273,7 @@ def test_readme_links_release_metadata() -> None:
     required = (
         "[CHANGELOG.md](CHANGELOG.md)",
         "[CITATION.cff](CITATION.cff)",
-        "No software license",
+        "[MIT License](LICENSE)",
     )
     for value in required:
         assert value in readme
@@ -273,3 +285,18 @@ def test_readme_links_release_metadata() -> None:
         _ROOT
         / "CITATION.cff"
     ).is_file()
+
+def test_mit_license_is_declared_consistently() -> None:
+    license_path = _ROOT / "LICENSE"
+    assert license_path.is_file()
+    license_text = license_path.read_text(
+        encoding="utf-8"
+    )
+    assert license_text.startswith(
+        "MIT License\n\n"
+        "Copyright (c) 2026 Hamed Asgari\n"
+    )
+    assert license_text.endswith(
+        "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n"
+        "SOFTWARE.\n"
+    )
