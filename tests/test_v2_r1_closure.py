@@ -132,7 +132,7 @@ def test_root_readme_reports_current_v2_post_test_state() -> None:
 
 def test_changelog_moves_completed_r1_items_out_of_planned_list() -> None:
     text = _text(CHANGELOG)
-    planned = text[text.index("### Planned for Version 2.0.0"):text.index("## [1.0.0]")]
+    planned = text[text.index("### Planned for Version 2.0.0"):text.index("## [2.0.0]")]
     assert "Renewed chronological evaluation policy." not in planned
     assert "Leakage-safe historical feature engineering." not in planned
     assert "Closed recovery Phase R1" in text

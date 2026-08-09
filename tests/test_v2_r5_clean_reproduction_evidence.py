@@ -130,7 +130,7 @@ def test_current_docs_record_r5_1_passed_but_release_still_pending() -> None:
     plan = _text(RECOVERY_PLAN)
     changelog = _normalized(CHANGELOG)
 
-    assert "R5.1 clean-environment reproduction has passed" in readme
+    assert "R5.1 clean-environment reproduction and its exact-head evidence CI seal are complete" in readme
     assert "Version `2.0.0` is still under recovery review" in readme
     assert "- [x] Clean-environment reproduction passed" in plan
     assert "- [ ] CI passed" in plan

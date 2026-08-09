@@ -2,6 +2,13 @@
 This file records notable repository changes by release version.
 ## [Unreleased]
 
+### Planned for Version 2.0.0
+- Exact-head release-preparation PR CI, merge-commit integration, exact-main CI,
+  packaging verification, annotated tagging, GitHub Release publication, and
+  post-release evidence.
+
+## [2.0.0]
+
 ### Recovery documentation
 
 - Added the Version `1.0.0` post-release audit.
@@ -88,9 +95,16 @@ This file records notable repository changes by release version.
 - Recorded exact machine-readable evidence under
   `reports/release/v2/r5_clean_reproduction_evidence.json`.
 
-### Planned for Version 2.0.0
-- Final documentation and release-metadata consistency checks.
-- Final CI, release review, and reviewed Version `2.0.0` release.
+### Release preparation
+- Promoted package and citation metadata together from `1.0.0` to `2.0.0`
+  after R5.1 clean-environment evidence was committed and exact-head CI-sealed.
+- Added Version 2 release notes, portfolio communication material, and top-level
+  `data/README.md` and `reports/README.md` guides.
+- Preserved the Version 1.0.0 changelog section verbatim as immutable release
+  history.
+- Prepared Version 2 metadata and documentation without claiming that GitHub
+  Release publication has already occurred.
+
 ## [1.0.0]
 ### Added
 - Immutable synthetic source-data integrity contracts.

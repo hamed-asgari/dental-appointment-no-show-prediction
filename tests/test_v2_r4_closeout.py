@@ -98,7 +98,7 @@ def test_root_readme_reports_r4_closed_and_r5_next() -> None:
 
 def test_changelog_moves_completed_r4_items_out_of_planned_work() -> None:
     text = _text(CHANGELOG)
-    planned = text[text.index("### Planned for Version 2.0.0"):text.index("## [1.0.0]")]
+    planned = text[text.index("### Planned for Version 2.0.0"):text.index("## [2.0.0]")]
 
     assert "Closed recovery Phase R4" in text
     assert "Evidence-based Streamlit application." not in planned
@@ -108,4 +108,4 @@ def test_changelog_moves_completed_r4_items_out_of_planned_work() -> None:
     assert "Clean-environment reproduction" not in planned
     assert "### Recovery Phase R5.1 evidence" in text
     assert "Passed clean-environment reproduction" in text
-    assert "reviewed Version `2.0.0` release" in planned
+    assert "GitHub Release publication" in planned

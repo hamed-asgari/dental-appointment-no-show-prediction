@@ -106,9 +106,9 @@ def test_docs_index_and_recovery_plan_surface_frozen_r5_contract() -> None:
 
     assert "[Phase R5 release-execution contract](v2_r5_release_execution_contract.md)" in docs
     assert (
-        "**R5.1 clean-environment reproduction passed and its evidence is "
-        "recorded in this recovery commit; exact-head evidence CI sealing is "
-        "the next gate.**"
+        "**R5.1 is complete and CI-sealed. R5.2 release preparation is "
+        "implemented in this recovery commit; exact-head release-preparation "
+        "PR CI is the next gate. GitHub release publication has not occurred.**"
         in plan
     )
     assert "docs/v2_r5_release_execution_contract.md" in plan

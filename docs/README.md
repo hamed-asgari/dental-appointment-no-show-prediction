@@ -133,6 +133,17 @@ through implemented operational threshold analysis:
     Records the successful disposable Python 3.12 reproduction, exact evidence
     identity, byte-identical artifact checks, link/hygiene audit, Streamlit
     health result, and unchanged scientific boundary.
+38. [Version 2.0.0 release notes](v2.0.0_release_notes.md) -
+    Prepares the Version 2 release narrative, distinguishes the immutable
+    Version 1 methodological checkpoint from the completed Version 2 portfolio
+    application, and records that GitHub publication is still pending.
+39. [Version 2 portfolio communication](v2_portfolio_communication.md) -
+    Provides CV/resume bullets, a LinkedIn draft, and 30-second, 90-second, and
+    5-minute explanations with synthetic-data and external-validation limits.
+40. [Top-level data guide](../data/README.md) - Explains the synthetic raw and
+    target-free processed Version 2 data layers and temporal-safety boundary.
+41. [Top-level reports guide](../reports/README.md) - Maps frozen modeling,
+    reporting, figure, screenshot, and release-evidence artifacts.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
 same probability to every appointment and therefore provides no

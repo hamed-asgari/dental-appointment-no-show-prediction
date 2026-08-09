@@ -23,7 +23,7 @@ def test_pyproject_release_contract() -> None:
     )
     assert project[
         "version"
-    ] == "1.0.0"
+    ] == "2.0.0"
     assert project[
         "requires-python"
     ] == ">=3.12,<3.13"
@@ -252,6 +252,8 @@ def test_changelog_records_release_boundaries() -> None:
         changelog.split()
     )
     required = (
+        "## [Unreleased]",
+        "## [2.0.0]",
         "## [1.0.0]",
         "calibration_prior",
         "0.11985448975684472",
