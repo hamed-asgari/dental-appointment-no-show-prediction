@@ -21,7 +21,15 @@
   "phase": "R5.5",
   "post_release_integration": {
     "branch": "post-release/v2.0.0-evidence",
+    "exact_head_pr_ci_conclusion": "success",
     "exact_head_pr_ci_required_before_merge": true,
+    "exact_head_pr_ci_run_id": "31335107018",
+    "exact_main_ci_conclusion": "success",
+    "exact_main_ci_run_id": "31335579708",
+    "formal_r5_closed": true,
+    "merge_commit": "33a46e813b9ca3150af41c83e7e5fd292734a496",
+    "merged_at": "2026-08-09T20:57:30Z",
+    "pr_number": 15,
     "release_tag_or_assets_modified_by_r5_5": false
   },
   "r5_1_clean_reproduction": {

@@ -61,9 +61,12 @@ test remains a one-time evaluation and must not be reused for development.
 ## Integration boundary
 
 This evidence is intentionally outside the `v2.0.0` tagged tree. The
-`post-release/v2.0.0-evidence` branch must pass exact-head pull-request CI before merge. After that
-CI seal, the post-release evidence may be merged to `main` for formal R5
-closeout. This process does not modify the published tag or release assets.
+`post-release/v2.0.0-evidence` branch passed exact-head pull-request CI run
+`31335107018` on commit `4277cefcf8e3ac0b77cfe1afeec9be0b7d5b142a`. PR #15 merged to `main` at
+`2026-08-09T20:57:30Z` via merge commit `33a46e813b9ca3150af41c83e7e5fd292734a496` with the released-main commit as
+first parent and the R5.5 evidence commit as second parent. Exact-main push CI run
+`31335579708` then completed successfully on that merge commit. Recovery Phase R5 is formally closed. This integration did not modify the published `v2.0.0`
+tag or release assets and did not reopen the protected final target.
 
 Machine-readable evidence:
 `reports/release/v2/r5_post_release_evidence.json`.
