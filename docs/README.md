@@ -121,6 +121,10 @@ through implemented operational threshold analysis:
     Streamlit application and portfolio layer with the exact portfolio commit,
     successful PR CI run, frozen artifact identities, acceptance evidence, and
     unchanged post-test immutability boundary.
+35. [Phase R5 release-execution contract](v2_r5_release_execution_contract.md) -
+    Freezes the clean-environment reproduction, release-metadata transition,
+    merge-history rule, exact-main CI gate, Version 2 tag/release sequence, and
+    post-release evidence boundary.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
 same probability to every appointment and therefore provides no
