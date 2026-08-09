@@ -31,4 +31,4 @@ success, byte-identical reproduction, link/hygiene checks, Streamlit health,
 and false flags for protected target re-access and model refit.
 
 See [`../docs/v2.0.0_release_notes.md`](../docs/v2.0.0_release_notes.md).
-GitHub Release publication is still pending.
+GitHub Release `Version 2.0.0` is published from annotated tag `v2.0.0` at https://github.com/hamed-asgari/dental-appointment-no-show-prediction/releases/tag/v2.0.0. Post-release provenance is recorded in [`../docs/v2_r5_post_release_evidence.md`](../docs/v2_r5_post_release_evidence.md).

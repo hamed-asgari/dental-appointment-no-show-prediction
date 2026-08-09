@@ -15,9 +15,10 @@ end-to-end Clinical AI portfolio study.
 Recovery Phases R0 through R3 are complete. Phase R4 is also complete and
 formally closed after the evidence-based Streamlit application, portfolio
 screenshots, architecture documentation, and exact-head CI seal were completed.
-Phase R5 is the active recovery stage. R5.1 clean-environment reproduction and
-evidence CI sealing are complete; R5.2 release preparation is now implemented
-on the recovery branch and awaits exact-head PR CI before merge/release steps.
+Phase R5 release execution is complete through R5.4. Version `2.0.0` was
+published from exact merged-main commit `cf7ecca52bc54aeeccdad032b80be83f9d172fc9` after successful main CI run
+`31328381538`. R5.5 records post-release evidence on a separate branch; that
+post-release branch must pass exact-head PR CI before merge and formal R5 closeout.
 
 The protected 2027 final test has already been accessed exactly once under the
 pre-frozen R3 contract. No protected-target re-access, model refit,
@@ -198,14 +199,17 @@ Version `v1.0.0` is retained as an auditable historical checkpoint. Its selected
 constant-prior model provided no appointment-level ranking and its test period
 has already been examined.
 
-Version `2.0.0` is still under recovery review and has **not** yet been released.
-R5.1 clean-environment reproduction and its exact-head evidence CI seal are
-complete. R5.2 now prepares package/citation version `2.0.0`, release notes,
-top-level data/report guides, and portfolio communication while deliberately
-making no claim that a GitHub Release has been published. The remaining gates
-are exact-head release-preparation PR CI, merge-commit integration, exact-main
-CI, packaging verification, annotated tagging, GitHub Release publication, and
-post-release evidence.
+Version `2.0.0` was published as an audited GitHub Release on
+`2026-08-09T19:30:29Z`. Annotated tag `v2.0.0` peels to exact merged-main
+commit `cf7ecca52bc54aeeccdad032b80be83f9d172fc9`, whose push CI run `31328381538` completed successfully. The final
+wheel is `dental_appointment_no_show_prediction-2.0.0-py3-none-any.whl` with SHA-256 `0c3ac6fe0e4fa0a911ab6027694cff9729c4bb95800b560c223faeddc41ec230`; `SHA256SUMS.txt` has SHA-256
+`f1b4b2b0fc5ec4900919a6b96f0e10b30122ae16b04485c324957a693bc14da3`. R5.1 clean-environment reproduction and its exact-head
+evidence CI seal remain preserved. R5.5 records post-release provenance without
+protected-target re-access, model refit, recalibration, feature change, final-test
+threshold selection, or post-test tuning.
+
+Post-release evidence is documented in
+[`docs/v2_r5_post_release_evidence.md`](docs/v2_r5_post_release_evidence.md).
 
 Historical Version 1 deficiencies remain documented in
 [`docs/post_release_audit_v1.0.0.md`](docs/post_release_audit_v1.0.0.md); those

@@ -1,0 +1,73 @@
+{
+  "application": {
+    "decision": "transparent_model_evaluation_dashboard",
+    "individualized_patient_risk_calculator": false
+  },
+  "assets": {
+    "checksums": {
+      "github_asset_id": 507832008,
+      "name": "SHA256SUMS.txt",
+      "sha256": "f1b4b2b0fc5ec4900919a6b96f0e10b30122ae16b04485c324957a693bc14da3",
+      "size_bytes": 127
+    },
+    "remote_asset_byte_identity_verified_during_r5_4": true,
+    "wheel": {
+      "github_asset_id": 507832007,
+      "name": "dental_appointment_no_show_prediction-2.0.0-py3-none-any.whl",
+      "sha256": "0c3ac6fe0e4fa0a911ab6027694cff9729c4bb95800b560c223faeddc41ec230",
+      "size_bytes": 156042
+    }
+  },
+  "phase": "R5.5",
+  "post_release_integration": {
+    "branch": "post-release/v2.0.0-evidence",
+    "exact_head_pr_ci_required_before_merge": true,
+    "release_tag_or_assets_modified_by_r5_5": false
+  },
+  "r5_1_clean_reproduction": {
+    "evidence_ci_run_id": "31324234415",
+    "evidence_ci_url": "https://github.com/hamed-asgari/dental-appointment-no-show-prediction/actions/runs/31324234415",
+    "evidence_commit": "fa6f8477d0bebe13ee6f6828713b9caefea41ba8",
+    "evidence_path": "reports/release/v2/r5_clean_reproduction_evidence.json",
+    "evidence_sha256": "a28fc45030b9d83dc9f2f36debc2d99ed2f34d5323650c1381a88613cec6ec95",
+    "evidence_size_bytes": 3597
+  },
+  "release": {
+    "draft": false,
+    "name": "Version 2.0.0",
+    "peeled_commit": "cf7ecca52bc54aeeccdad032b80be83f9d172fc9",
+    "prerelease": false,
+    "published_at": "2026-08-09T19:30:29Z",
+    "tag": "v2.0.0",
+    "tag_object_sha": "be6dedbb2cc80ef855c0d90c0de20d8993d46a2b",
+    "tag_type": "annotated",
+    "target_commitish": "main",
+    "url": "https://github.com/hamed-asgari/dental-appointment-no-show-prediction/releases/tag/v2.0.0"
+  },
+  "release_source": {
+    "commit": "cf7ecca52bc54aeeccdad032b80be83f9d172fc9",
+    "main_ci_conclusion": "success",
+    "main_ci_run_id": "31328381538",
+    "main_ci_url": "https://github.com/hamed-asgari/dental-appointment-no-show-prediction/actions/runs/31328381538",
+    "sealed_recovery_head": "1ecb5c184b21b87b9ba89f9041434af5c38a4db7"
+  },
+  "schema_version": "1.0.0",
+  "scientific_safety": {
+    "feature_change_performed": false,
+    "final_test_threshold_selection_performed": false,
+    "model_refit_performed": false,
+    "post_test_tuning_performed": false,
+    "protected_target_reaccess_performed": false,
+    "recalibration_performed": false
+  },
+  "version_1_immutability": {
+    "checksum_name": "SHA256SUMS.txt",
+    "checksum_size_bytes": 127,
+    "peeled_commit": "ec5aa5d84c8de6aaf7daca4c299073ba12d4e700",
+    "release_name": "Version 1.0.0",
+    "tag": "v1.0.0",
+    "unchanged": true,
+    "wheel_name": "dental_appointment_no_show_prediction-1.0.0-py3-none-any.whl",
+    "wheel_size_bytes": 60712
+  }
+}
