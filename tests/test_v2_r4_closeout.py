@@ -61,7 +61,7 @@ def test_documentation_index_surfaces_formal_r4_closeout() -> None:
     assert "[Phase R4 formal closeout](v2_r4_closeout.md)" in text
     assert "Phase R4 has implemented the read-only Streamlit evaluation dashboard" in normalized
     assert "R4 is formally closed" in normalized
-    assert "Phase R5 is the active recovery stage" in normalized
+    assert "Phase R5 release execution reached publication in R5.4" in normalized
 
 
 def test_recovery_plan_closes_r4_and_updates_completed_portfolio_items() -> None:
@@ -82,7 +82,7 @@ def test_recovery_plan_closes_r4_and_updates_completed_portfolio_items() -> None
         assert value in text
 
     assert "- [x] Clean-environment reproduction passed" in text
-    assert "- [ ] Version 2.0.0 release reviewed and published" in text
+    assert "- [x] Version 2.0.0 release reviewed and published" in text
 
 
 def test_root_readme_reports_r4_closed_and_r5_next() -> None:
@@ -90,15 +90,15 @@ def test_root_readme_reports_r4_closed_and_r5_next() -> None:
 
     assert "Recovery Phases R0 through R3 are complete." in text
     assert "Phase R4 is also complete and formally closed" in text
-    assert "Phase R5 is the active recovery stage" in text
-    assert "Version `2.0.0` is still under recovery review" in text
+    assert "Phase R5 release execution is complete through R5.4" in text
+    assert "Version `2.0.0` was published" in text
     assert "Formal R4 closeout still requires" not in text
     assert "release is gated by formal R4 closeout" not in text
 
 
 def test_changelog_moves_completed_r4_items_out_of_planned_work() -> None:
     text = _text(CHANGELOG)
-    planned = text[text.index("### Planned for Version 2.0.0"):text.index("## [2.0.0]")]
+    planned = text[text.index("## [Unreleased]"):text.index("## [2.0.0]")]
 
     assert "Closed recovery Phase R4" in text
     assert "Evidence-based Streamlit application." not in planned
@@ -108,4 +108,4 @@ def test_changelog_moves_completed_r4_items_out_of_planned_work() -> None:
     assert "Clean-environment reproduction" not in planned
     assert "### Recovery Phase R5.1 evidence" in text
     assert "Passed clean-environment reproduction" in text
-    assert "GitHub Release publication" in planned
+    assert "R5.5 post-release evidence" in planned

@@ -2,10 +2,18 @@
 This file records notable repository changes by release version.
 ## [Unreleased]
 
-### Planned for Version 2.0.0
-- Exact-head release-preparation PR CI, merge-commit integration, exact-main CI,
-  packaging verification, annotated tagging, GitHub Release publication, and
-  post-release evidence.
+### R5.5 post-release evidence
+- Recorded the published Version `2.0.0` release, annotated tag object
+  `be6dedbb2cc80ef855c0d90c0de20d8993d46a2b`, exact release source commit `cf7ecca52bc54aeeccdad032b80be83f9d172fc9`, and successful
+  exact-main CI run `31328381538`.
+- Recorded final release assets: `dental_appointment_no_show_prediction-2.0.0-py3-none-any.whl` (156042 bytes,
+  SHA-256 `0c3ac6fe0e4fa0a911ab6027694cff9729c4bb95800b560c223faeddc41ec230`) and `SHA256SUMS.txt` (127 bytes,
+  SHA-256 `f1b4b2b0fc5ec4900919a6b96f0e10b30122ae16b04485c324957a693bc14da3`).
+- Synchronized current release-state documentation and the Version `2.0.0`
+  completion checklist while preserving the tagged release source, Version 1
+  history, R5.1 evidence, and the frozen scientific boundary.
+- Added machine-readable and human-readable R5.5 evidence. Exact-head PR CI on
+  this post-release branch remains required before merge and formal R5 closeout.
 
 ## [2.0.0]
 

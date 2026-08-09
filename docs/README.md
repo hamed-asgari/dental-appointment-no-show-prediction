@@ -136,7 +136,7 @@ through implemented operational threshold analysis:
 38. [Version 2.0.0 release notes](v2.0.0_release_notes.md) -
     Prepares the Version 2 release narrative, distinguishes the immutable
     Version 1 methodological checkpoint from the completed Version 2 portfolio
-    application, and records that GitHub publication is still pending.
+    application, published release provenance, and the post-release evidence boundary.
 39. [Version 2 portfolio communication](v2_portfolio_communication.md) -
     Provides CV/resume bullets, a LinkedIn draft, and 30-second, 90-second, and
     5-minute explanations with synthetic-data and external-validation limits.
@@ -144,6 +144,10 @@ through implemented operational threshold analysis:
     target-free processed Version 2 data layers and temporal-safety boundary.
 41. [Top-level reports guide](../reports/README.md) - Maps frozen modeling,
     reporting, figure, screenshot, and release-evidence artifacts.
+42. [R5.5 post-release evidence](v2_r5_post_release_evidence.md) -
+    Records the published Version 2 tag, release source commit, exact-main CI,
+    release URL, final asset identities, R5.1 reproduction provenance, Version 1
+    immutability check, and unchanged post-test scientific boundary.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
 same probability to every appointment and therefore provides no
@@ -160,7 +164,9 @@ The pre-frozen app gate selects `transparent_model_evaluation_dashboard`.
 Phase R4 has implemented the read-only Streamlit evaluation dashboard, artifact
 integrity checks, application tests, portfolio screenshots, and architecture
 documentation. R4 is formally closed after exact-head portfolio CI run
-`31217805371` succeeded on commit `568be27`. Phase R5 is the active recovery stage
-and covers clean-environment reproduction, final consistency checks, and
-release review. No post-test model, calibration, feature, or threshold tuning
-is permitted.
+`31217805371` succeeded on commit `568be27`. Phase R5 release execution reached
+publication in R5.4: annotated `v2.0.0` points to `cf7ecca52bc54aeeccdad032b80be83f9d172fc9`, exact-main CI run
+`31328381538` succeeded, and GitHub Release `Version 2.0.0` is published. R5.5
+records post-release provenance on a separate branch that must pass exact-head
+PR CI before merge. No post-test model, calibration, feature, or threshold
+tuning is permitted.

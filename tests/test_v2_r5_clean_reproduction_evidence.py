@@ -125,14 +125,14 @@ def test_r5_clean_reproduction_evidence_document_records_gate() -> None:
         assert value in text
 
 
-def test_current_docs_record_r5_1_passed_but_release_still_pending() -> None:
+def test_current_docs_preserve_r5_1_evidence_after_release() -> None:
     readme = _normalized(README)
     plan = _text(RECOVERY_PLAN)
     changelog = _normalized(CHANGELOG)
 
-    assert "R5.1 clean-environment reproduction and its exact-head evidence CI seal are complete" in readme
-    assert "Version `2.0.0` is still under recovery review" in readme
+    assert "R5.1 clean-environment reproduction and its exact-head evidence CI seal remain preserved" in readme
+    assert "Version `2.0.0` was published" in readme
     assert "- [x] Clean-environment reproduction passed" in plan
-    assert "- [ ] CI passed" in plan
-    assert "- [ ] Version 2.0.0 release reviewed and published" in plan
+    assert "- [x] CI passed" in plan
+    assert "- [x] Version 2.0.0 release reviewed and published" in plan
     assert "Recovery Phase R5.1 evidence" in changelog

@@ -118,6 +118,6 @@ def test_documentation_surfaces_r2_evidence_after_r3_and_r4() -> None:
 
 def test_changelog_moves_completed_r2_modeling_out_of_planned_list() -> None:
     text = _text(CHANGELOG)
-    planned = text[text.index("### Planned for Version 2.0.0"):text.index("## [2.0.0]")]
+    planned = text[text.index("## [Unreleased]"):text.index("## [2.0.0]")]
     assert "Recovered model comparison, calibration, and threshold analysis." not in planned
     assert "Closed recovery Phase R2" in text

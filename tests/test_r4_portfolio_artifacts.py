@@ -51,7 +51,7 @@ def test_root_readme_describes_current_v2_application_state() -> None:
     assert "transparent_model_evaluation_dashboard" in text
     assert "v2_streamlit_overview.png" in text
     assert "v2_streamlit_performance.png" in text
-    assert "Version `2.0.0` is still under recovery review" in text
+    assert "Version `2.0.0` was published" in text
     assert "no implemented Streamlit application" not in text
     assert "protected 2027 final-test targets have not been accessed" not in text
 

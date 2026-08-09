@@ -56,7 +56,7 @@ def test_release_notes_distinguish_v1_v2_without_claiming_publication() -> None:
         "Version `1.0.0` remains an immutable methodological and audit checkpoint",
         "Version `2.0.0` completes the portfolio recovery",
         "`transparent_model_evaluation_dashboard`",
-        "A GitHub Release has **not** yet been published.",
+        "Version `2.0.0` was published",
         "All appointment and patient data are synthetic.",
         "no external clinical validation",
     )
@@ -90,7 +90,7 @@ def test_top_level_guides_surface_frozen_boundaries() -> None:
     assert "accessed exactly once" in data
     assert "protected final test was accessed exactly once" in reports
     assert "No post-test model, feature, calibration, or threshold tuning is permitted." in reports
-    assert "GitHub Release publication is still pending." in reports
+    assert "GitHub Release `Version 2.0.0` is published" in reports
 
 
 def test_changelog_moves_completed_v2_work_into_2_0_0() -> None:
@@ -100,23 +100,23 @@ def test_changelog_moves_completed_v2_work_into_2_0_0() -> None:
     unreleased = text[text.index("## [Unreleased]"):text.index("## [2.0.0]")]
     v2 = text[text.index("## [2.0.0]"):text.index("## [1.0.0]")]
     assert "exact-main CI" in unreleased
-    assert "GitHub Release publication" in unreleased
+    assert "R5.5 post-release evidence" in unreleased
     assert "Recovery Phase R5.1 evidence" not in unreleased
     assert "Recovery Phase R5.1 evidence" in v2
     assert "Release preparation" in v2
 
 
-def test_current_docs_report_release_prep_not_publication() -> None:
+def test_current_docs_report_published_release_and_r5_5_boundary() -> None:
     readme = _normalized(README)
     plan = _normalized(PLAN)
-    assert "Version `2.0.0` is still under recovery review" in readme
-    assert "has **not** yet been released" in readme
-    assert "R5.2 now prepares package/citation version `2.0.0`" in readme
-    assert "R5.1 is complete and CI-sealed." in plan
-    assert "R5.2 release preparation is implemented in this recovery commit" in plan
-    assert "GitHub release publication has not occurred." in plan
-    assert "- [ ] CI passed" in _text(PLAN)
-    assert "- [ ] Version 2.0.0 release reviewed and published" in _text(PLAN)
+    assert "Version `2.0.0` was published" in readme
+    assert "has **not** yet been released" not in readme
+    assert "exact merged-main commit `cf7ecca52bc54aeeccdad032b80be83f9d172fc9`" in readme
+    assert "R5.4 publication is complete." in plan
+    assert "R5.5 records post-release evidence" in plan
+    assert "GitHub release publication has not occurred." not in plan
+    assert "- [x] CI passed" in _text(PLAN)
+    assert "- [x] Version 2.0.0 release reviewed and published" in _text(PLAN)
 
 
 def test_docs_index_surfaces_r5_2_materials() -> None:
