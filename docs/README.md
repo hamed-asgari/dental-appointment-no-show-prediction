@@ -125,6 +125,10 @@ through implemented operational threshold analysis:
     Freezes the clean-environment reproduction, release-metadata transition,
     merge-history rule, exact-main CI gate, Version 2 tag/release sequence, and
     post-release evidence boundary.
+36. [R5.1 clean-environment reproduction runner](v2_r5_clean_reproduction_runner.md) -
+    Documents the disposable-worktree Python 3.12 reproduction runner,
+    scientific-safety allowlist, byte-identity checks, Streamlit smoke test,
+    link audit, tracked-tree hygiene, and evidence JSON boundary.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
 same probability to every appointment and therefore provides no
