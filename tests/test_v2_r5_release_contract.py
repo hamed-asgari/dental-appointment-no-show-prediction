@@ -106,13 +106,13 @@ def test_docs_index_and_recovery_plan_surface_frozen_r5_contract() -> None:
 
     assert "[Phase R5 release-execution contract](v2_r5_release_execution_contract.md)" in docs
     assert (
-        "**R5 execution contract is frozen and CI-sealed. "
-        "R5.1 runner implementation is in progress; "
-        "clean-environment evidence has not yet been accepted.**"
+        "**R5.1 clean-environment reproduction passed and its evidence is "
+        "recorded in this recovery commit; exact-head evidence CI sealing is "
+        "the next gate.**"
         in plan
     )
     assert "docs/v2_r5_release_execution_contract.md" in plan
-    assert "- [ ] Clean-environment reproduction passed" in _text(RECOVERY_PLAN)
+    assert "- [x] Clean-environment reproduction passed" in _text(RECOVERY_PLAN)
     assert "- [ ] Version 2.0.0 release reviewed and published" in _text(RECOVERY_PLAN)
 def test_r5_contract_freezes_pre_finalization_documentation_scope() -> None:
     text = _normalized(CONTRACT)

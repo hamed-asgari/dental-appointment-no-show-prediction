@@ -1,0 +1,78 @@
+{
+  "calibration_change_performed": false,
+  "canonical_checkout_clean_after_run": true,
+  "canonical_repo": "C:\\Users\\user\\Hamed Projects\\dental-appointment-no-show-prediction",
+  "dependency_integrity": {
+    "pip_check_exit": 0,
+    "pip_check_stdout": "No broken requirements found."
+  },
+  "disposable_checkout_clean_after_run": true,
+  "forbidden_project_modules_invoked": false,
+  "frozen_analytical_figures": {
+    "reports/figures/v2_final_calibration_curve.png": "eb98404d809b0ab691decb2cb10a3d0c3b2a495cbef8637d75a468e86f25834f",
+    "reports/figures/v2_final_capacity_tradeoff.png": "965ee9e77e35b05ae380d017b88a7fa952fd6b82bf608cb8fc71b66cf01827a1",
+    "reports/figures/v2_final_precision_recall_curve.png": "e706d92fa13e09c5fda7da2fcd0f6a8c55332d524ae0e221d370ef792ebd7b95"
+  },
+  "frozen_screenshots": {
+    "reports/screenshots/v2_streamlit_calibration_capacity.png": "e6533a9432744a458327e1bfc7ee4a02b425040501bd42e2c6488a98b85a588a",
+    "reports/screenshots/v2_streamlit_interpretation_limitations.png": "572772460187355a2cd0508284c2b58c87494bf069b52fb5256dfb63fd3913be",
+    "reports/screenshots/v2_streamlit_overview.png": "809f42bcfacd919248663f515595bbb1810dcdc35a92e0f186e74446320d8e79",
+    "reports/screenshots/v2_streamlit_performance.png": "0e7f45905b1cf2940215ebf56b53351507f8ea84722ab5df13323d9acbc48c64"
+  },
+  "full_test_suite_passed": true,
+  "markdown_links": {
+    "broken": 0,
+    "checked": 64
+  },
+  "model_refit_performed": false,
+  "post_test_tuning_performed": false,
+  "processed_reproduction": {
+    "canonical_dir": "data\\processed\\v2",
+    "files": {
+      "v2_feature_dataset.csv": "08a2c16ca6cc66f91fda1cd09a2549a3e2d5357c2b975eb2f55f4ade66a46b53",
+      "v2_feature_dataset.manifest.json": "2ee3f7d42f2d73fdcde71fd601fd0423d5e610767ac5162afd38c33bf2fb8073"
+    }
+  },
+  "protected_target_reaccess_performed": false,
+  "python": {
+    "base_version": "3.12.13",
+    "clean_version": "3.12.13"
+  },
+  "raw_reproduction": {
+    "canonical_dir": "data\\raw\\v2",
+    "files": {
+      "appointments.csv": "00d759e69fa51eb5250fafb07e844a7c7ba0cb16dec2b80de47ce78092a162ba",
+      "dentists.csv": "22426232d2fa4051ebe1484b5b495ed5afc2d51e2f5c3f19c654aa1f61cad5e8",
+      "patients.csv": "37df61e47d4060f1e92af49de224228e02451c9eb72e2820f037285ffa9a8ad6",
+      "v2_synthetic_benchmark.manifest.json": "7702fa5fa0638c52dd0598e28f35f678fb5d61a886faadf9b38a6e292fdcd561"
+    }
+  },
+  "reporting_reproduction": {
+    "figures": {
+      "v2_final_calibration_curve.png": "eb98404d809b0ab691decb2cb10a3d0c3b2a495cbef8637d75a468e86f25834f",
+      "v2_final_capacity_tradeoff.png": "965ee9e77e35b05ae380d017b88a7fa952fd6b82bf608cb8fc71b66cf01827a1",
+      "v2_final_precision_recall_curve.png": "e706d92fa13e09c5fda7da2fcd0f6a8c55332d524ae0e221d370ef792ebd7b95"
+    },
+    "manifest_sha256": "15f47f11e0378376baf7a2f5c520beb389ed8952f3ac161321548aeb35ca64b3",
+    "summary_sha256": "76ed771871b696b4e0cd0c262b7d13f3bb03d03a187edd84c40934f1d2bfbbf7"
+  },
+  "safe_project_module_commands": [
+    "src.synthetic.export",
+    "src.data.export_v2_processed",
+    "src.modeling.v2_final_reporting"
+  ],
+  "schema_version": "1.0.0",
+  "source_commit": "5e527e6a45f0b65e9889268d7b93585f931f3fdb",
+  "streamlit": {
+    "health": "ok",
+    "log_sha256": "11d95f6b44882fc76247b3b714934be5cc42493cae3b4f6139cf172fa49f8fd1",
+    "port": 3777
+  },
+  "success": true,
+  "threshold_selection_performed": false,
+  "tracked_tree_hygiene": {
+    "forbidden_paths": [],
+    "passed": true
+  },
+  "workspace": "C:\\Users\\user\\AppData\\Local\\Temp\\dental-r5-clean-8xdrdef6"
+}

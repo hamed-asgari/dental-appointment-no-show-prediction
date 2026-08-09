@@ -129,6 +129,10 @@ through implemented operational threshold analysis:
     Documents the disposable-worktree Python 3.12 reproduction runner,
     scientific-safety allowlist, byte-identity checks, Streamlit smoke test,
     link audit, tracked-tree hygiene, and evidence JSON boundary.
+37. [R5.1 clean-environment reproduction evidence](v2_r5_clean_reproduction_evidence.md) -
+    Records the successful disposable Python 3.12 reproduction, exact evidence
+    identity, byte-identical artifact checks, link/hygiene audit, Streamlit
+    health result, and unchanged scientific boundary.
 The Version 1 methodology through its one-time chronological test audit remains
 an immutable audit checkpoint. Its selected `calibration_prior` assigns the
 same probability to every appointment and therefore provides no
@@ -145,7 +149,7 @@ The pre-frozen app gate selects `transparent_model_evaluation_dashboard`.
 Phase R4 has implemented the read-only Streamlit evaluation dashboard, artifact
 integrity checks, application tests, portfolio screenshots, and architecture
 documentation. R4 is formally closed after exact-head portfolio CI run
-`31217805371` succeeded on commit `568be27`. Phase R5 is the next recovery stage
+`31217805371` succeeded on commit `568be27`. Phase R5 is the active recovery stage
 and covers clean-environment reproduction, final consistency checks, and
 release review. No post-test model, calibration, feature, or threshold tuning
 is permitted.

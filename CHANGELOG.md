@@ -76,8 +76,20 @@ This file records notable repository changes by release version.
   no protected-target re-access, model refit, recalibration, feature change,
   post-test tuning, or final-test threshold selection.
 
+### Recovery Phase R5.1 evidence
+- Passed clean-environment reproduction from exact source commit `5e527e6`
+  using a disposable Python 3.12 environment.
+- Reproduced the frozen raw benchmark, target-free processed artifacts, and
+  final reporting package byte-identically without protected-target re-access
+  or model refit.
+- Verified 64 repository-relative Markdown links with zero broken links,
+  tracked-tree hygiene, frozen screenshot/figure identities, and Streamlit
+  health `ok`.
+- Recorded exact machine-readable evidence under
+  `reports/release/v2/r5_clean_reproduction_evidence.json`.
+
 ### Planned for Version 2.0.0
-- Clean-environment reproduction and final documentation consistency checks.
+- Final documentation and release-metadata consistency checks.
 - Final CI, release review, and reviewed Version `2.0.0` release.
 ## [1.0.0]
 ### Added
