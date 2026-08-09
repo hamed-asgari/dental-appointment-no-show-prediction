@@ -17,8 +17,10 @@ formally closed after the evidence-based Streamlit application, portfolio
 screenshots, architecture documentation, and exact-head CI seal were completed.
 Phase R5 release execution is complete through R5.4. Version `2.0.0` was
 published from exact merged-main commit `cf7ecca52bc54aeeccdad032b80be83f9d172fc9` after successful main CI run
-`31328381538`. R5.5 records post-release evidence on a separate branch; that
-post-release branch must pass exact-head PR CI before merge and formal R5 closeout.
+`31328381538`. R5.5 records post-release evidence on a separate branch. Exact-head
+PR CI run `31335107018` succeeded for commit `4277cefcf8e3ac0b77cfe1afeec9be0b7d5b142a`, PR #15 merged via
+merge commit `33a46e813b9ca3150af41c83e7e5fd292734a496`, and exact-main push CI run `31335579708` succeeded.
+Recovery Phase R5 is formally closed.
 
 The protected 2027 final test has already been accessed exactly once under the
 pre-frozen R3 contract. No protected-target re-access, model refit,

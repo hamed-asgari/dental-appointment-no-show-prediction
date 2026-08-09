@@ -39,6 +39,24 @@ def test_release_identity_and_main_ci_are_recorded() -> None:
     assert e["release_source"]["main_ci_conclusion"] == "success"
 
 
+
+def test_r5_5_integration_and_formal_closeout_are_recorded() -> None:
+    e = json.loads(_text(EVIDENCE))
+    integration = e["post_release_integration"]
+
+    assert integration["branch"] == "post-release/v2.0.0-evidence"
+    assert integration["exact_head_pr_ci_required_before_merge"] is True
+    assert integration["pr_number"] == 15
+    assert integration["exact_head_pr_ci_run_id"] == "31335107018"
+    assert integration["exact_head_pr_ci_conclusion"] == "success"
+    assert integration["merged_at"] == "2026-08-09T20:57:30Z"
+    assert integration["merge_commit"] == "33a46e813b9ca3150af41c83e7e5fd292734a496"
+    assert integration["exact_main_ci_run_id"] == "31335579708"
+    assert integration["exact_main_ci_conclusion"] == "success"
+    assert integration["formal_r5_closed"] is True
+    assert integration["release_tag_or_assets_modified_by_r5_5"] is False
+
+
 def test_final_release_asset_identities_are_recorded() -> None:
     e = json.loads(_text(EVIDENCE))
     assert e["assets"]["wheel"]["name"] == "dental_appointment_no_show_prediction-2.0.0-py3-none-any.whl"
@@ -85,8 +103,8 @@ def test_current_docs_report_published_release_and_pending_r5_5_ci() -> None:
     assert "- [x] CI passed" in plan
     assert "- [x] Version 2.0.0 release reviewed and published" in plan
     assert "- [x] R5.5 post-release evidence recorded on a separate post-release branch" in plan
-    assert "- [ ] R5.5 post-release evidence exact-head PR CI passed" in plan
-    assert "- [ ] R5.5 post-release evidence merged to main and R5 formally closed" in plan
+    assert "- [x] R5.5 post-release evidence exact-head PR CI passed" in plan
+    assert "- [x] R5.5 post-release evidence merged to main and R5 formally closed" in plan
 
     assert "Published release status" in notes
     assert "A GitHub Release has **not** yet been published" not in notes
@@ -110,6 +128,10 @@ def test_human_evidence_and_changelog_are_synchronized() -> None:
         "transparent_model_evaluation_dashboard",
         "no protected-target re-access",
         "exact-head pull-request CI",
+        "31335107018",
+        "33a46e813b9ca3150af41c83e7e5fd292734a496",
+        "31335579708",
+        "Recovery Phase R5 is formally closed",
     ):
         assert value in doc
     assert "### R5.5 post-release evidence" in unreleased

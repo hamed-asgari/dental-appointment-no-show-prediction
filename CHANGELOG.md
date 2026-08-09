@@ -12,8 +12,10 @@ This file records notable repository changes by release version.
 - Synchronized current release-state documentation and the Version `2.0.0`
   completion checklist while preserving the tagged release source, Version 1
   history, R5.1 evidence, and the frozen scientific boundary.
-- Added machine-readable and human-readable R5.5 evidence. Exact-head PR CI on
-  this post-release branch remains required before merge and formal R5 closeout.
+- Added machine-readable and human-readable R5.5 evidence. Exact-head PR CI run
+  `31335107018` succeeded, PR #15 merged via merge commit `33a46e813b9ca3150af41c83e7e5fd292734a496`, and
+  exact-main push CI run `31335579708` succeeded. Recovery Phase R5 is formally
+  closed.
 
 ## [2.0.0]
 

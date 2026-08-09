@@ -167,6 +167,7 @@ documentation. R4 is formally closed after exact-head portfolio CI run
 `31217805371` succeeded on commit `568be27`. Phase R5 release execution reached
 publication in R5.4: annotated `v2.0.0` points to `cf7ecca52bc54aeeccdad032b80be83f9d172fc9`, exact-main CI run
 `31328381538` succeeded, and GitHub Release `Version 2.0.0` is published. R5.5
-records post-release provenance on a separate branch that must pass exact-head
-PR CI before merge. No post-test model, calibration, feature, or threshold
-tuning is permitted.
+records post-release provenance on a separate branch; exact-head PR CI run
+`31335107018`, merge commit `33a46e813b9ca3150af41c83e7e5fd292734a496`, and exact-main push CI run
+`31335579708` are all successful. Recovery Phase R5 is formally closed. No
+post-test model, calibration, feature, or threshold tuning is permitted.
