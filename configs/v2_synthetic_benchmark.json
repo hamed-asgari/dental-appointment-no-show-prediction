@@ -1,0 +1,62 @@
+{
+  "schema_version": "2.0.0",
+  "generator_version": "2.0.0",
+  "root_seed": 20260805,
+  "patient_count": 4000,
+  "dentist_count": 7,
+  "appointment_count": 24000,
+  "appointment_start": "2023-01-01",
+  "appointment_end": "2027-12-31",
+  "prediction_horizon_hours": 24,
+  "output_directory": "data/raw/v2",
+  "rng_streams": [
+    "patients",
+    "dentists",
+    "appointments",
+    "reminders",
+    "latent_risk",
+    "outcomes",
+    "status_timestamps"
+  ],
+  "evaluation": {
+    "warmup": {
+      "start": "2023-01-01",
+      "end": "2024-01-01"
+    },
+    "rolling_folds": [
+      {
+        "name": "fold_1",
+        "fit_start": "2024-01-01",
+        "fit_end": "2025-01-01",
+        "validation_start": "2025-01-01",
+        "validation_end": "2025-07-01"
+      },
+      {
+        "name": "fold_2",
+        "fit_start": "2024-01-01",
+        "fit_end": "2025-07-01",
+        "validation_start": "2025-07-01",
+        "validation_end": "2026-01-01"
+      },
+      {
+        "name": "fold_3",
+        "fit_start": "2024-01-01",
+        "fit_end": "2026-01-01",
+        "validation_start": "2026-01-01",
+        "validation_end": "2026-07-01"
+      }
+    ],
+    "calibration": {
+      "start": "2026-07-01",
+      "end": "2026-10-01"
+    },
+    "policy_selection": {
+      "start": "2026-10-01",
+      "end": "2027-01-01"
+    },
+    "final_test": {
+      "start": "2027-01-01",
+      "end": "2028-01-01"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "policy_predictions.csv": {
+      "sha256": "bb60c1a41ca998080163119bcd7087332c7ebe9907637137e4999535a8a71443",
+      "size_bytes": 85731
+    },
+    "policy_scenarios.csv": {
+      "sha256": "6953672f8a4e38435aa7f2460fbb79e78716eb9bd966131dd59bbd345821a14f",
+      "size_bytes": 2092
+    },
+    "policy_summary.json": {
+      "sha256": "7ad4ad032f520863c8ebfd2533e9952f15dcbf76097c912f976dc34d1f7259cd",
+      "size_bytes": 1201
+    }
+  },
+  "base_training_positive_count": 978,
+  "base_training_rows": 10921,
+  "calibration_manifest_sha256": "5b2e701753a2d0e0d2f9a7efaddf46b2f316643e66dd8c11727373927c8a5d7a",
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "model_config_sha256": "0b39dbe9b15c64579a81e7b9dbeaad5e5a6694fc5066698fbcfd4623a1bd1dd6",
+  "model_contract_sha256": "735953523db15e36b82bacfb022915c3eff0c4f4329f16c72877dc32f8ff597f",
+  "phase": "R2",
+  "policy_decision_time": "2027-01-01T00:00:00",
+  "policy_execution_spec_sha256": "4e12c2db3a95ed096040e558b567106a7569a07f3fdec8fb2d28570dedc90863",
+  "policy_selection_positive_count": 92,
+  "policy_selection_positive_rate": 0.08654750705550329,
+  "policy_selection_rows": 1063,
+  "processed_dataset_fingerprint": "0f3243e4ef3d832ae5562a98354828bad481a6691a0e17e6a5271307143b5787",
+  "processed_dataset_sha256": "08a2c16ca6cc66f91fda1cd09a2549a3e2d5357c2b975eb2f55f4ade66a46b53",
+  "processed_manifest_sha256": "2ee3f7d42f2d73fdcde71fd601fd0423d5e610767ac5162afd38c33bf2fb8073",
+  "rolling_origin_manifest_sha256": "e575b10835645d3a643c396803cfff21f5c1c1cdad9b988ee07037ef045beb45",
+  "runtime": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0"
+  },
+  "scenario_count": 16,
+  "schema_version": "1.0.0",
+  "selected_calibration_method": "uncalibrated",
+  "selected_ranking_model": "logistic_regression",
+  "single_operational_threshold_selected": false,
+  "stage": "policy_sensitivity"
+}

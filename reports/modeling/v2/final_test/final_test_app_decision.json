@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "average_precision_absolute_uplift_vs_population_prior": {
+      "observed": 0.06472620063430369,
+      "passes": true,
+      "required_minimum": 0.005
+    },
+    "brier_score_vs_population_prior": {
+      "baseline": 0.07568725187832186,
+      "delta_model_minus_baseline": 0.000517993471194883,
+      "model": 0.07620524534951674,
+      "passes": false,
+      "require_no_worse": true
+    },
+    "log_loss_vs_population_prior": {
+      "baseline": 0.2849868310616341,
+      "delta_model_minus_baseline": -0.0023636968008977632,
+      "maximum_allowed_worsening": 0.005,
+      "model": 0.2826231342607363,
+      "passes": true
+    },
+    "roc_auc": {
+      "observed": 0.6300295101042317,
+      "passes": true,
+      "required_minimum": 0.52
+    }
+  },
+  "claims_scope": "synthetic_data_only",
+  "decision_basis": "pre_frozen_final_test_app_gate",
+  "final_test_threshold_selection_permitted": false,
+  "model_or_calibration_change_permitted": false,
+  "passes_all_appointment_level_risk_demo_requirements": false,
+  "phase": "R3",
+  "schema_version": "1.0.0",
+  "selected_app_type": "transparent_model_evaluation_dashboard"
+}

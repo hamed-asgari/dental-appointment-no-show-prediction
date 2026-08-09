@@ -1,5 +1,110 @@
 # Changelog
 This file records notable repository changes by release version.
+## [Unreleased]
+
+### Planned for Version 2.0.0
+- Exact-head release-preparation PR CI, merge-commit integration, exact-main CI,
+  packaging verification, annotated tagging, GitHub Release publication, and
+  post-release evidence.
+
+## [2.0.0]
+
+### Recovery documentation
+
+- Added the Version `1.0.0` post-release audit.
+- Added the Version `2.0.0` recovery plan and completion checklist.
+- Clarified that Version `1.0.0` is a methodological checkpoint rather than a
+  completed predictive application.
+- Replaced stale `v0.1` placeholder documentation in `app/` and `models/`.
+- Preserved the original `v1.0.0` tag and release for auditability.
+
+- Added the MIT License and synchronized package and citation metadata.
+
+- Frozen the Version 2 synthetic longitudinal data-generation and protected chronological evaluation policy before model development.
+
+- Added the frozen machine-readable Version 2 benchmark configuration and validated named-stream configuration loader.
+
+- Added the deterministic Version 2 longitudinal synthetic-generator core, frozen public schemas, reminder timestamps, strict validation, and structural tests.
+
+- Exported and froze the Version 2 longitudinal raw benchmark, integrity manifest, source hashes, file hashes, and dataset fingerprint.
+
+- Frozen the Version 2 historical-feature contract, strict as-of availability rule, smoothing constants, cold-start defaults, and protected feature-target boundary.
+
+- Added immutable Version 2 feature schemas and a deterministic strict-as-of patient-history engine with cold-start, smoothing, recency, mutation, and frozen-benchmark tests.
+
+- Added deterministic strict-as-of dentist, visit-type, and weekday-hour attendance histories with frozen Beta smoothing, minimum-support gating, mutation tests, and benchmark summaries.
+
+- Added prediction-time-safe current appointment features, frozen evaluation partitions, label-maturity metadata, verified raw loading, and a target-free 32-feature Version 2 dataset builder.
+
+- Added deterministic target-free Version 2 processed-data export, frozen
+  artifact identities, strict non-test label-maturity access, and a gated
+  final-test target accessor that requires a prewritten probability vector.
+
+- Closed recovery Phase R1 with a frozen Version 2 data dictionary,
+  implementation/CI evidence, target-free processed artifact identity, and an
+  explicit gate into recovered modeling while the protected 2027 test remains
+  unaccessed.
+
+
+- Frozen the Version 2 model-development and selection contract before any
+  recovered model metric, including exact preprocessing, fixed Logistic
+  Regression and Random Forest candidates, rolling-origin ranking guardrails,
+  calibration chronology, threshold-sensitivity scenarios, and continued
+  prohibition on protected 2027 test access.
+
+
+- Added the frozen Version 2 rolling-origin modeling runner and committed
+  development/validation predictions, threshold-free metrics, macro/pooled
+  summaries, ranking-selection evidence, artifact hashes, and runtime identity
+  without accessing or scoring the protected 2027 final test.
+
+
+- Added the frozen Version 2 chronological calibration evaluation for the
+  selected ranking model, including uncalibrated/sigmoid/isotonic comparison,
+  calibration intercept/slope, deterministic 10-bin reliability curves,
+  selection evidence, artifact hashes, and unchanged protected-test state.
+
+- Frozen deterministic Version 2 policy-execution mechanics before outcome
+  exposure, including capacity rounding, tie-breaking, cost thresholds, and
+  relative-cost accounting.
+- Added the frozen Version 2 policy-sensitivity engine and committed the first
+  registered 16-scenario policy batch with deterministic artifact identities,
+  byte-identical replay evidence, and no operational-threshold selection.
+- Closed recovery Phase R2 with synchronized modeling, calibration, and policy
+  evidence while the protected 2027 final test remained unopened.
+
+
+### Recovery Phase R4 closeout
+- Closed recovery Phase R4 after implementing the evidence-based Streamlit
+  evaluation dashboard, committing portfolio screenshots and architecture
+  documentation, and sealing portfolio commit `568be27` with successful PR CI
+  run `31217805371`.
+- Preserved the frozen `transparent_model_evaluation_dashboard` decision with
+  no protected-target re-access, model refit, recalibration, feature change,
+  post-test tuning, or final-test threshold selection.
+
+### Recovery Phase R5.1 evidence
+- Passed clean-environment reproduction from exact source commit `5e527e6`
+  using a disposable Python 3.12 environment.
+- Reproduced the frozen raw benchmark, target-free processed artifacts, and
+  final reporting package byte-identically without protected-target re-access
+  or model refit.
+- Verified 64 repository-relative Markdown links with zero broken links,
+  tracked-tree hygiene, frozen screenshot/figure identities, and Streamlit
+  health `ok`.
+- Recorded exact machine-readable evidence under
+  `reports/release/v2/r5_clean_reproduction_evidence.json`.
+
+### Release preparation
+- Promoted package and citation metadata together from `1.0.0` to `2.0.0`
+  after R5.1 clean-environment evidence was committed and exact-head CI-sealed.
+- Added Version 2 release notes, portfolio communication material, and top-level
+  `data/README.md` and `reports/README.md` guides.
+- Preserved the Version 1.0.0 changelog section verbatim as immutable release
+  history.
+- Prepared Version 2 metadata and documentation without claiming that GitHub
+  Release publication has already occurred.
+
 ## [1.0.0]
 ### Added
 - Immutable synthetic source-data integrity contracts.

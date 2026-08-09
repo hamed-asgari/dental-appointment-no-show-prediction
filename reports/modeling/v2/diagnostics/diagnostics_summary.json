@@ -1,0 +1,93 @@
+{
+  "average_precision": 0.11189770260845969,
+  "brier_score": 0.08000940547184755,
+  "capacity_fractions": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "diagnostic_partition": "policy_selection",
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "log_loss": 0.2979170320971554,
+  "mean_predicted_probability": 0.08609023348603691,
+  "minimum_subgroup_positive_count": 10,
+  "minimum_subgroup_rows": 100,
+  "permutation_importance_may_drive_feature_selection": false,
+  "permutation_metric": "average_precision",
+  "permutation_n_repeats": 20,
+  "permutation_random_state": 20260807,
+  "phase": "R3",
+  "positive_count": 92,
+  "prevalence": 0.08654750705550329,
+  "roc_auc": 0.5694599919401782,
+  "sample_size": 1063,
+  "schema_version": "1.0.0",
+  "single_operational_threshold_selected": false,
+  "stage": "pretest_interpretation_error_subgroup_diagnostics",
+  "subgroup_feature_count": 5,
+  "subgroup_row_count": 21,
+  "supported_subgroup_row_count": 18,
+  "top_10_permutation_features": [
+    {
+      "feature": "patient_prior_no_show_rate_smoothed",
+      "importance_mean": 0.014008793203707853,
+      "importance_std": 0.004678588521818658,
+      "rank": 1
+    },
+    {
+      "feature": "reminder_sent_by_prediction_time",
+      "importance_mean": 0.01228895185462259,
+      "importance_std": 0.0044886787244098544,
+      "rank": 2
+    },
+    {
+      "feature": "visit_type",
+      "importance_mean": 0.009596639968694446,
+      "importance_std": 0.01278133426554259,
+      "rank": 3
+    },
+    {
+      "feature": "visit_type_prior_no_show_rate_smoothed",
+      "importance_mean": 0.0055116480388268455,
+      "importance_std": 0.00547034835605732,
+      "rank": 4
+    },
+    {
+      "feature": "patient_prior_no_show_count",
+      "importance_mean": 0.0031417093576206513,
+      "importance_std": 0.002328847053502038,
+      "rank": 5
+    },
+    {
+      "feature": "patient_prior_completed_count",
+      "importance_mean": 0.0018302166745644839,
+      "importance_std": 0.0009762794504177586,
+      "rank": 6
+    },
+    {
+      "feature": "patient_mean_prior_booking_lead_days",
+      "importance_mean": 0.001644392682193486,
+      "importance_std": 0.0007848303273526095,
+      "rank": 7
+    },
+    {
+      "feature": "patient_history_available",
+      "importance_mean": 0.001543367516119678,
+      "importance_std": 0.0015337055163093258,
+      "rank": 8
+    },
+    {
+      "feature": "patient_days_since_last_known_status_update",
+      "importance_mean": 0.0014097117863298863,
+      "importance_std": 0.0008079115002031179,
+      "rank": 9
+    },
+    {
+      "feature": "dentist_prior_attendance_count",
+      "importance_mean": 0.001096730460904851,
+      "importance_std": 0.0044763729512013,
+      "rank": 10
+    }
+  ]
+}

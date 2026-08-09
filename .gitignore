@@ -67,6 +67,8 @@ models/**/*.pkl
 models/**/*.pickle
 models/**/*.joblib
 models/**/*.onnx
+# The single frozen Version 2 R3 artifact is intentionally versioned.
+!models/v2/frozen_logistic_pipeline.joblib
 
 # Keep synthetic source data eligible for version control.
 # Do not add blanket exclusions for data/raw, CSV, or Parquet files.

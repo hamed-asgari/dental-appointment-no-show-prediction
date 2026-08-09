@@ -1,0 +1,4 @@
+model,fold_count,mean_average_precision,mean_roc_auc,mean_brier_score,mean_log_loss,mean_validation_positive_rate,ap_uplift_vs_population_prior,folds_with_positive_ap_uplift_vs_prior,passes_minimum_usefulness_gate
+population_prior,3,0.091926612125,0.5,0.0835244080676,0.307272150747,0.091926612125,0,0,False
+logistic_regression,3,0.144518920984,0.609906710144,0.0847940409884,0.307492536183,0.091926612125,0.0525923088589,3,True
+random_forest,3,0.137399070765,0.576099622136,0.0854283020244,0.313712949314,0.091926612125,0.0454724586398,3,True

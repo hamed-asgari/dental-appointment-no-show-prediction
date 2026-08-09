@@ -63,3 +63,8 @@ Inclusion in `data/raw/` does not mean that every field is approved as a model p
 - **Transformations before ingestion:** None
 - **Synthetic-data status:** Fully synthetic
 - **Notes:** Immutable raw input copied from Project 1; predictor eligibility is not implied by inclusion.
+
+## Version 2 benchmark
+
+The Project 2-owned longitudinal benchmark is frozen under `data/raw/v2/`.
+Its README and manifest document generation, provenance, hashes, and use boundaries.

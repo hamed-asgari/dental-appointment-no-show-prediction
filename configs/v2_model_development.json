@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0.0",
+  "status": "frozen_before_any_v2_model_metric",
+  "modeling_seed": 20260807,
+  "processed_artifact": {
+    "path": "data/processed/v2/v2_feature_dataset.csv",
+    "dataset_sha256": "08a2c16ca6cc66f91fda1cd09a2549a3e2d5357c2b975eb2f55f4ade66a46b53",
+    "manifest_sha256": "2ee3f7d42f2d73fdcde71fd601fd0423d5e610767ac5162afd38c33bf2fb8073",
+    "fingerprint": "0f3243e4ef3d832ae5562a98354828bad481a6691a0e17e6a5271307143b5787",
+    "model_feature_count": 32,
+    "target_included": false
+  },
+  "feature_roles": {
+    "categorical": [
+      "visit_type",
+      "booking_channel",
+      "scheduled_weekday",
+      "scheduled_hour",
+      "scheduled_month"
+    ],
+    "boolean": [
+      "reminder_sent_by_prediction_time",
+      "patient_history_available",
+      "patient_completed_history_available",
+      "dentist_no_show_rate_supported",
+      "visit_type_no_show_rate_supported",
+      "weekday_hour_no_show_rate_supported"
+    ],
+    "numeric": [
+      "planned_duration_min",
+      "booking_lead_time_hours",
+      "approximate_age_at_prediction",
+      "patient_registration_tenure_days",
+      "dentist_tenure_days",
+      "patient_prior_known_appointment_count",
+      "patient_prior_attendance_count",
+      "patient_prior_completed_count",
+      "patient_prior_no_show_count",
+      "patient_prior_cancelled_count",
+      "patient_prior_rescheduled_count",
+      "patient_prior_no_show_rate_smoothed",
+      "patient_days_since_last_known_status_update",
+      "patient_days_since_last_completed_appointment",
+      "patient_mean_prior_booking_lead_days",
+      "dentist_prior_attendance_count",
+      "dentist_prior_no_show_rate_smoothed",
+      "visit_type_prior_attendance_count",
+      "visit_type_prior_no_show_rate_smoothed",
+      "weekday_hour_prior_attendance_count",
+      "weekday_hour_prior_no_show_rate_smoothed"
+    ]
+  },
+  "preprocessing": {
+    "categorical": {
+      "imputer": "constant",
+      "fill_value": "__missing__",
+      "encoder": "one_hot",
+      "handle_unknown": "ignore"
+    },
+    "boolean": {
+      "cast": "float64",
+      "imputer": "none"
+    },
+    "numeric": {
+      "imputer": "median_fit_on_training_only"
+    },
+    "logistic_numeric_scaler": "standard_scaler_fit_on_training_only",
+    "tree_numeric_scaler": "none",
+    "feature_selection": "none",
+    "hyperparameter_search": "none"
+  },
+  "candidates": {
+    "population_prior": {
+      "kind": "constant_training_prevalence"
+    },
+    "logistic_regression": {
+      "kind": "sklearn.linear_model.LogisticRegression",
+      "C": 1.0,
+      "penalty": "l2",
+      "solver": "lbfgs",
+      "max_iter": 2000,
+      "class_weight": null,
+      "random_state": 20260807
+    },
+    "random_forest": {
+      "kind": "sklearn.ensemble.RandomForestClassifier",
+      "n_estimators": 300,
+      "max_depth": 10,
+      "min_samples_leaf": 10,
+      "min_samples_split": 20,
+      "max_features": "sqrt",
+      "bootstrap": true,
+      "class_weight": null,
+      "random_state": 20260807,
+      "n_jobs": 1
+    }
+  },
+  "rolling_origin": [
+    {
+      "name": "fold_1",
+      "fit_time": "2025-01-01T00:00:00",
+      "training_partitions": [
+        "development_fit"
+      ],
+      "validation_partition": "fold_1_validation",
+      "validation_label_cutoff": "2025-07-01T00:00:00"
+    },
+    {
+      "name": "fold_2",
+      "fit_time": "2025-07-01T00:00:00",
+      "training_partitions": [
+        "development_fit",
+        "fold_1_validation"
+      ],
+      "validation_partition": "fold_2_validation",
+      "validation_label_cutoff": "2026-01-01T00:00:00"
+    },
+    {
+      "name": "fold_3",
+      "fit_time": "2026-01-01T00:00:00",
+      "training_partitions": [
+        "development_fit",
+        "fold_1_validation",
+        "fold_2_validation"
+      ],
+      "validation_partition": "fold_3_validation",
+      "validation_label_cutoff": "2026-07-01T00:00:00"
+    }
+  ],
+  "ranking_selection": {
+    "aggregate": "unweighted_macro_mean_across_three_folds",
+    "report_pooled_summary": true,
+    "required_metrics": [
+      "average_precision",
+      "roc_auc",
+      "brier_score",
+      "log_loss",
+      "sample_size",
+      "positive_count"
+    ],
+    "minimum_usefulness_gate": {
+      "mean_average_precision_absolute_uplift_vs_prior": 0.005,
+      "mean_roc_auc_minimum": 0.52,
+      "minimum_folds_with_positive_ap_uplift_vs_prior": 2
+    },
+    "eligible_model_order": [
+      "highest_mean_average_precision",
+      "highest_mean_roc_auc",
+      "lowest_mean_brier_score",
+      "lowest_mean_log_loss",
+      "prefer_logistic_regression_if_still_tied"
+    ],
+    "fallback_if_no_nonconstant_candidate_passes_gate": "population_prior"
+  },
+  "calibration": {
+    "base_refit_time": "2026-07-01T00:00:00",
+    "base_training_partitions": [
+      "development_fit",
+      "fold_1_validation",
+      "fold_2_validation",
+      "fold_3_validation"
+    ],
+    "calibration_fit_prediction_time": {
+      "start": "2026-07-01T00:00:00",
+      "end": "2026-09-01T00:00:00"
+    },
+    "calibrator_fit_time": "2026-09-01T00:00:00",
+    "calibration_evaluation_prediction_time": {
+      "start": "2026-09-01T00:00:00",
+      "end": "2026-10-01T00:00:00"
+    },
+    "calibration_evaluation_label_cutoff": "2026-10-01T00:00:00",
+    "methods": [
+      "uncalibrated",
+      "sigmoid",
+      "isotonic"
+    ],
+    "required_metrics": [
+      "brier_score",
+      "log_loss",
+      "calibration_intercept",
+      "calibration_slope",
+      "average_precision",
+      "roc_auc",
+      "sample_size",
+      "positive_count"
+    ],
+    "selection": {
+      "primary": "lowest_brier_score",
+      "log_loss_guardrail_max_worsening_vs_uncalibrated": 0.005,
+      "brier_indifference_margin": 0.001,
+      "simplicity_preference_within_margin": [
+        "uncalibrated",
+        "sigmoid",
+        "isotonic"
+      ]
+    },
+    "base_estimator_refit_after_calibration": false
+  },
+  "policy_selection": {
+    "decision_time": "2027-01-01T00:00:00",
+    "partition": "policy_selection",
+    "label_rule": "label_available_at < decision_time",
+    "capacity_fractions": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "false_negative_to_false_positive_cost_ratios": [
+      1.0,
+      2.0,
+      5.0,
+      10.0
+    ],
+    "cost_threshold_formula": "1 / (1 + false_negative_to_false_positive_cost_ratio)",
+    "required_outputs": [
+      "threshold",
+      "selected_count",
+      "selected_fraction",
+      "precision",
+      "recall",
+      "true_positive",
+      "false_positive",
+      "true_negative",
+      "false_negative",
+      "scenario_cost"
+    ],
+    "single_operational_threshold_selected": false,
+    "interpretation": "sensitivity_analysis_only_without_validated_clinic_economics"
+  },
+  "protected_final_test": {
+    "partition": "final_test",
+    "prediction_time": {
+      "start": "2027-01-01T00:00:00",
+      "end": "2028-01-01T00:00:00"
+    },
+    "target_access_permitted_during_r2": false,
+    "probability_vector_generation_permitted_during_r2": false,
+    "metric_computation_permitted_during_r2": false
+  },
+  "reporting": {
+    "calibration_bins": 10,
+    "calibration_bin_strategy": "quantile",
+    "confusion_matrices": true,
+    "fold_level_results": true,
+    "macro_fold_summary": true,
+    "pooled_validation_summary": true,
+    "claims_must_be_synthetic_data_scoped": true
+  }
+}

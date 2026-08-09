@@ -1,0 +1,37 @@
+{
+  "appointment_order_sha256": "addb9ab672383b10976aec4eaa94f359bbbe4c0bf5b634b313265c659c9c3cd6",
+  "artifacts": {
+    "final_test_app_decision.json": {
+      "sha256": "0c9a96146a83659616924c36af645129a7f257df4e1a9e8bc6b8f081ed105d5d",
+      "size_bytes": 1148
+    },
+    "final_test_evaluation_predictions.csv": {
+      "sha256": "192c34bc0bdeef2cc22fa7b78bcd03cf8dd917982c96bd348fae28c3d741923f",
+      "size_bytes": 123474
+    },
+    "final_test_metrics.json": {
+      "sha256": "8b05c3d98f96c39545fa8d9c61e902cd421e211992f4a785c72f66f3343bfef6",
+      "size_bytes": 1679
+    },
+    "final_test_policy_scenarios.csv": {
+      "sha256": "41e5e328f9117701b35ab2800c784a5afa37936a2f8580ea3e647f7501edb4ac",
+      "size_bytes": 2220
+    }
+  },
+  "final_test_probabilities_generated": true,
+  "final_test_target_accessed": true,
+  "phase": "R3",
+  "positive_count": 358,
+  "post_test_model_tuning_permitted": false,
+  "probability_manifest_sha256": "412c75ff76882536eab0dc2ee5df4c3da8551c7b99fe83402ab5ac0f679b46e4",
+  "probability_vector_sha256": "7a4af37da40c1515a6ee567dd12861b57cf08e2e65b516e3c7e3d2aa65237126",
+  "r3_execution_config_sha256": "c0b259a4bb81790a30fd6e2c2fd2495e10869d700ae783196c5eb055db46f7a5",
+  "sample_size": 4343,
+  "schema_version": "1.0.0",
+  "selected_app_type": "transparent_model_evaluation_dashboard",
+  "single_operational_threshold_selected": false,
+  "stage": "one_time_protected_final_test_evaluation",
+  "target_access_count_this_evaluation_batch": 1,
+  "target_access_explicit_allow_test_true": true,
+  "target_access_method": "load_verified_v2_final_test_targets"
+}

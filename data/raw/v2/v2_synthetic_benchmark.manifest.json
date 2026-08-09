@@ -1,0 +1,175 @@
+{
+  "configuration": {
+    "path": "configs/v2_synthetic_benchmark.json",
+    "sha256": "aafb631abc615f61f5f4efda9650ab1efac5664c50d62ea7e399a69c97fbaf50"
+  },
+  "dataset_fingerprint": "d9fdfa1a93091fd15bc34a62d655aef313966e2603d901350a6bd969b4e3c1bf",
+  "dataset_name": "v2_synthetic_benchmark",
+  "evaluation": {
+    "calibration": {
+      "end": "2026-10-01",
+      "start": "2026-07-01"
+    },
+    "final_test": {
+      "end": "2028-01-01",
+      "start": "2027-01-01"
+    },
+    "policy_selection": {
+      "end": "2027-01-01",
+      "start": "2026-10-01"
+    },
+    "rolling_folds": [
+      {
+        "fit_end": "2025-01-01",
+        "fit_start": "2024-01-01",
+        "name": "fold_1",
+        "validation_end": "2025-07-01",
+        "validation_start": "2025-01-01"
+      },
+      {
+        "fit_end": "2025-07-01",
+        "fit_start": "2024-01-01",
+        "name": "fold_2",
+        "validation_end": "2026-01-01",
+        "validation_start": "2025-07-01"
+      },
+      {
+        "fit_end": "2026-01-01",
+        "fit_start": "2024-01-01",
+        "name": "fold_3",
+        "validation_end": "2026-07-01",
+        "validation_start": "2026-01-01"
+      }
+    ],
+    "warmup": {
+      "end": "2024-01-01",
+      "start": "2023-01-01"
+    }
+  },
+  "generation_environment": {
+    "dependency_lock": "requirements.lock.txt",
+    "numpy_version": "2.5.1",
+    "pandas_version": "3.0.5",
+    "python_requirement": ">=3.12,<3.13"
+  },
+  "generator_source_sha256": {
+    "src/synthetic/config.py": "adb231bd7a2ed58ee4dbe10dde5e0f3d84fd0d96fc867b45bca5e79486c5485d",
+    "src/synthetic/export.py": "c0d2ccb65222b20d83c81f31be747c2e135671da49206300f8948ca85805f99f",
+    "src/synthetic/generator.py": "fd82bc0ae19d314b4474c7a8e27c3c7f69071c8f80d8f44e508c1292bd0765fa",
+    "src/synthetic/schema.py": "bb2fb12a5d88978ab2d7a67d146e543b2545fba5350003824908a52ab48c52be",
+    "src/synthetic/tables.py": "073e352b5212905b702bb1862083b5ff070d839ca63855660a1b7e8c710e923a",
+    "src/synthetic/validation.py": "f53eba7d0b2ff2becbf9fa7dee96ad38b425dae798e7bbaf1e8c4374490af67c"
+  },
+  "generator_version": "2.0.0",
+  "manifest_version": "1.0.0",
+  "prediction_contract": {
+    "historical_outcome_rule": "historical_status_updated_at < current_prediction_time",
+    "horizon_hours": 24,
+    "prediction_time_formula": "scheduled_start_at - prediction_horizon_hours"
+  },
+  "rng_stream_seeds": {
+    "appointments": 12932254778442624285,
+    "dentists": 15938461172596523991,
+    "latent_risk": 10118867037222204489,
+    "outcomes": 9402487849650529612,
+    "patients": 11625604375569787253,
+    "reminders": 9676750124240687214,
+    "status_timestamps": 5820576666558930755
+  },
+  "root_seed": 20260805,
+  "schema_version": "2.0.0",
+  "synthetic_data": true,
+  "tables": {
+    "appointments": {
+      "columns": [
+        "appointment_id",
+        "patient_id",
+        "dentist_id",
+        "booked_at",
+        "scheduled_start_at",
+        "planned_duration_min",
+        "visit_type",
+        "booking_channel",
+        "status",
+        "status_updated_at",
+        "reminder_sent",
+        "reminder_sent_at",
+        "check_in_at",
+        "chair_start_at",
+        "chair_end_at",
+        "checkout_at",
+        "status_change_reason",
+        "rescheduled_from_appointment_id"
+      ],
+      "filename": "appointments.csv",
+      "prediction_time_range": {
+        "maximum": "2027-12-29 18:30:00",
+        "minimum": "2022-12-31 09:30:00"
+      },
+      "reminder_sent_counts": {
+        "false": 3237,
+        "true": 20763
+      },
+      "row_count": 24000,
+      "scheduled_start_at_range": {
+        "maximum": "2027-12-30 18:30:00",
+        "minimum": "2023-01-01 09:30:00"
+      },
+      "sha256": "00d759e69fa51eb5250fafb07e844a7c7ba0cb16dec2b80de47ce78092a162ba",
+      "status_counts": {
+        "cancelled": 1818,
+        "completed": 19185,
+        "no_show": 1943,
+        "rescheduled": 1054
+      }
+    },
+    "dentists": {
+      "active_counts": {
+        "false": 1,
+        "true": 6
+      },
+      "columns": [
+        "dentist_id",
+        "dentist_role",
+        "engagement_type",
+        "start_date",
+        "end_date",
+        "scheduled_hours_weekly",
+        "active"
+      ],
+      "filename": "dentists.csv",
+      "row_count": 7,
+      "sha256": "22426232d2fa4051ebe1484b5b495ed5afc2d51e2f5c3f19c654aa1f61cad5e8",
+      "start_date_range": {
+        "maximum": "2023-03-01 00:00:00",
+        "minimum": "2022-07-01 00:00:00"
+      }
+    },
+    "patients": {
+      "columns": [
+        "patient_id",
+        "birth_year",
+        "sex",
+        "city_area",
+        "registered_at",
+        "insurance_type",
+        "referral_source",
+        "preferred_contact_channel",
+        "patient_status"
+      ],
+      "filename": "patients.csv",
+      "patient_status_counts": {
+        "active": 3713,
+        "archived": 39,
+        "inactive": 248
+      },
+      "registered_at_range": {
+        "maximum": "2027-11-27 13:47:00",
+        "minimum": "2022-01-01 13:25:00"
+      },
+      "row_count": 4000,
+      "sha256": "37df61e47d4060f1e92af49de224228e02451c9eb72e2820f037285ffa9a8ad6"
+    }
+  },
+  "validated_for_clinical_use": false
+}

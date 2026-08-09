@@ -1,0 +1,13 @@
+{
+  "contract_config_sha256": "0b39dbe9b15c64579a81e7b9dbeaad5e5a6694fc5066698fbcfd4623a1bd1dd6",
+  "contract_document_sha256": "735953523db15e36b82bacfb022915c3eff0c4f4329f16c72877dc32f8ff597f",
+  "eligible_nonconstant_candidates": [
+    "logistic_regression",
+    "random_forest"
+  ],
+  "fallback_to_population_prior": false,
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "selected_ranking_model": "logistic_regression",
+  "selection_reason": "Selected by the frozen AP, ROC-AUC, Brier, log-loss, and Logistic Regression tie-break ordering."
+}

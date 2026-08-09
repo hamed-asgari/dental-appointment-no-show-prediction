@@ -1,0 +1,43 @@
+{
+  "artifacts": {
+    "capacity_error_summary.csv": {
+      "sha256": "cee2a7e6a1724a6b29ed86c31975f062841d8abdb9e25154c1d25010e3452637",
+      "size_bytes": 621
+    },
+    "diagnostics_summary.json": {
+      "sha256": "c7f561c299a01d1e42372053087a208771358a7cf185b6d9e892425b196faf7c",
+      "size_bytes": 2767
+    },
+    "first_time_vs_repeat.csv": {
+      "sha256": "8f9038f05c44d9db8f40d793bac441d274df161bd34eb8b9a60b6f11232c2e5b",
+      "size_bytes": 384
+    },
+    "permutation_importance.csv": {
+      "sha256": "815ce9f29eb6fb5a8cf68d288e52f6cd987da32aec5fd4cc1c2d696b5406bee3",
+      "size_bytes": 2121
+    },
+    "row_error_analysis.csv": {
+      "sha256": "13771299d047377c40cca67de93b677cd01c0f8ee1b5548684c0d42b6c086b84",
+      "size_bytes": 75578
+    },
+    "subgroup_metrics.csv": {
+      "sha256": "eae6381852bb733c078147a642853b3da1c7c2dec15b2ba0c037a412814f85f6",
+      "size_bytes": 2449
+    }
+  },
+  "diagnostic_partition": "policy_selection",
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "permutation_importance_may_drive_feature_selection": false,
+  "persistence_manifest_sha256": "ca19d477e0590f40d1abbad869119b182d05e923b2d582df19c42473d2795856",
+  "phase": "R3",
+  "pipeline_sha256": "301029bd5bee1ffe346fbf09dcc6ed4570b231458ba8a081f8a0f6bb544d9df0",
+  "policy_manifest_sha256": "33391bc9295c6a9d93bb8797e8e3836fb9af45062f1b431a4debc9bc7822e4a4",
+  "positive_count": 92,
+  "r3_execution_config_sha256": "c0b259a4bb81790a30fd6e2c2fd2495e10869d700ae783196c5eb055db46f7a5",
+  "sample_size": 1063,
+  "schema_version": "1.0.0",
+  "single_operational_threshold_selected": false,
+  "stage": "pretest_interpretation_error_subgroup_diagnostics",
+  "subgroup_feature_count": 5
+}

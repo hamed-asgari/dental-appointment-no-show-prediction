@@ -1,0 +1,42 @@
+{
+  "artifacts": {
+    "ranking_selection.json": {
+      "sha256": "23796b642ab9ea89e09bc01c6ba713a9b3835fb858d151e0bb212f7a8265a28c",
+      "size_bytes": 588
+    },
+    "rolling_origin_fold_metrics.csv": {
+      "sha256": "4a2b6d85e164673a146068dee25d3596b654ef3926b48265021ea8cc8f7d73ed",
+      "size_bytes": 1728
+    },
+    "rolling_origin_macro_summary.csv": {
+      "sha256": "aba1c540fc2f6d664ee162d3bdf77211bef16412d76a3c2ea4262d3ef041349a",
+      "size_bytes": 544
+    },
+    "rolling_origin_pooled_summary.csv": {
+      "sha256": "db97378c152cf6dd4cf81cd6468aa45a70b41afda4c336adb5fe572a06a61352",
+      "size_bytes": 403
+    },
+    "rolling_origin_predictions.csv": {
+      "sha256": "4aadf518af90cfe20d2de3a38281ea7d33f3e764cbd97fc8c4fb78759c33f636",
+      "size_bytes": 1649166
+    }
+  },
+  "fallback_to_population_prior": false,
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "model_config_sha256": "0b39dbe9b15c64579a81e7b9dbeaad5e5a6694fc5066698fbcfd4623a1bd1dd6",
+  "model_contract_sha256": "735953523db15e36b82bacfb022915c3eff0c4f4329f16c72877dc32f8ff597f",
+  "phase": "R2",
+  "processed_dataset_fingerprint": "0f3243e4ef3d832ae5562a98354828bad481a6691a0e17e6a5271307143b5787",
+  "processed_dataset_sha256": "08a2c16ca6cc66f91fda1cd09a2549a3e2d5357c2b975eb2f55f4ade66a46b53",
+  "processed_manifest_sha256": "2ee3f7d42f2d73fdcde71fd601fd0423d5e610767ac5162afd38c33bf2fb8073",
+  "runtime": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0"
+  },
+  "schema_version": "1.0.0",
+  "selected_ranking_model": "logistic_regression",
+  "stage": "rolling_origin_ranking"
+}

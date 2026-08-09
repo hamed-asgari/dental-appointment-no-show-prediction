@@ -1,0 +1,158 @@
+{
+  "app_decision": {
+    "checks": {
+      "average_precision_absolute_uplift_vs_population_prior": {
+        "observed": 0.06472620063430369,
+        "passes": true,
+        "required_minimum": 0.005
+      },
+      "brier_score_vs_population_prior": {
+        "baseline": 0.07568725187832186,
+        "delta_model_minus_baseline": 0.000517993471194883,
+        "model": 0.07620524534951674,
+        "passes": false,
+        "require_no_worse": true
+      },
+      "log_loss_vs_population_prior": {
+        "baseline": 0.2849868310616341,
+        "delta_model_minus_baseline": -0.0023636968008977632,
+        "maximum_allowed_worsening": 0.005,
+        "model": 0.2826231342607363,
+        "passes": true
+      },
+      "roc_auc": {
+        "observed": 0.6300295101042317,
+        "passes": true,
+        "required_minimum": 0.52
+      }
+    },
+    "claims_scope": "synthetic_data_only",
+    "passes_all_appointment_level_risk_demo_requirements": false,
+    "selected_app_type": "transparent_model_evaluation_dashboard"
+  },
+  "figure_filenames": [
+    "v2_final_precision_recall_curve.png",
+    "v2_final_calibration_curve.png",
+    "v2_final_capacity_tradeoff.png"
+  ],
+  "final_test": {
+    "average_precision": 0.14715769959815356,
+    "brier_score": 0.07620524534951674,
+    "calibration_intercept": -0.9620523895028728,
+    "calibration_slope": 0.6890337023179296,
+    "log_loss": 0.2826231342607363,
+    "mean_predicted_probability": 0.11319024204909915,
+    "positive_count": 358,
+    "prevalence": 0.08243149896384987,
+    "roc_auc": 0.6300295101042317,
+    "sample_size": 4343
+  },
+  "model": {
+    "base_fit_time": "2026-07-01T00:00:00",
+    "base_training_positive_count": 978,
+    "base_training_prevalence": 0.08955223880597014,
+    "base_training_rows": 10921,
+    "feature_count": 32,
+    "selected_calibration_method": "uncalibrated",
+    "selected_ranking_model": "logistic_regression"
+  },
+  "model_minus_baseline": {
+    "average_precision_absolute_uplift": 0.06472620063430369,
+    "brier_delta": 0.000517993471194883,
+    "log_loss_delta": -0.0023636968008977632
+  },
+  "phase": "R3",
+  "population_prior_baseline": {
+    "average_precision": 0.08243149896384987,
+    "brier_score": 0.07568725187832186,
+    "log_loss": 0.2849868310616341,
+    "probability": 0.08955223880597014,
+    "roc_auc": 0.5
+  },
+  "pretest_diagnostics": {
+    "partition": "policy_selection",
+    "positive_count": 92,
+    "sample_size": 1063,
+    "supported_subgroup_row_count": 18,
+    "top_10_permutation_features": [
+      {
+        "feature": "patient_prior_no_show_rate_smoothed",
+        "importance_mean": 0.014008793203707853,
+        "importance_std": 0.004678588521818658,
+        "rank": 1
+      },
+      {
+        "feature": "reminder_sent_by_prediction_time",
+        "importance_mean": 0.01228895185462259,
+        "importance_std": 0.0044886787244098544,
+        "rank": 2
+      },
+      {
+        "feature": "visit_type",
+        "importance_mean": 0.009596639968694446,
+        "importance_std": 0.01278133426554259,
+        "rank": 3
+      },
+      {
+        "feature": "visit_type_prior_no_show_rate_smoothed",
+        "importance_mean": 0.0055116480388268455,
+        "importance_std": 0.00547034835605732,
+        "rank": 4
+      },
+      {
+        "feature": "patient_prior_no_show_count",
+        "importance_mean": 0.0031417093576206513,
+        "importance_std": 0.002328847053502038,
+        "rank": 5
+      },
+      {
+        "feature": "patient_prior_completed_count",
+        "importance_mean": 0.0018302166745644839,
+        "importance_std": 0.0009762794504177586,
+        "rank": 6
+      },
+      {
+        "feature": "patient_mean_prior_booking_lead_days",
+        "importance_mean": 0.001644392682193486,
+        "importance_std": 0.0007848303273526095,
+        "rank": 7
+      },
+      {
+        "feature": "patient_history_available",
+        "importance_mean": 0.001543367516119678,
+        "importance_std": 0.0015337055163093258,
+        "rank": 8
+      },
+      {
+        "feature": "patient_days_since_last_known_status_update",
+        "importance_mean": 0.0014097117863298863,
+        "importance_std": 0.0008079115002031179,
+        "rank": 9
+      },
+      {
+        "feature": "dentist_prior_attendance_count",
+        "importance_mean": 0.001096730460904851,
+        "importance_std": 0.0044763729512013,
+        "rank": 10
+      }
+    ]
+  },
+  "reporting_boundary": {
+    "changes_calibration": false,
+    "claims_scope": "synthetic_data_only",
+    "invokes_protected_target_accessor": false,
+    "post_test_model_tuning_permitted": false,
+    "reads_committed_opened_evaluation_only": true,
+    "regenerates_or_refits_model": false,
+    "selects_final_test_threshold": false
+  },
+  "schema_version": "1.0.0",
+  "source_hashes": {
+    "diagnostics_manifest": "5a207b8a4984a203f64d1015c7a99b254db1108440dde71738abd3c936f9f8f2",
+    "evaluation_manifest": "c8a2158bf98c4230bc66180d66dc4e4e88f8e3fff8b2ce0538fd58f4cf29a2af",
+    "persistence_metadata": "33eda2b123e592813008a004b4aa3f353ac1a2bda51ca5eaddb45954eeea6224",
+    "probability_manifest": "412c75ff76882536eab0dc2ee5df4c3da8551c7b99fe83402ab5ac0f679b46e4",
+    "probability_vector": "7a4af37da40c1515a6ee567dd12861b57cf08e2e65b516e3c7e3d2aa65237126"
+  },
+  "stage": "final_reporting_package"
+}

@@ -1,0 +1,26 @@
+{
+  "artifacts": {
+    "frozen_logistic_pipeline.joblib": {
+      "sha256": "301029bd5bee1ffe346fbf09dcc6ed4570b231458ba8a081f8a0f6bb544d9df0",
+      "size_bytes": 3805
+    },
+    "frozen_logistic_pipeline.metadata.json": {
+      "sha256": "33eda2b123e592813008a004b4aa3f353ac1a2bda51ca5eaddb45954eeea6224",
+      "size_bytes": 2863
+    }
+  },
+  "base_training_positive_count": 978,
+  "base_training_rows": 10921,
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "model_feature_count": 32,
+  "phase": "R3",
+  "policy_manifest_sha256": "33391bc9295c6a9d93bb8797e8e3836fb9af45062f1b431a4debc9bc7822e4a4",
+  "policy_prediction_replay_rows": 1063,
+  "r3_execution_config_sha256": "c0b259a4bb81790a30fd6e2c2fd2495e10869d700ae783196c5eb055db46f7a5",
+  "schema_version": "1.0.0",
+  "selected_calibration_method": "uncalibrated",
+  "selected_ranking_model": "logistic_regression",
+  "single_operational_threshold_selected": false,
+  "stage": "frozen_model_persistence"
+}

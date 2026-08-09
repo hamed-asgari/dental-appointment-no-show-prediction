@@ -1,0 +1,27 @@
+{
+  "base_fit_time": "2026-07-01T00:00:00",
+  "base_training_positive_count": 978,
+  "base_training_rows": 10921,
+  "best_guardrail_eligible_brier_score": 0.06968161469435599,
+  "brier_indifference_margin": 0.001,
+  "calibration_evaluation_label_cutoff": "2026-10-01T00:00:00",
+  "calibration_evaluation_positive_count": 25,
+  "calibration_evaluation_rows": 328,
+  "calibration_fit_positive_count": 50,
+  "calibration_fit_rows": 738,
+  "calibrator_fit_time": "2026-09-01T00:00:00",
+  "final_test_probabilities_generated": false,
+  "final_test_target_accessed": false,
+  "log_loss_guardrail_max_worsening_vs_uncalibrated": 0.005,
+  "model_config_sha256": "0b39dbe9b15c64579a81e7b9dbeaad5e5a6694fc5066698fbcfd4623a1bd1dd6",
+  "model_contract_sha256": "735953523db15e36b82bacfb022915c3eff0c4f4329f16c72877dc32f8ff597f",
+  "rolling_origin_manifest_sha256": "e575b10835645d3a643c396803cfff21f5c1c1cdad9b988ee07037ef045beb45",
+  "selected_calibration_method": "uncalibrated",
+  "selected_ranking_model": "logistic_regression",
+  "simplicity_preference_within_margin": [
+    "uncalibrated",
+    "sigmoid",
+    "isotonic"
+  ],
+  "uncalibrated_log_loss": 0.2639658570928362
+}

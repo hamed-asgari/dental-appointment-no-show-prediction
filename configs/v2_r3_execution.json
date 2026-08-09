@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "status": "frozen_before_any_r3_final_test_probability_or_target_access",
+  "r3_seed": 20260807,
+  "upstream": {
+    "r2_closure_commit": "7fdcf40",
+    "model_config_sha256": "0b39dbe9b15c64579a81e7b9dbeaad5e5a6694fc5066698fbcfd4623a1bd1dd6",
+    "model_development_contract_sha256": "735953523db15e36b82bacfb022915c3eff0c4f4329f16c72877dc32f8ff597f",
+    "rolling_origin_manifest_sha256": "e575b10835645d3a643c396803cfff21f5c1c1cdad9b988ee07037ef045beb45",
+    "calibration_manifest_sha256": "5b2e701753a2d0e0d2f9a7efaddf46b2f316643e66dd8c11727373927c8a5d7a",
+    "policy_manifest_sha256": "33391bc9295c6a9d93bb8797e8e3836fb9af45062f1b431a4debc9bc7822e4a4",
+    "selected_ranking_model": "logistic_regression",
+    "selected_calibration_method": "uncalibrated",
+    "single_operational_threshold_selected": false
+  },
+  "frozen_model": {
+    "model_feature_count": 32,
+    "base_refit_time": "2026-07-01T00:00:00",
+    "base_training_partitions": [
+      "development_fit",
+      "fold_1_validation",
+      "fold_2_validation",
+      "fold_3_validation"
+    ],
+    "base_estimator_refit_after_calibration": false,
+    "refit_on_calibration_or_policy_selection_data": false,
+    "feature_selection_changes_permitted": false,
+    "hyperparameter_changes_permitted": false,
+    "calibration_changes_permitted": false
+  },
+  "execution_order": [
+    "persist_frozen_pipeline_and_machine_readable_metadata",
+    "produce_non_test_interpretation_error_and_subgroup_diagnostics",
+    "generate_complete_target_free_final_test_probability_vector",
+    "sha256_seal_commit_and_ci_verify_probability_vector_before_target_access",
+    "explicit_one_time_final_test_target_access_and_evaluation",
+    "document_app_decision_gate_without_post_test_tuning"
+  ],
+  "pre_test_diagnostics": {
+    "primary_partition": "policy_selection",
+    "final_test_permitted": false,
+    "permutation_importance": {
+      "metric": "average_precision",
+      "n_repeats": 20,
+      "random_state": 20260807,
+      "permutation_unit": "raw_feature_column_before_preprocessing",
+      "report_mean_and_standard_deviation": true,
+      "may_drive_feature_selection": false
+    },
+    "first_time_vs_repeat": {
+      "feature": "patient_history_available",
+      "first_time_value": false,
+      "repeat_value": true
+    },
+    "subgroup_features": [
+      "patient_history_available",
+      "reminder_sent_by_prediction_time",
+      "visit_type",
+      "booking_channel",
+      "scheduled_weekday"
+    ],
+    "minimum_subgroup_rows": 100,
+    "minimum_subgroup_positive_count": 10,
+    "subgroup_metrics": [
+      "sample_size",
+      "positive_count",
+      "prevalence",
+      "average_precision",
+      "roc_auc",
+      "brier_score",
+      "log_loss"
+    ],
+    "unsupported_subgroup_action": "report_as_insufficient_support_without_model_change",
+    "error_analysis": {
+      "continuous_outputs": [
+        "absolute_probability_error",
+        "brier_contribution",
+        "log_loss_contribution"
+      ],
+      "registered_capacity_fractions": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "single_operational_threshold_selected": false
+    }
+  },
+  "persistence": {
+    "pipeline_path": "models/v2/frozen_logistic_pipeline.joblib",
+    "metadata_path": "models/v2/frozen_logistic_pipeline.metadata.json",
+    "manifest_path": "models/v2/frozen_logistic_pipeline.manifest.json",
+    "require_sha256": true,
+    "require_load_smoke_test": true,
+    "require_prediction_replay_test": true
+  },
+  "protected_final_test": {
+    "partition": "final_test",
+    "prediction_time": {
+      "start": "2027-01-01T00:00:00",
+      "end": "2028-01-01T00:00:00"
+    },
+    "expected_feature_rows": 4343,
+    "probability_path": "reports/modeling/v2/final_test/final_test_probabilities.csv",
+    "probability_columns": [
+      "appointment_id",
+      "no_show_probability"
+    ],
+    "exact_appointment_order_required": true,
+    "probability_sha256_seal_required_before_target_access": true,
+    "probability_commit_and_ci_green_required_before_target_access": true,
+    "target_access_requires_explicit_allow_test_true": true,
+    "one_time_target_evaluation": true,
+    "no_refit_after_probability_seal": true,
+    "no_tuning_after_target_access": true,
+    "probabilities_generated_at_contract_freeze": false,
+    "target_accessed_at_contract_freeze": false
+  },
+  "final_test_reporting": {
+    "required_metrics": [
+      "average_precision",
+      "roc_auc",
+      "brier_score",
+      "log_loss",
+      "calibration_intercept",
+      "calibration_slope",
+      "sample_size",
+      "positive_count"
+    ],
+    "population_prior_baseline": "constant_prevalence_from_frozen_base_training_labels",
+    "capacity_fractions": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "false_negative_to_false_positive_cost_ratios": [
+      1.0,
+      2.0,
+      5.0,
+      10.0
+    ],
+    "single_operational_threshold_selected": false
+  },
+  "app_decision_gate": {
+    "appointment_level_risk_demo_requires_all": {
+      "average_precision_absolute_uplift_vs_population_prior_minimum": 0.005,
+      "roc_auc_minimum": 0.52,
+      "brier_score_no_worse_than_population_prior": true,
+      "log_loss_max_worsening_vs_population_prior": 0.005
+    },
+    "otherwise": "transparent_model_evaluation_dashboard",
+    "final_test_threshold_selection_permitted": false,
+    "claims_must_be_synthetic_data_scoped": true
+  }
+}
